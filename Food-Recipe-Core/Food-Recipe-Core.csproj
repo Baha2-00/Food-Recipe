@@ -1,14 +1,19 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <RootNamespace>Food_Recipe_Core</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>Food_Recipe</RootNamespace>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.14" />
+    <Folder Include="DTOs\" />
+    <Folder Include="IRepos\" />
+    <Folder Include="IServices\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.19">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,11 +25,6 @@
     </PackageReference>
     <PackageReference Include="MySql.Data" Version="8.4.0" />
     <PackageReference Include="MySql.EntityFrameworkCore" Version="7.0.16" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Food-Recipe-Core\Food-Recipe-Core.csproj" />
   </ItemGroup>
 
 </Project>

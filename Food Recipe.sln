@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Food Recipe", "Food Recipe\Food Recipe.csproj", "{8AA7B42D-9C6C-4AD3-A7B1-AAB05B344542}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Food Recipe", "Food Recipe\Food Recipe.csproj", "{8AA7B42D-9C6C-4AD3-A7B1-AAB05B344542}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BE0E52CC-F079-4E71-8566-FB03921F1636} = {BE0E52CC-F079-4E71-8566-FB03921F1636}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Food-Recipe-Core", "Food-Recipe-Core\Food-Recipe-Core.csproj", "{EF4B60E0-495A-48F4-A1BC-7A35E842FB7A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Food-Recipe-Infra", "Food-Recipe-Infra\Food-Recipe-Infra.csproj", "{BE0E52CC-F079-4E71-8566-FB03921F1636}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EF4B60E0-495A-48F4-A1BC-7A35E842FB7A} = {EF4B60E0-495A-48F4-A1BC-7A35E842FB7A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,14 @@ Global
 		{8AA7B42D-9C6C-4AD3-A7B1-AAB05B344542}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AA7B42D-9C6C-4AD3-A7B1-AAB05B344542}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AA7B42D-9C6C-4AD3-A7B1-AAB05B344542}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF4B60E0-495A-48F4-A1BC-7A35E842FB7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF4B60E0-495A-48F4-A1BC-7A35E842FB7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF4B60E0-495A-48F4-A1BC-7A35E842FB7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF4B60E0-495A-48F4-A1BC-7A35E842FB7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE0E52CC-F079-4E71-8566-FB03921F1636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE0E52CC-F079-4E71-8566-FB03921F1636}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE0E52CC-F079-4E71-8566-FB03921F1636}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE0E52CC-F079-4E71-8566-FB03921F1636}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

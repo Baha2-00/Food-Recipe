@@ -1,3 +1,6 @@
+using Food_Recipe_Core.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<FoodRecipeDBContext>(
+    cnn => cnn.UseMySQL(builder.Configuration.GetConnectionString("mysqlconnect")));
+
 
 var app = builder.Build();
 
