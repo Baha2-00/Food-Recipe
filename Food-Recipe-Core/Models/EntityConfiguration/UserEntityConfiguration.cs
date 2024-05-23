@@ -21,6 +21,11 @@ namespace Food_Recipe_Core.Models.EntityConfiguration
             builder.Property(x => x.Email).IsRequired();
             builder.Property(x => x.Phone).IsRequired();
             builder.Property(x => x.BirthDate).IsRequired();
+
+            //RelationShips
+            builder.HasMany<DishRequest>().WithOne().HasForeignKey(x => x.UserId);
+            builder.HasMany<Invoice>().WithOne().HasForeignKey(x => x.UserId);
+            builder.HasMany<UserSubscription>().WithOne().HasForeignKey(x => x.UserId);
         }
     }
 }

@@ -23,6 +23,7 @@ namespace Food_Recipe_Core.Models.EntityConfiguration
 
             //Relationships 
             builder.HasMany<DishIngredient>().WithOne().HasForeignKey(x => x.DishId);
+            builder.HasMany<DishPreparingSteps>().WithOne().HasForeignKey(x => x.DishId);
         }
     }
 }

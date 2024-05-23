@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Food_Recipe_Core.Models.Entity
 {
-    public class DishPreparingSteps : MainEntity
+    public class UserSubscription : MainEntity
     {
-        public string serial { get; set; }
-        public string Title { get; set; }
-        public int? DishId { get; set; }
+        public int? UserId { get; set; }
+        public int? SubscriptionId { get; set; }
     }
 }
