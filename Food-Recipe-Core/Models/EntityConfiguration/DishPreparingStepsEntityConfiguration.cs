@@ -18,6 +18,7 @@ namespace Food_Recipe_Core.Models.EntityConfiguration
             builder.Property(x => x.CreationDate).IsRequired();
             builder.Property(x => x.serial).IsRequired();
             builder.Property(x => x.Title).IsRequired();
+            builder.Property(x => x.IsDeleted).HasDefaultValue(false);
         }
     }
 }

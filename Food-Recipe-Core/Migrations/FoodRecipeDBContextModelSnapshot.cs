@@ -20,6 +20,74 @@ namespace Food_Recipe_Core.Migrations
                 .HasAnnotation("ProductVersion", "7.0.19")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("Food_Recipe_Core.Models.Entity.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Food_Recipe_Core.Models.Entity.Cuisine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cuisines");
+                });
+
             modelBuilder.Entity("Food_Recipe_Core.Models.Entity.Dish", b =>
                 {
                     b.Property<int>("Id")
@@ -29,12 +97,14 @@ namespace Food_Recipe_Core.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1L)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("CuisineId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -44,13 +114,19 @@ namespace Food_Recipe_Core.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("CuisineId");
 
                     b.ToTable("Dishs");
                 });
@@ -74,7 +150,15 @@ namespace Food_Recipe_Core.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
+
+                    b.Property<int?>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("quantityUnit")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -101,15 +185,23 @@ namespace Food_Recipe_Core.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("serial")
+                    b.Property<string>("attachment")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("desc")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("serial")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -131,11 +223,12 @@ namespace Food_Recipe_Core.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
 
-                    b.Property<string>("Priority")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int?>("Priority")
+                        .HasColumnType("int");
 
                     b.Property<string>("Purpose")
                         .IsRequired()
@@ -178,7 +271,9 @@ namespace Food_Recipe_Core.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -191,45 +286,6 @@ namespace Food_Recipe_Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ingredient");
-                });
-
-            modelBuilder.Entity("Food_Recipe_Core.Models.Entity.Invoice", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double?>("Amount")
-                        .HasColumnType("double");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime?>("IssueDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int?>("PaymentMethod")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SubscriptionId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SubscriptionId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Invoices");
                 });
 
             modelBuilder.Entity("Food_Recipe_Core.Models.Entity.Login", b =>
@@ -245,12 +301,14 @@ namespace Food_Recipe_Core.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
 
                     b.Property<bool>("IsLoggedIn")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<DateTime>("LastLoginTime")
+                    b.Property<DateTime?>("LastLoginTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Password")
@@ -291,7 +349,9 @@ namespace Food_Recipe_Core.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
 
                     b.Property<double>("Price")
                         .HasColumnType("double");
@@ -300,12 +360,10 @@ namespace Food_Recipe_Core.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("subscriptionId")
+                    b.Property<int>("subscription")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("subscriptionId");
 
                     b.ToTable("Subscriptions");
                 });
@@ -334,7 +392,9 @@ namespace Food_Recipe_Core.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -345,13 +405,12 @@ namespace Food_Recipe_Core.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("ProfileImage")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
-                    b.Property<int>("SocicalMediaAccount")
+                    b.Property<int?>("SocicalMediaAccount")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -368,11 +427,22 @@ namespace Food_Recipe_Core.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1L)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<double?>("Amount")
+                        .HasColumnType("double");
+
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false);
+
+                    b.Property<DateTime?>("IssueDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("PaymentMethod")
+                        .HasColumnType("int");
 
                     b.Property<int?>("SubscriptionId")
                         .HasColumnType("int");
@@ -387,6 +457,17 @@ namespace Food_Recipe_Core.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserSubscriptions");
+                });
+
+            modelBuilder.Entity("Food_Recipe_Core.Models.Entity.Dish", b =>
+                {
+                    b.HasOne("Food_Recipe_Core.Models.Entity.Category", null)
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("Food_Recipe_Core.Models.Entity.Cuisine", null)
+                        .WithMany()
+                        .HasForeignKey("CuisineId");
                 });
 
             modelBuilder.Entity("Food_Recipe_Core.Models.Entity.DishIngredient", b =>
@@ -412,28 +493,6 @@ namespace Food_Recipe_Core.Migrations
                     b.HasOne("Food_Recipe_Core.Models.Entity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Food_Recipe_Core.Models.Entity.Invoice", b =>
-                {
-                    b.HasOne("Food_Recipe_Core.Models.Entity.Subscription", null)
-                        .WithMany()
-                        .HasForeignKey("SubscriptionId");
-
-                    b.HasOne("Food_Recipe_Core.Models.Entity.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Food_Recipe_Core.Models.Entity.Subscription", b =>
-                {
-                    b.HasOne("Food_Recipe_Core.Models.Entity.Subscription", "subscription")
-                        .WithMany()
-                        .HasForeignKey("subscriptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("subscription");
                 });
 
             modelBuilder.Entity("Food_Recipe_Core.Models.Entity.UserSubscription", b =>

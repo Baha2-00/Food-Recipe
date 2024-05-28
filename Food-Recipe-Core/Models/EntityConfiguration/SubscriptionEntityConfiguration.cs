@@ -15,10 +15,10 @@ namespace Food_Recipe_Core.Models.EntityConfiguration
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
+            builder.Property(x => x.IsDeleted).HasDefaultValue(false);
 
             //RelationShip
             builder.HasMany<UserSubscription>().WithOne().HasForeignKey(x => x.SubscriptionId);
-            builder.HasMany<Invoice>().WithOne().HasForeignKey(x => x.SubscriptionId);
         }
     }
 }

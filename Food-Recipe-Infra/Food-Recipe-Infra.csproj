@@ -26,4 +26,8 @@
     <PackageReference Include="MySql.EntityFrameworkCore" Version="7.0.16" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Food-Recipe-Core\Food-Recipe-Core.csproj" />
+  </ItemGroup>
+
 </Project>

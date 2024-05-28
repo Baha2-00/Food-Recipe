@@ -25,12 +25,25 @@ namespace Food_Recipe_Core.Helper.ENUM
             CliQ,
             Visa
         }
-        public enum Subscription
+        public enum SubscriptionPeriod
         {
-            BasicMonthly,
-            PremiumMonthly,
-            BasicAnnual,
-            PremiumAnnual
+            Monthly,
+            Annual,
+            Days_14
+        }
+        public enum QuantityUnit
+        {
+            TeaSpoon,
+            TableSpoon,
+            Cup,
+            Gram,
+            Liter
+        }
+        public enum Priority
+        {
+            High,
+            Medium,
+            Low
         }
     }
 }

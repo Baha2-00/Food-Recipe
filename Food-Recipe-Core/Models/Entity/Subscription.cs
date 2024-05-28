@@ -15,6 +15,6 @@ namespace Food_Recipe_Core.Models.Entity
         public string AllowdDishesRecipce { get; set; }
         public string AllowedRequest { get; set; }
         public double Price { get; set; }
-        public Subscription subscription { get; set; }
+        public SubscriptionPeriod subscription { get; set; }
     }
 }

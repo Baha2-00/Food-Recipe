@@ -25,6 +25,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Food-Recipe-Core\Food-Recipe-Core.csproj" />
+    <ProjectReference Include="..\Food-Recipe-Infra\Food-Recipe-Infra.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
 
 </Project>

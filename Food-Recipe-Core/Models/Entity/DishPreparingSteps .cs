@@ -9,8 +9,10 @@ namespace Food_Recipe_Core.Models.Entity
 {
     public class DishPreparingSteps : MainEntity
     {
-        public string serial { get; set; }
+        public int serial { get; set; }
         public string Title { get; set; }
+        public string desc { get; set; }
+        public string? attachment { get; set; }
         public int? DishId { get; set; }
     }
 }

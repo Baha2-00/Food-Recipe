@@ -16,6 +16,7 @@ namespace Food_Recipe_Core.Models.EntityConfiguration
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
             builder.Property(x => x.CreationDate).IsRequired();
+            builder.Property(x => x.IsDeleted).HasDefaultValue(false);
         }
     }
 }

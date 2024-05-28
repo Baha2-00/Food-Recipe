@@ -22,11 +22,12 @@ namespace Food_Recipe_Core.Context
             modelBuilder.ApplyConfiguration(new DishPreparingStepsEntityConfiguration());
             modelBuilder.ApplyConfiguration(new IngredientsEntityConfiguration());
             modelBuilder.ApplyConfiguration(new LoginEntityConfiguration());
-            modelBuilder.ApplyConfiguration(new InvoiceEntityConfiguration());
             modelBuilder.ApplyConfiguration(new SubscriptionEntityConfiguration());
             modelBuilder.ApplyConfiguration(new DishRequestEntityConfiguration());
             modelBuilder.ApplyConfiguration(new UserSubsEntityConfiguration());
             modelBuilder.ApplyConfiguration(new DishIngredientEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new CuisineEntityConfiguration());
         }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
@@ -35,8 +36,9 @@ namespace Food_Recipe_Core.Context
         public virtual DbSet<Ingredients> Ingredient { get; set; }
         public virtual DbSet<DishIngredient> DishIngredients { get; set; }
         public virtual DbSet<DishRequest> DishRequests { get; set; }
-        public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<Subscription> Subscriptions { get; set; }
         public virtual DbSet<UserSubscription> UserSubscriptions { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Cuisine> Cuisines { get; set; }
     }
 }

@@ -18,8 +18,8 @@ namespace Food_Recipe_Core.Models.EntityConfiguration
             builder.Property(x => x.CreationDate).IsRequired();
             builder.Property(x => x.Name).IsRequired();
             builder.Property(x => x.Description).IsRequired();
-            builder.Property(x => x.Category).IsRequired();
             builder.Property(x => x.Image).IsRequired(false);
+            builder.Property(x => x.IsDeleted).HasDefaultValue(false);
 
             //Relationships 
             builder.HasMany<DishIngredient>().WithOne().HasForeignKey(x => x.DishId);
