@@ -10,12 +10,12 @@ namespace Food_Recipe_Core.IServices
 {
     public interface IDishIngredientsServices
     {
-        Task<UpdateAndDetailsDishIngredients> GetDishIngredientsDetails(int id);
+        Task<DetailsDishIngredients> GetDishIngredientsDetails(int id);
 
         Task<List<GetAllDishIngredients>> GetAllDishIngredients();
 
         Task CreateDishIngredient(CreateDishIngredients dt);
 
-        Task UpdateOrDeleteDishIngredient(UpdateAndDetailsDishIngredients dt);
+        Task UpdateOrDeleteDishIngredient(UpdateDishIngredients dt);
     }
 }

@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Food_Recipe_Core.DTOs.Dish
+namespace Food_Recipe_Core.DTOs.Ingredient
 {
-    public class UpdateDish
+    public class GetIngredientDetails
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string Title { get; set; }
         public string Image { get; set; }
-        public int? CategoryId { get; set; }
-        public int? CuisineId { get; set; }
-        public bool IsDeleted { get; set; }
+        public DateTime CreationDate { get; set; }
+        public bool IsDeleted { get; set; } 
     }
 }

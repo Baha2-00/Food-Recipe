@@ -10,9 +10,9 @@ namespace Food_Recipe_Core.IRepos
 {
     public interface ICuisineRepos
     {
-        Task<UpdateAndGetDeatilsCuisine> GetDeatilsCuisine(int id);
+        Task<GetDeatilsCuisineDTO> GetDeatilsCuisine(int id);
 
-        Task<List<GetAllCuisine>> GetAllCuisine();
+        Task<List<GetAllCuisineDTO>> GetAllCuisine();
 
         Task CreateCuisine(Cuisine createCuisineDto);
 

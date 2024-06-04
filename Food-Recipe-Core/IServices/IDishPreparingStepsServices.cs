@@ -10,7 +10,7 @@ namespace Food_Recipe_Core.IServices
 {
     public interface IDishPreparingStepsServices
     {
-        Task<UpdateDishPreparingSteps> GetDishPreparingStepsDetails(int id);
+        Task<DishPreparingStepsDetailsDTO> GetDishPreparingStepsDetails(int id);
 
         Task<List<GetAllDishPreparingSteps>> GetAllDishPreparingSteps();
 

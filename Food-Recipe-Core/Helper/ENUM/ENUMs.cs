@@ -10,40 +10,40 @@ namespace Food_Recipe_Core.Helper.ENUM
     {
         public enum Role
         {
-            Admin,
-            Client
+            Admin=1,
+            Client=2
         }
         public enum SocicalMedia
         {
-            Instagram,
-            Facebook,
-            X,
-            Youtube
+            Instagram=1,
+            Facebook=2,
+            X=3,
+            Youtube=4
         }
         public enum PaymentMethod
         {
-            CliQ,
-            Visa
+            CliQ = 1,
+            Visa = 2
         }
         public enum SubscriptionPeriod
         {
-            Monthly,
-            Annual,
-            Days_14
+            Monthly = 1,
+            Annual = 2,
+            Days_14 = 3
         }
         public enum QuantityUnit
         {
-            TeaSpoon,
-            TableSpoon,
-            Cup,
-            Gram,
-            Liter
+            TeaSpoon = 1,
+            TableSpoon = 2,
+            Cup =3,
+            Gram =4,
+            Liter=5
         }
         public enum Priority
         {
-            High,
-            Medium,
-            Low
+            High=1,
+            Medium=2,
+            Low=3
         }
     }
 }

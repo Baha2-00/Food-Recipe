@@ -10,12 +10,12 @@ namespace Food_Recipe_Core.IServices
 {
     public interface ICategoryServices
     {
-        Task<GetDetailsCategory> GetCategoryDetails(int id);
+        Task<GetDetailsCategoryDTO> GetCategoryDetails(int id);
 
-        Task<List<GetAllCategory>> GetAllDish();
+        Task<List<GetAllCategoryDTO>> GetAllCategory();
 
-        Task createCategory(CreateCategory createCategoryDto);
+        Task CreateCategory(CreateCategoryDTO createCategoryDto);
 
-        Task UpdateOrDeleteCategory(GetDetailsCategory updateCategoryDto);
+        Task UpdateOrDeleteCategory(UpdateCategoryDTO updateCategoryDto);
     }
 }

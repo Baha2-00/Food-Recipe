@@ -10,7 +10,7 @@ namespace Food_Recipe_Core.IServices
 {
     public interface ISubscriptionServices
     {
-        Task<UpdateSubscription> GetSubscriptionDetails(int id);
+        Task<GetSubscriptionDetailsDTO> GetSubscriptionDetails(int id);
 
         Task<List<GetAllSubscription>> GetAllSubscriptions();
 

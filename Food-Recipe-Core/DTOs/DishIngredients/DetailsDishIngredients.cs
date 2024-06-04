@@ -7,7 +7,7 @@ using static Food_Recipe_Core.Helper.ENUM.ENUMs;
 
 namespace Food_Recipe_Core.DTOs.DishIngredients
 {
-    public class UpdateAndDetailsDishIngredients
+    public class DetailsDishIngredients
     {
         public int Id { get; set; }
         public int? DishId { get; set; }

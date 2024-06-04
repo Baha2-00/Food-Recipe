@@ -9,7 +9,7 @@ namespace Food_Recipe_Core.IServices
 {
     public interface IUserServices
     {
-        Task<UpdateUser> GetUserProfile(int id);
+        Task<GetUserDetailsDTO> GetUserProfile(int id);
 
         Task<List<GetAllUser>> GetAllUsers();
 

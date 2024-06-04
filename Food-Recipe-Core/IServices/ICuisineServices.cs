@@ -10,12 +10,12 @@ namespace Food_Recipe_Core.IServices
 {
     public interface ICuisineServices
     {
-        Task<UpdateAndGetDeatilsCuisine> GetDeatilsCuisine(int id);
+        Task<GetDeatilsCuisineDTO> GetDeatilsCuisine(int id);
 
-        Task<List<GetAllCuisine>> GetAllCuisine();
+        Task<List<GetAllCuisineDTO>> GetAllCuisine();
 
-        Task CreateCuisine(CreateCuisine createCuisineDto);
+        Task CreateCuisine(CreateCuisineDTO createCuisineDto);
 
-        Task UpdateOrDeleteCuisine(UpdateAndGetDeatilsCuisine dt);
+        Task UpdateOrDeleteCuisine(UpdateCuisineDTO dt);
     }
 }

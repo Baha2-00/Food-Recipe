@@ -13,7 +13,6 @@ namespace Food_Recipe_Core.DTOs.Ingredient
         public string Description { get; set; }
         public string Title { get; set; }
         public string Image { get; set; }
-        public DateTime CreationDate { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

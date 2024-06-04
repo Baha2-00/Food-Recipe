@@ -16,4 +16,4 @@ namespace Food_Recipe_Core.DTOs.DishIngredients
         public DateTime CreationDate { get; set; } = DateTime.Now;
     }
 }
-}
+

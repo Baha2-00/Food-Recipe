@@ -16,7 +16,5 @@ namespace Food_Recipe_Core.DTOs.Subscription
         public string AllowedRequest { get; set; }
         public double Price { get; set; }
         public SubscriptionPeriod subscription { get; set; }
-        public DateTime CreationDate { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }

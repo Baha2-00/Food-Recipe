@@ -10,7 +10,7 @@ namespace Food_Recipe_Core.IRepos
 {
     public interface IDishIngredientsRepos
     {
-        Task<UpdateAndDetailsDishIngredients> GetDishIngredientsDetails(int id);
+        Task<DetailsDishIngredients> GetDishIngredientsDetails(int id);
 
         Task<List<GetAllDishIngredients>> GetAllDishIngredients();
 

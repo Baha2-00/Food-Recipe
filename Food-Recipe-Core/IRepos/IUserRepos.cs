@@ -10,7 +10,7 @@ namespace Food_Recipe_Core.IRepos
 {
     public interface IUserRepos
     {
-        Task<UpdateUser> GetUserDetails(int id);
+        Task<GetUserDetailsDTO> GetUserDetails(int id);
 
         Task<List<GetAllUser>> GetAllUsers();
 
