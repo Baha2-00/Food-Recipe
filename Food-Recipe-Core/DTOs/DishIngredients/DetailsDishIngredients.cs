@@ -13,7 +13,7 @@ namespace Food_Recipe_Core.DTOs.DishIngredients
         public int? DishId { get; set; }
         public int? IngredientId { get; set; }
         public int? Quantity { get; set; }
-        public QuantityUnit? quantityUnit { get; set; }
+        public string quantityUnit { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
         public bool IsDeleted { get; set; }
     }

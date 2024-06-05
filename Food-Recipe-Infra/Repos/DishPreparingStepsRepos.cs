@@ -1,32 +1,68 @@
-﻿using Food_Recipe_Core.DTOs.DishPreparingSteps;
+﻿using Food_Recipe_Core.Context;
+using Food_Recipe_Core.DTOs.Cuisine;
+using Food_Recipe_Core.DTOs.DishPreparingSteps;
 using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.Models.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Food_Recipe_Infra.Repos
 {
     public class DishPreparingStepsRepos : IDishPreparingStepsRepos
     {
+        private readonly FoodRecipeDBContext _RecipeDbContext;
+        public DishPreparingStepsRepos(FoodRecipeDBContext Recipe)
+        {
+            _RecipeDbContext = Recipe;
+        }
+
         public Task CreateDishPreparingSteps(DishPreparingSteps createstepsDto)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<GetAllDishPreparingSteps>> GetAllDishPreparingSteps()
+        public async Task<List<GetAllDishPreparingSteps>> GetAllDishPreparingSteps()
         {
-            throw new NotImplementedException();
+            var query = from prep in _RecipeDbContext.DishPreparingStep
+                        select new GetAllDishPreparingSteps
+                        {
+                            Id= prep.Id,
+                            serial=prep.serial,
+                            Title= prep.Title,
+                            desc=prep.desc,
+                            attachment=prep.attachment
+                        };
+            return await query.ToListAsync();
         }
 
-        public Task<DishPreparingStepsDetailsDTO> GetDishPreparingStepsDetails(int id)
+        public async Task<DishPreparingStepsDetailsDTO> GetDishPreparingStepsDetails(int id)
         {
-            throw new NotImplementedException();
+            var result = await _RecipeDbContext.DishPreparingStep.FirstOrDefaultAsync(c => c.Id == id);
+            if (result != null)
+            {
+                var wow=await _RecipeDbContext.Dishs.FirstOrDefaultAsync(c => c.Id == result.DishId);
+                DishPreparingStepsDetailsDTO response = new DishPreparingStepsDetailsDTO()
+                {
+                    Id = result.Id,
+                    serial = result.serial,
+                    Title = result.Title,
+                    desc= result.desc,
+                    attachment=result.attachment,
+                    CreationDate = result.CreationDate,
+                    DishName = wow == null ? "No Dish" : wow.Name,
+                    IsDeleted = result.IsDeleted
+                };
+                return response;
+            }
+            throw new Exception("not found");
         }
 
-        public Task UpdateOrDeleteDishPrepareSteps(DishPreparingSteps updateStepsDto)
+        public Task UpdateOrDeleteDishPrepareSteps(UpdateDishPreparingSteps updateStepsDto)
         {
             throw new NotImplementedException();
         }

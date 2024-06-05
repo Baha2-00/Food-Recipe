@@ -11,11 +11,11 @@ namespace Food_Recipe_Core.DTOs.UserSubscriptions
     {
         public int ID { get; set; }
         public double? Amount { get; set; }
-        public PaymentMethod? PaymentMethod { get; set; }
+        public string PaymentMethod { get; set; }
         public DateTime? IssueDate { get; set; }
         public int? UserId { get; set; }
         public int? SubscriptionId { get; set; }
-        public DateTime CreationDate { get; set; } = DateTime.Now;
+        public DateTime CreationDate { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

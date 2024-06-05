@@ -28,9 +28,9 @@ namespace Food_Recipe_Infra.Services
             return await _userRepos.GetAllUsers();
         }
 
-        public Task<GetUserDetailsDTO> GetUserProfile(int id)
+        public async Task<GetUserDetailsDTO> GetUserProfile(int id)
         {
-            throw new NotImplementedException();
+            return await _userRepos.GetUserDetails(id);
         }
 
         public Task UpdateOrDeleteUser(UpdateUser updateUserDto)

@@ -16,6 +16,6 @@ namespace Food_Recipe_Core.IRepos
 
         Task CreateDishPreparingSteps(DishPreparingSteps createstepsDto);
 
-        Task UpdateOrDeleteDishPrepareSteps(DishPreparingSteps updateStepsDto);
+        Task UpdateOrDeleteDishPrepareSteps(UpdateDishPreparingSteps updateStepsDto);
     }
 }

@@ -15,9 +15,10 @@ namespace Food_Recipe_Core.DTOs.Users
         public string Email { get; set; }
         public string Phone { get; set; }
         public DateTime BirthDate { get; set; }
-        public Role Role { get; set; }
+        public string Role { get; set; }
         public string? ProfileImage { get; set; }
-        public SocicalMedia? SocicalMediaAccount { get; set; }
+        public string? SocicalMediaAccount { get; set; }
         public DateTime CreationDate { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

@@ -37,12 +37,26 @@ namespace Food_Recipe_Infra.Repos
             return await query.ToListAsync();
         }
 
-        public Task<GetDetailsCategoryDTO> GetCategoryDetails(int id)
+        public async Task<GetDetailsCategoryDTO> GetCategoryDetails(int id)
         {
-            throw new NotImplementedException();
+            var result= await _RecipeDbContext.Categories.FirstOrDefaultAsync(c => c.Id == id);
+            if (result != null)
+            {
+                GetDetailsCategoryDTO response = new GetDetailsCategoryDTO()
+                {
+                    Id= result.Id,
+                    Title= result.Title,
+                    Description= result.Description,
+                    ImageUrl=result.ImageUrl,
+                    CreationDate= result.CreationDate,
+                    IsDeleted= result.IsDeleted,
+                };
+                return response;
+            }
+            throw new Exception("not found");
         }
 
-        public Task UpdateOrDeleteCategory(Category updateCategoryDto)
+        public Task UpdateOrDeleteCategory(UpdateCategoryDTO updateCategoryDto)
         {
             throw new NotImplementedException();
         }

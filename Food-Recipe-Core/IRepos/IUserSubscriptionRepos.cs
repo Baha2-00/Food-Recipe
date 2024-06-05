@@ -16,6 +16,6 @@ namespace Food_Recipe_Core.IRepos
 
         Task CreateUserSubscriptions(UserSubscription createUserSubscriptionsDto);
 
-        Task UpdateOrDeleteUserSubscriptions(UserSubscription updateUserSubscriptionsDto);
+        Task UpdateOrDeleteUserSubscriptions(UpdateAndDetailsUserSubscriptions updateUserSubscriptionsDto);
     }
 }

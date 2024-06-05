@@ -1,4 +1,5 @@
 ﻿using Food_Recipe_Core.DTOs.DishIngredients;
+using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.IServices;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,25 @@ namespace Food_Recipe_Infra.Services
 {
     public class DishIngredientsServices : IDishIngredientsServices
     {
+        private readonly IDishIngredientsRepos _DishIngredientsRepos;
+        public DishIngredientsServices(IDishIngredientsRepos dishIngredientsRepos)
+        {
+            _DishIngredientsRepos = dishIngredientsRepos;
+        }
+
         public Task CreateDishIngredient(CreateDishIngredients dt)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<GetAllDishIngredients>> GetAllDishIngredients()
+        public async Task<List<GetAllDishIngredients>> GetAllDishIngredients()
         {
-            throw new NotImplementedException();
+            return await _DishIngredientsRepos.GetAllDishIngredients();
         }
 
-        public Task<DetailsDishIngredients> GetDishIngredientsDetails(int id)
+        public async Task<DetailsDishIngredients> GetDishIngredientsDetails(int id)
         {
-            throw new NotImplementedException();
+            return await _DishIngredientsRepos.GetDishIngredientsDetails(id);
         }
 
         public Task UpdateOrDeleteDishIngredient(UpdateDishIngredients dt)

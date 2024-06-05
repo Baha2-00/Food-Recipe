@@ -1,4 +1,5 @@
 ﻿using Food_Recipe_Core.DTOs.UserSubscriptions;
+using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.IServices;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,24 @@ namespace Food_Recipe_Infra.Services
 {
     public class UserSubscriptionServices : IUserSubscriptionServices
     {
+        private readonly IUserSubscriptionRepos _userSubRepos;
+        public UserSubscriptionServices(IUserSubscriptionRepos userSubRepos)
+        {
+            _userSubRepos = userSubRepos;
+        }
         public Task CreateUserSubscriptions(CreateUserSubscriptions createUserSubscriptionsDto)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<GetAllUserSubscriptions>> GetAllUserSubscriptions()
+        public async Task<List<GetAllUserSubscriptions>> GetAllUserSubscriptions()
         {
-            throw new NotImplementedException();
+            return await _userSubRepos.GetAllUserSubscriptions();
         }
 
-        public Task<UpdateAndDetailsUserSubscriptions> GetUserSubscriptionsDetails(int id)
+        public async Task<UpdateAndDetailsUserSubscriptions> GetUserSubscriptionsDetails(int id)
         {
-            throw new NotImplementedException();
+            return await _userSubRepos.GetUserSubscriptionsDetails(id);
         }
 
         public Task UpdateOrDeleteUserSubscriptions(UpdateAndDetailsUserSubscriptions updateUserSubscriptionsDto)

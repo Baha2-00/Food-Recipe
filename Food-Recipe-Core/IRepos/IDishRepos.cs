@@ -10,13 +10,13 @@ namespace Food_Recipe_Core.IRepos
 {
     public interface IDishRepos
     {
-        Task<UpdateDishDTO> GetDishDetails(int id);
+        Task<GetDishDetailsDTO> GetDishDetails(int id);
 
         Task<List<GetAllDishDTO>> GetAllDish();
 
         Task CreateDish(Dish createDishDto);
 
-        Task UpdateOrDeleteDish(Dish updateDishDto);
+        Task UpdateOrDeleteDish(UpdateDishDTO updateDishDto);
     }
 }
 

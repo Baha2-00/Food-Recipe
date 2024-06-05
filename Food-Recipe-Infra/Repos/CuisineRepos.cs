@@ -1,4 +1,5 @@
 ﻿using Food_Recipe_Core.Context;
+using Food_Recipe_Core.DTOs.Category;
 using Food_Recipe_Core.DTOs.Cuisine;
 using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.Models.Entity;
@@ -36,12 +37,26 @@ namespace Food_Recipe_Infra.Repos
             return await query.ToListAsync();
         }
 
-        public Task<GetDeatilsCuisineDTO> GetDeatilsCuisine(int id)
+        public async Task<GetDeatilsCuisineDTO> GetDeatilsCuisine(int id)
         {
-            throw new NotImplementedException();
+            var result = await _RecipeDbContext.Cuisines.FirstOrDefaultAsync(c => c.Id == id);
+            if (result != null)
+            {
+                GetDeatilsCuisineDTO response = new GetDeatilsCuisineDTO()
+                {
+                    Id = result.Id,
+                    Title = result.Title,
+                    Description = result.Description,
+                    ImageUrl=result.ImageUrl,
+                    CreationDate = result.CreationDate,
+                    IsDeleted = result.IsDeleted
+                };
+                return response;
+            }
+            throw new Exception("not found");
         }
 
-        public Task UpdateOrDeleteCuisine(Cuisine dt)
+        public Task UpdateOrDeleteCuisine(UpdateCuisineDTO dt)
         {
             throw new NotImplementedException();
         }

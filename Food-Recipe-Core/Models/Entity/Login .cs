@@ -13,5 +13,6 @@ namespace Food_Recipe_Core.Models.Entity
         public string Password { get; set; }
         public DateTime? LastLoginTime { get; set; }
         public bool IsLoggedIn { get; set; }
+        public int UserId { get; set; }
     }
 }

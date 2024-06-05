@@ -1,6 +1,9 @@
-﻿using Food_Recipe_Core.DTOs.DishIngredients;
+﻿using Food_Recipe_Core.Context;
+using Food_Recipe_Core.DTOs.Category;
+using Food_Recipe_Core.DTOs.DishIngredients;
 using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.Models.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,22 +14,51 @@ namespace Food_Recipe_Infra.Repos
 {
     public class DishIngredientsRepos : IDishIngredientsRepos
     {
+        private readonly FoodRecipeDBContext _RecipeDbContext;
+        public DishIngredientsRepos(FoodRecipeDBContext Recipe)
+        {
+            _RecipeDbContext = Recipe;
+        }
         public Task CreateDishIngredient(DishIngredient dt)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<GetAllDishIngredients>> GetAllDishIngredients()
+        public async Task<List<GetAllDishIngredients>> GetAllDishIngredients()
         {
-            throw new NotImplementedException();
+            var query = from DiIng in _RecipeDbContext.DishIngredients
+                        select new GetAllDishIngredients
+                        {
+                           ID=DiIng.Id,
+                           DishId= (int)DiIng.DishId,
+                           IngredientId=DiIng.IngredientId,
+                           Quantity=DiIng.Quantity,
+                           quantityUnit= DiIng.quantityUnit.ToString()
+                        };
+            return await query.ToListAsync();
         }
 
-        public Task<DetailsDishIngredients> GetDishIngredientsDetails(int id)
+        public async Task<DetailsDishIngredients> GetDishIngredientsDetails(int id)
         {
-            throw new NotImplementedException();
+            var result= await _RecipeDbContext.DishIngredients.FirstOrDefaultAsync(x=>x.Id==id);
+            if (result != null)
+            {
+                DetailsDishIngredients details = new DetailsDishIngredients()
+                {
+                    Id=result.Id,
+                    DishId = (int)result.DishId,
+                    IngredientId=result.IngredientId,
+                    Quantity=result.Quantity,
+                    quantityUnit=result.quantityUnit.ToString(),
+                    CreationDate=result.CreationDate,
+                    IsDeleted=result.IsDeleted
+                };
+                return details;
+            }
+            throw new Exception("not found");
         }
 
-        public Task UpdateOrDeleteDishIngredient(DishIngredient dt)
+        public Task UpdateOrDeleteDishIngredient(UpdateDishIngredients dt)
         {
             throw new NotImplementedException();
         }

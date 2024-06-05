@@ -1,6 +1,10 @@
-﻿using Food_Recipe_Core.DTOs.UserSubscriptions;
+﻿using Food_Recipe_Core.Context;
+using Food_Recipe_Core.DTOs.Cuisine;
+using Food_Recipe_Core.DTOs.Users;
+using Food_Recipe_Core.DTOs.UserSubscriptions;
 using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.Models.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,22 +15,52 @@ namespace Food_Recipe_Infra.Repos
 {
     public class UserSubscriptionRepos : IUserSubscriptionRepos
     {
+        private readonly FoodRecipeDBContext _RecipeDbContext;
+        public UserSubscriptionRepos(FoodRecipeDBContext Recipe)
+        {
+            _RecipeDbContext = Recipe;
+        }
         public Task CreateUserSubscriptions(UserSubscription createUserSubscriptionsDto)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<GetAllUserSubscriptions>> GetAllUserSubscriptions()
+        public async Task<List<GetAllUserSubscriptions>> GetAllUserSubscriptions()
         {
-            throw new NotImplementedException();
+            var query = from user in _RecipeDbContext.UserSubscriptions
+                        select new GetAllUserSubscriptions
+                        {
+                           ID=user.Id,
+                           Amount=user.Amount,
+                           PaymentMethod=user.PaymentMethod.ToString(),
+                           IssueDate=user.IssueDate,
+                           CreationDate=user.CreationDate,
+                        };
+            return await query.ToListAsync();
         }
 
-        public Task<UpdateAndDetailsUserSubscriptions> GetUserSubscriptionsDetails(int id)
+        public async Task<UpdateAndDetailsUserSubscriptions> GetUserSubscriptionsDetails(int id)
         {
-            throw new NotImplementedException();
+            var result = await _RecipeDbContext.UserSubscriptions.FirstOrDefaultAsync(c => c.Id == id);
+            if (result != null)
+            {
+                UpdateAndDetailsUserSubscriptions response = new UpdateAndDetailsUserSubscriptions()
+                {
+                    ID=result.Id,
+                    Amount=result.Amount,
+                    PaymentMethod=result.PaymentMethod.ToString(),
+                    IssueDate=result.IssueDate,
+                    UserId=result.UserId,
+                    SubscriptionId=result.SubscriptionId,
+                    CreationDate = result.CreationDate,
+                    IsDeleted = result.IsDeleted
+                };
+                return response;
+            }
+            throw new Exception("not found");
         }
 
-        public Task UpdateOrDeleteUserSubscriptions(UserSubscription updateUserSubscriptionsDto)
+        public Task UpdateOrDeleteUserSubscriptions(UpdateAndDetailsUserSubscriptions updateUserSubscriptionsDto)
         {
             throw new NotImplementedException();
         }

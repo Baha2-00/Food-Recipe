@@ -14,7 +14,7 @@ namespace Food_Recipe_Core.DTOs.DishPreparingSteps
         public string desc { get; set; }
         public string? attachment { get; set; }
         public DateTime CreationDate { get; set; }
-        public int? DishId { get; set; }
+        public string DishName { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

@@ -13,8 +13,8 @@ namespace Food_Recipe_Core.DTOs.Dish
         public string Description { get; set; }
         public string Image { get; set; }
         public DateTime CreationDate { get; set; }
-        public int? CategoryId { get; set; }
-        public int? CuisineId { get; set; }
+        public string CategoryName { get; set; }
+        public string CuisineName { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Food_Recipe_Core.Context;
+using Food_Recipe_Core.DTOs.Category;
 using Food_Recipe_Core.DTOs.Users;
 using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.Models.Entity;
@@ -31,18 +32,38 @@ namespace Food_Recipe_Infra.Repos
                          Id = user.Id,
                          FirstName = user.FirstName,
                          LastName = user.LastName,
-                         Role=user.Role,
+                         Role=user.Role.ToString(),
                          ProfileImage = user.ProfileImage
                         };
             return await query.ToListAsync();
         }
 
-        public Task<GetUserDetailsDTO> GetUserDetails(int id)
+        public async Task<GetUserDetailsDTO> GetUserDetails(int id)
         {
-            throw new NotImplementedException();
+            var result = await _RecipeDbContext.Users.FirstOrDefaultAsync(c => c.Id == id);
+            if (result != null)
+            {
+                GetUserDetailsDTO response = new GetUserDetailsDTO()
+                {
+                    Id = result.Id,
+                    FirstName= result.FirstName,
+                    LastName= result.LastName,
+                    Email= result.Email,
+                    Phone= result.Phone,
+                    BirthDate= result.BirthDate,
+                    Role= result.Role.ToString(),
+                    ProfileImage = result.ProfileImage,
+                    SocicalMediaAccount=result.SocicalMediaAccount.ToString(),
+                    CreationDate= result.CreationDate,
+                    IsDeleted= result.IsDeleted
+
+                };
+                return response;
+            }
+            throw new Exception("not found");
         }
 
-        public Task UpdateOrDeleteUser(User updateUserDto)
+        public Task UpdateOrDeleteUser(UpdateUser updateUserDto)
         {
             throw new NotImplementedException();
         }

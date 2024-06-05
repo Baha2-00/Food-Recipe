@@ -16,6 +16,6 @@ namespace Food_Recipe_Core.IRepos
 
         Task CreateCuisine(Cuisine createCuisineDto);
 
-        Task UpdateOrDeleteCuisine(Cuisine dt);
+        Task UpdateOrDeleteCuisine(UpdateCuisineDTO dt);
     }
 }

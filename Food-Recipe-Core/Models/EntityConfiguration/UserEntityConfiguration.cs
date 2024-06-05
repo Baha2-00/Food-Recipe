@@ -26,6 +26,7 @@ namespace Food_Recipe_Core.Models.EntityConfiguration
             //RelationShips
             builder.HasMany<DishRequest>().WithOne().HasForeignKey(x => x.UserId);
             builder.HasMany<UserSubscription>().WithOne().HasForeignKey(x => x.UserId);
+            builder.HasOne<Login>().WithOne().HasForeignKey<Login>(x => x.UserId);
         }
     }
 }

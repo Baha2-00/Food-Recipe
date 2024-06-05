@@ -28,9 +28,9 @@ namespace Food_Recipe_Infra.Services
            return await _Catrepos.GetAllCategory();
         }
 
-        public Task<GetDetailsCategoryDTO> GetCategoryDetails(int id)
+        public async Task<GetDetailsCategoryDTO> GetCategoryDetails(int id)
         {
-            throw new NotImplementedException();
+            return await _Catrepos.GetCategoryDetails(id);
         }
 
         public Task UpdateOrDeleteCategory(UpdateCategoryDTO updateCategoryDto)

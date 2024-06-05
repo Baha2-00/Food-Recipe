@@ -27,9 +27,9 @@ namespace Food_Recipe_Infra.Services
            return await _cuisineRepos.GetAllCuisine();
         }
 
-        public Task<GetDeatilsCuisineDTO> GetDeatilsCuisine(int id)
+        public async Task<GetDeatilsCuisineDTO> GetDeatilsCuisine(int id)
         {
-            throw new NotImplementedException();
+            return await _cuisineRepos.GetDeatilsCuisine(id);
         }
 
         public Task UpdateOrDeleteCuisine(UpdateCuisineDTO dt)

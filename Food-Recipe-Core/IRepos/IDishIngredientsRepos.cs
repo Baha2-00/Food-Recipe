@@ -16,6 +16,6 @@ namespace Food_Recipe_Core.IRepos
 
         Task CreateDishIngredient(DishIngredient dt);
 
-        Task UpdateOrDeleteDishIngredient(DishIngredient dt);
+        Task UpdateOrDeleteDishIngredient(UpdateDishIngredients dt);
     }
 }

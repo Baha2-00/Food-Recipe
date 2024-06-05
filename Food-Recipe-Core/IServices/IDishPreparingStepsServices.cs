@@ -1,5 +1,6 @@
 ﻿using Food_Recipe_Core.DTOs.Dish;
 using Food_Recipe_Core.DTOs.DishPreparingSteps;
+using Food_Recipe_Core.IRepos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Food_Recipe_Core.IServices
 
         Task<List<GetAllDishPreparingSteps>> GetAllDishPreparingSteps();
 
-        Task CreateDishPreparingSteps(CreateDishPreparingSteps createstepsDto);
+        Task CreateDishPreparingSteps(CreateDishPreparingSteps DishPreparingStepsDto);
 
         Task UpdateOrDeleteDishPrepareSteps(UpdateDishPreparingSteps updateStepsDto);
     }
