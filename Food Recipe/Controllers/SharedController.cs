@@ -1,4 +1,6 @@
-﻿using Food_Recipe_Core.IServices;
+﻿using Food_Recipe_Core.DTOs.Users;
+using Food_Recipe_Core.DTOs.UserSubscriptions;
+using Food_Recipe_Core.IServices;
 using Food_Recipe_Core.Models.Entity;
 using Food_Recipe_Infra.Services;
 using Microsoft.AspNetCore.Http;
@@ -34,6 +36,7 @@ namespace Food_Recipe.Controllers
             _subscription = subscription;
         }
 
+        #region Get
         /// <summary>
         /// Returns all Categories In My Db
         /// </summary>
@@ -276,5 +279,35 @@ namespace Food_Recipe.Controllers
                 return StatusCode(500, $"An Error Was Occurred {ex.Message}");
             }
         }
+        #endregion
+
+
+        #region Authorization
+
+        [HttpPost]
+        [Route("Register a new User")]
+        public async Task<IActionResult> CreateNewUser([FromBody] CreateUserDTO createUserDto)
+        {
+            if (createUserDto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _user.CreateUser(createUserDto);
+                    return StatusCode(201, "New User Has Been Created");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        #endregion
+
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Food_Recipe_Core.DTOs.Users;
 using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.IServices;
+using Food_Recipe_Core.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,20 @@ namespace Food_Recipe_Infra.Services
         }
 
 
-        public Task CreateUser(CreateUser createUserDto)
+        public async Task CreateUser(CreateUserDTO createUserDto)
         {
-            throw new NotImplementedException();
+            User user = new User()
+            {
+                FirstName = createUserDto.FirstName,
+                LastName = createUserDto.LastName,
+                Email = createUserDto.Email,
+                Phone = createUserDto.Phone,
+                BirthDate = createUserDto.BirthDate,
+                CreationDate = createUserDto.CreationDate,
+                Role =createUserDto.Role
+            };
+            //move to repos
+            int entityId = await _userRepos.CreateUser(user);
         }
 
         public async Task<List<GetAllUser>> GetAllUsers()

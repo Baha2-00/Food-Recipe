@@ -1,4 +1,10 @@
-﻿using Food_Recipe_Core.IServices;
+﻿using Food_Recipe_Core.DTOs.Category;
+using Food_Recipe_Core.DTOs.Cuisine;
+using Food_Recipe_Core.DTOs.Login;
+using Food_Recipe_Core.DTOs.Subscription;
+using Food_Recipe_Core.DTOs.Users;
+using Food_Recipe_Core.DTOs.UserSubscriptions;
+using Food_Recipe_Core.IServices;
 using Food_Recipe_Core.Models.Entity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,10 +27,10 @@ namespace Food_Recipe.Controllers
         private readonly ILoginServices _login;
 
         public AdminController(IUserServices service,
-         ICategoryServices category, ICuisineServices cuisine, IDishServices dish
-            , IIngredientServices ingredient, IDishPreparingStepsServices preparingSteps
-            , IDishIngredientsServices dishIngredients, ISubscriptionServices subscription,
-            IUserSubscriptionServices userSubscription , ILoginServices login)
+         ICategoryServices category, ICuisineServices cuisine, IDishServices dish,
+         IIngredientServices ingredient, IDishPreparingStepsServices preparingSteps,
+         IDishIngredientsServices dishIngredients, ISubscriptionServices subscription,
+         IUserSubscriptionServices userSubscription, ILoginServices login)
         {
             _user = service;
             _category = category;
@@ -38,6 +44,7 @@ namespace Food_Recipe.Controllers
             _login = login;
         }
 
+        #region Get
         /// <summary>
         /// Retrieves all Users In My Db
         /// </summary>
@@ -109,5 +116,155 @@ namespace Food_Recipe.Controllers
                 return StatusCode(500, $"An Error Was Occurred {ex.Message}");
             }
         }
+        #endregion
+
+
+        #region Create
+
+        [HttpPost]
+        [Route("CreateNewAdmin")]
+        public async Task<IActionResult> CreateNewAccount([FromBody] CreateUserDTO createUserDto)
+        {
+            if (createUserDto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _user.CreateUser(createUserDto);
+                    return StatusCode(201, "New Admin Has Been Created");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        [HttpPost]
+        [Route("CreateNewCategory")]
+        public async Task<IActionResult> CreateNewCategory([FromBody] CreateCategoryDTO createCateDto)
+        {
+            if (createCateDto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _category.CreateCategory(createCateDto);
+                    return StatusCode(201, "New Category Has Been Created");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+
+        [HttpPost]
+        [Route("CreateNewCuisine")]
+        public async Task<IActionResult> CreateNewCuisine([FromBody] CreateCuisineDTO createCuisDto)
+        {
+            if (createCuisDto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _cuisine.CreateCuisine(createCuisDto);
+                    return StatusCode(201, "New Cuisine Has Been Created");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+
+        [HttpPost]
+        [Route("CreateNewSubscription")]
+        public async Task<IActionResult> CreateNewSubscription([FromBody] CreateSubscription createSubscriptionDto)
+        {
+            if (createSubscriptionDto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _subscription.CreateSubscription(createSubscriptionDto);
+                    return StatusCode(201, "New Subscription Has Been Created");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+
+        [HttpPost]
+        [Route("CreateNewUserSubscription")]
+        public async Task<IActionResult> CreateNewUserSubscription([FromBody] CreateUserSubscriptions createUserSubsDto)
+        {
+            if (createUserSubsDto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _userSubscription.CreateUserSubscriptions(createUserSubsDto);
+                    return StatusCode(201, "New UserSubscription Has Been Created");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        [HttpPost]
+        [Route("CreateLogin")]
+        public async Task<IActionResult> CreateLogin([FromBody] CreateLogin createLoginDto)
+        {
+            if (createLoginDto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _login.CreateLogin(createLoginDto);
+                    return StatusCode(201, "New Login Has Been Created");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+
+        #endregion
+
+
+        #region Update And Delete
+
+
+
+        #endregion
+
     }
 }

@@ -14,7 +14,7 @@ namespace Food_Recipe_Core.IServices
 
         Task<List<GetAllCategoryDTO>> GetAllCategory();
 
-        Task CreateCategory(CreateCategoryDTO createCategoryDto);
+        Task CreateCategory(CreateCategoryDTO createCateDto);
 
         Task UpdateOrDeleteCategory(UpdateCategoryDTO updateCategoryDto);
     }

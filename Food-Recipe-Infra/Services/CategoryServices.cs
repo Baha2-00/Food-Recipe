@@ -1,6 +1,7 @@
 ﻿using Food_Recipe_Core.DTOs.Category;
 using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.IServices;
+using Food_Recipe_Core.Models.Entity;
 using Food_Recipe_Infra.Repos;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,16 @@ namespace Food_Recipe_Infra.Services
             _Catrepos = Catrepos;
         }
 
-        public Task CreateCategory(CreateCategoryDTO createCategoryDto)
+        public async Task CreateCategory(CreateCategoryDTO createCateDto)
         {
-            throw new NotImplementedException();
+            Category cate = new Category()
+            {
+                Title = createCateDto.Title,
+                Description = createCateDto.Description,
+                ImageUrl= createCateDto.ImageUrl,
+                CreationDate= createCateDto.CreationDate
+            };
+             await _Catrepos.CreateCategory(cate);
         }
 
         public async Task<List<GetAllCategoryDTO>> GetAllCategory()

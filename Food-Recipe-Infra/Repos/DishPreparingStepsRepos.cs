@@ -21,9 +21,10 @@ namespace Food_Recipe_Infra.Repos
             _RecipeDbContext = Recipe;
         }
 
-        public Task CreateDishPreparingSteps(DishPreparingSteps createstepsDto)
+        public async Task CreateDishPreparingSteps(DishPreparingSteps createstepsDto)
         {
-            throw new NotImplementedException();
+            _RecipeDbContext.DishPreparingStep.Add(createstepsDto);
+            await _RecipeDbContext.SaveChangesAsync();
         }
 
         public async Task<List<GetAllDishPreparingSteps>> GetAllDishPreparingSteps()

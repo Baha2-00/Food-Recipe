@@ -18,9 +18,10 @@ namespace Food_Recipe_Infra.Repos
         {
             _RecipeDbContext = Recipe;
         }
-        public Task CreateSubscription(Subscription createSubscriptionDto)
+        public async Task CreateSubscription(Subscription createSubscriptionDto)
         {
-            throw new NotImplementedException();
+            _RecipeDbContext.Subscriptions.Add(createSubscriptionDto);
+            await _RecipeDbContext.SaveChangesAsync();
         }
 
         public async Task<List<GetAllSubscription>> GetAllSubscriptions()

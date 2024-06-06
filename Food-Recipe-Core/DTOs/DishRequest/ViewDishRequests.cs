@@ -13,7 +13,7 @@ namespace Food_Recipe_Core.DTOs.DishRequest
         public string Title { get; set; }
         public string Purpose { get; set; }
         public DateTime RequestDate { get; set; }
-        public Priority? Priority { get; set; }
+        public string? Priority { get; set; }
         public DateTime CreationDate { get; set; }
         public bool IsDeleted { get; set; }
         public int? UserId { get; set; }

@@ -1,6 +1,7 @@
 ﻿using Food_Recipe_Core.DTOs.DishPreparingSteps;
 using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.IServices;
+using Food_Recipe_Core.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,18 @@ namespace Food_Recipe_Infra.Services
             _PreparingStepsRepos = PreparingStepsRepos;
         }
 
-        public Task CreateDishPreparingSteps(CreateDishPreparingSteps DishPreparingStepsDto)
+        public async Task CreateDishPreparingSteps(CreateDishPreparingSteps DishPreparingStepsDto)
         {
-            throw new NotImplementedException();
+            DishPreparingSteps dishPreparingSteps=new DishPreparingSteps()
+            {
+                serial= DishPreparingStepsDto.serial,
+                Title=DishPreparingStepsDto.Title,
+                desc= DishPreparingStepsDto.desc,
+                attachment= DishPreparingStepsDto.attachment,
+                CreationDate= DishPreparingStepsDto.CreationDate,
+                DishId= DishPreparingStepsDto.DishId
+            };
+            await _PreparingStepsRepos.CreateDishPreparingSteps(dishPreparingSteps);
         }
 
         public async Task<List<GetAllDishPreparingSteps>> GetAllDishPreparingSteps()

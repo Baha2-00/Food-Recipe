@@ -19,9 +19,11 @@ namespace Food_Recipe_Infra.Repos
         {
             _RecipeDbContext = Recipe;
         }
-        public Task CreateUser(User createUserDto)
+        public async Task<int> CreateUser(User createUserDto)
         {
-            throw new NotImplementedException();
+            _RecipeDbContext.Users.Add(createUserDto);
+            await _RecipeDbContext.SaveChangesAsync();
+            return createUserDto.Id;
         }
 
         public async Task<List<GetAllUser>> GetAllUsers()

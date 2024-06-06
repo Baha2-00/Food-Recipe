@@ -22,9 +22,10 @@ namespace Food_Recipe_Infra.Repos
             _RecipeDbContext = Recipe;
         }
 
-        public Task CreateDish(Dish createDishDto)
+        public async Task CreateDish(Dish createDishDto)
         {
-            throw new NotImplementedException();
+            _RecipeDbContext.Dishs.Add(createDishDto);
+            await _RecipeDbContext.SaveChangesAsync();
         }
 
         public async Task<List<GetAllDishDTO>> GetAllDish()

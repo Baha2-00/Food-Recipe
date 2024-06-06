@@ -1,6 +1,7 @@
 ﻿using Food_Recipe_Core.DTOs.Cuisine;
 using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.IServices;
+using Food_Recipe_Core.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,16 @@ namespace Food_Recipe_Infra.Services
             _cuisineRepos = Cuisine;
         }
 
-        public Task CreateCuisine(CreateCuisineDTO createCuisineDto)
+        public async Task CreateCuisine(CreateCuisineDTO createCuisineDto)
         {
-            throw new NotImplementedException();
+            Cuisine cuisine = new Cuisine()
+            {
+                Title = createCuisineDto.Title,
+                Description = createCuisineDto.Description,
+                ImageUrl = createCuisineDto.ImageUrl,
+                CreationDate = createCuisineDto.CreationDate,
+            };
+            await _cuisineRepos.CreateCuisine(cuisine);
         }
 
         public async Task<List<GetAllCuisineDTO>> GetAllCuisine()

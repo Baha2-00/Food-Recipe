@@ -1,4 +1,5 @@
 ﻿using Food_Recipe_Core.DTOs.Users;
+using Food_Recipe_Core.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Food_Recipe_Core.IServices
 
         Task<List<GetAllUser>> GetAllUsers();
 
-        Task CreateUser(CreateUser createUserDto);
+        Task CreateUser(CreateUserDTO createUserDto);
 
         Task UpdateOrDeleteUser(UpdateUser updateUserDto);
     }

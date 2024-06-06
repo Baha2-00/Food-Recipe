@@ -19,9 +19,10 @@ namespace Food_Recipe_Infra.Repos
             _RecipeDbContext = Recipe;
         }
 
-        public Task CreateCategory(Category createCategoryDto)
+        public async Task CreateCategory(Category createCateDto)
         {
-            throw new NotImplementedException();
+            _RecipeDbContext.Categories.Add(createCateDto);
+            await _RecipeDbContext.SaveChangesAsync();
         }
 
         public async Task<List<GetAllCategoryDTO>> GetAllCategory()

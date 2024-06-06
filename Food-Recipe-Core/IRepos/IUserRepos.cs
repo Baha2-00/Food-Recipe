@@ -14,7 +14,7 @@ namespace Food_Recipe_Core.IRepos
 
         Task<List<GetAllUser>> GetAllUsers();
 
-        Task CreateUser(User createUserDto);
+        Task<int> CreateUser(User createUserDto);
 
         Task UpdateOrDeleteUser(UpdateUser updateUserDto);
     }

@@ -19,9 +19,10 @@ namespace Food_Recipe_Infra.Repos
         {
             _RecipeDbContext = Recipe;
         }
-        public Task CreateCuisine(Cuisine createCuisineDto)
+        public async Task CreateCuisine(Cuisine createCuisineDto)
         {
-            throw new NotImplementedException();
+            _RecipeDbContext.Cuisines.Add(createCuisineDto);
+            await _RecipeDbContext.SaveChangesAsync();
         }
 
         public async Task<List<GetAllCuisineDTO>> GetAllCuisine()

@@ -11,7 +11,7 @@ namespace Food_Recipe_Core.IServices
     public interface IDishRequestServices
     {
 
-        Task<List<ViewDishRequests>> ViewDishRequests();
+        Task<ViewDishRequests> ViewDishRequest(int id);
 
         Task CreateDishRequests(CreateDishRequest createDishRequestDto);
 

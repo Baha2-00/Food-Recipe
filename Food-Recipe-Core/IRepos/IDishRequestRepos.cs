@@ -10,7 +10,7 @@ namespace Food_Recipe_Core.IRepos
 {
     public interface IDishRequestRepos
     {
-        Task<List<ViewDishRequests>> ViewDishRequests();
+        Task<ViewDishRequests> ViewDishRequest(int id);
 
         Task CreateDishRequests(DishRequest createDishRequestDto);
     }

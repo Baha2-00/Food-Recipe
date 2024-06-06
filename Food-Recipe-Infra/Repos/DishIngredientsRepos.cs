@@ -19,9 +19,10 @@ namespace Food_Recipe_Infra.Repos
         {
             _RecipeDbContext = Recipe;
         }
-        public Task CreateDishIngredient(DishIngredient dt)
+        public async Task CreateDishIngredient(DishIngredient dt)
         {
-            throw new NotImplementedException();
+            _RecipeDbContext.DishIngredients.Add(dt);
+            await _RecipeDbContext.SaveChangesAsync();
         }
 
         public async Task<List<GetAllDishIngredients>> GetAllDishIngredients()

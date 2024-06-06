@@ -1,5 +1,7 @@
 ﻿using Food_Recipe_Core.DTOs.DishRequest;
+using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.IServices;
+using Food_Recipe_Core.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +12,27 @@ namespace Food_Recipe_Infra.Services
 {
     public class DishRequestServices : IDishRequestServices
     {
-        public Task CreateDishRequests(CreateDishRequest createDishRequestDto)
+        private readonly IDishRequestRepos _dishRequest;
+        public DishRequestServices(IDishRequestRepos dishRequest)
         {
-            throw new NotImplementedException();
+            _dishRequest = dishRequest;
+        }
+        public async Task CreateDishRequests(CreateDishRequest createDishRequestDto)
+        {
+            DishRequest dishRequest = new DishRequest()
+            {
+                Title = createDishRequestDto.Title,
+                Purpose = createDishRequestDto.Purpose,
+                RequestDate = createDishRequestDto.RequestDate,
+                Priority = createDishRequestDto.Priority,
+                UserId = createDishRequestDto.UserId,
+            };
+            await _dishRequest.CreateDishRequests(dishRequest);
         }
 
-        public Task<List<ViewDishRequests>> ViewDishRequests()
+        public async Task<ViewDishRequests> ViewDishRequest(int id)
         {
-            throw new NotImplementedException();
+            return await _dishRequest.ViewDishRequest(id);
         }
     }
 }

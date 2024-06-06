@@ -1,6 +1,7 @@
 ﻿using Food_Recipe_Core.DTOs.Ingredient;
 using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.IServices;
+using Food_Recipe_Core.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,17 @@ namespace Food_Recipe_Infra.Services
             _IngredientRepos = ingredientRepos;
         }
 
-        public Task CreateIngredients(CreateIngredient createIngredientsDto)
+        public async Task CreateIngredients(CreateIngredient createIngredientsDto)
         {
-            throw new NotImplementedException();
+            Ingredients ingredients = new Ingredients()
+            {
+                Name = createIngredientsDto.Name,
+                Description = createIngredientsDto.Description,
+                Title = createIngredientsDto.Title,
+                Image=createIngredientsDto.Image,
+                CreationDate=createIngredientsDto.CreationDate
+            };
+            await _IngredientRepos.CreateIngredients(ingredients);
         }
 
         public async Task<List<GetALLIngredients>> GetAllIngredients()
