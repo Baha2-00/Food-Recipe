@@ -41,9 +41,9 @@ namespace Food_Recipe_Infra.Services
             return await _Catrepos.GetCategoryDetails(id);
         }
 
-        public Task UpdateOrDeleteCategory(UpdateCategoryDTO updateCategoryDto)
+        public Task UpdateOrDeleteCategory(UpdateCategoryDTO dto)
         {
-            throw new NotImplementedException();
+            return _Catrepos.UpdateOrDeleteCategory(dto);
         }
     }
 }

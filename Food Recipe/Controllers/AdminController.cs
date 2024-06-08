@@ -123,7 +123,7 @@ namespace Food_Recipe.Controllers
 
         [HttpPost]
         [Route("CreateNewAdmin")]
-        public async Task<IActionResult> CreateNewAccount([FromBody] CreateUserDTO createUserDto)
+        public async Task<IActionResult> CreateNewAdmin([FromBody] CreateUserDTO createUserDto)
         {
             if (createUserDto == null)
             {
@@ -262,7 +262,116 @@ namespace Food_Recipe.Controllers
 
         #region Update And Delete
 
+        [HttpPut]
+        [Route("UpdateAdmin")]
+        public async Task<IActionResult> UpdateAmin([FromBody] UpdateUser dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _user.UpdateOrDeleteUser(dto);
+                    return StatusCode(201, "Admin Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
 
+        [HttpPut]
+        [Route("UpdateCategory")]
+        public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryDTO dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _category.UpdateOrDeleteCategory(dto);
+                    return StatusCode(201, "Category Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+
+        [HttpPut]
+        [Route("UpdateCuisine")]
+        public async Task<IActionResult> UpdateCuisine([FromBody] UpdateCuisineDTO dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _cuisine.UpdateOrDeleteCuisine(dto);
+                    return StatusCode(201, "Cuisine Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        [HttpPut]
+        [Route("UpdateSubscription")]
+        public async Task<IActionResult> UpdateSubscription([FromBody] UpdateSubscription dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _subscription.UpdateOrDeleteSubscription(dto);
+                    return StatusCode(201, "Subscription Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        [HttpPut]
+        [Route("UpdateUserSubscription")]
+        public async Task<IActionResult> UpdateUserSubscription([FromBody] UpdateUserSubscriptions dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _userSubscription.UpdateOrDeleteUserSubscriptions(dto);
+                    return StatusCode(201, "User Subscription Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
 
         #endregion
 

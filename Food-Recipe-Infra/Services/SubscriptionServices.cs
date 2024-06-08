@@ -46,7 +46,7 @@ namespace Food_Recipe_Infra.Services
 
         public Task UpdateOrDeleteSubscription(UpdateSubscription updateSubscriptionDto)
         {
-            throw new NotImplementedException();
+            return _subscriptionRepos.UpdateOrDeleteSubscription(updateSubscriptionDto);
         }
     }
 }

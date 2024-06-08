@@ -44,7 +44,7 @@ namespace Food_Recipe_Infra.Services
 
         public Task UpdateOrDeleteIngredients(UpdateIngredients updateIngredientsDto)
         {
-            throw new NotImplementedException();
+            return _IngredientRepos.UpdateOrDeleteIngredients(updateIngredientsDto);
         }
     }
 }

@@ -16,6 +16,6 @@ namespace Food_Recipe_Core.IRepos
 
         Task CreateCategory(Category createCateDto);
 
-        Task UpdateOrDeleteCategory(UpdateCategoryDTO updateCategoryDto);
+        Task UpdateOrDeleteCategory(UpdateCategoryDTO dto);
     }
 }

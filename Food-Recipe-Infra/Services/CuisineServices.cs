@@ -40,9 +40,9 @@ namespace Food_Recipe_Infra.Services
             return await _cuisineRepos.GetDeatilsCuisine(id);
         }
 
-        public Task UpdateOrDeleteCuisine(UpdateCuisineDTO dt)
+        public Task UpdateOrDeleteCuisine(UpdateCuisineDTO dto)
         {
-            throw new NotImplementedException();
+            return _cuisineRepos.UpdateOrDeleteCuisine(dto);
         }
     }
 }

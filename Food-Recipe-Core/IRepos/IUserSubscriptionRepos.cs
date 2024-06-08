@@ -10,12 +10,12 @@ namespace Food_Recipe_Core.IRepos
 {
     public interface IUserSubscriptionRepos
     {
-        Task<UpdateAndDetailsUserSubscriptions> GetUserSubscriptionsDetails(int id);
+        Task<DetailsUserSubscriptions> GetUserSubscriptionsDetails(int id);
 
         Task<List<GetAllUserSubscriptions>> GetAllUserSubscriptions();
 
         Task CreateUserSubscriptions(UserSubscription createUserSubscriptionsDto);
 
-        Task UpdateOrDeleteUserSubscriptions(UpdateAndDetailsUserSubscriptions updateUserSubscriptionsDto);
+        Task UpdateOrDeleteUserSubscriptions(UpdateUserSubscriptions updateUserSubscriptionsDto);
     }
 }

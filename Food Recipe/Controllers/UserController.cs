@@ -1,9 +1,14 @@
-﻿using Food_Recipe_Core.DTOs.Dish;
+﻿using Food_Recipe_Core.DTOs.Category;
+using Food_Recipe_Core.DTOs.Cuisine;
+using Food_Recipe_Core.DTOs.Dish;
 using Food_Recipe_Core.DTOs.DishIngredients;
 using Food_Recipe_Core.DTOs.DishPreparingSteps;
 using Food_Recipe_Core.DTOs.DishRequest;
 using Food_Recipe_Core.DTOs.Ingredient;
 using Food_Recipe_Core.DTOs.Login;
+using Food_Recipe_Core.DTOs.Subscription;
+using Food_Recipe_Core.DTOs.Users;
+using Food_Recipe_Core.DTOs.UserSubscriptions;
 using Food_Recipe_Core.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -151,7 +156,7 @@ namespace Food_Recipe.Controllers
                 try
                 {
                     await _DishRequest.CreateDishRequests(createDishRequestDto);
-                    return StatusCode(201, "New Ingredients have Been Created");
+                    return StatusCode(201, "New DishRequest have Been Send");
                 }
                 catch (Exception ex)
                 {
@@ -173,7 +178,7 @@ namespace Food_Recipe.Controllers
                 try
                 {
                     await _preparingSteps.CreateDishPreparingSteps(createDishPreparingStepsDto);
-                    return StatusCode(201, "New Ingredients have Been Created");
+                    return StatusCode(201, "New Dish Preparing Steps have Been Created");
                 }
                 catch (Exception ex)
                 {
@@ -182,5 +187,122 @@ namespace Food_Recipe.Controllers
             }
         }
         #endregion
+
+
+        #region Update And Delete
+
+        [HttpPut]
+        [Route("UpdateDish")]
+        public async Task<IActionResult> UpdateDish([FromBody] UpdateDishDTO dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _dish.UpdateOrDeleteDish(dto);
+                    return StatusCode(201, "Dish Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        [HttpPut]
+        [Route("UpdateIngredient")]
+        public async Task<IActionResult> UpdateIngredient([FromBody] UpdateIngredients dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _ingredient.UpdateOrDeleteIngredients(dto);
+                    return StatusCode(201, "Ingredient Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+
+        [HttpPut]
+        [Route("UpdateDishIngredients")]
+        public async Task<IActionResult> UpdateDishIngredients([FromBody] UpdateDishIngredients dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _DishIngredients.UpdateOrDeleteDishIngredient(dto);
+                    return StatusCode(201, "DishIngredients Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        [HttpPut]
+        [Route("UpdateDishPreparingSteps")]
+        public async Task<IActionResult> UpdateDishPreparingSteps([FromBody] UpdateDishPreparingSteps dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _preparingSteps.UpdateOrDeleteDishPrepareSteps(dto);
+                    return StatusCode(201, "Dish Preparing Steps Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        [HttpPut]
+        [Route("UpdateUser")]
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUser dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    await _user.UpdateOrDeleteUser(dto);
+                    return StatusCode(201, "User Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        #endregion
+
     }
 }

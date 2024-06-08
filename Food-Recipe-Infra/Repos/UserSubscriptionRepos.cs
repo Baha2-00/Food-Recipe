@@ -40,12 +40,12 @@ namespace Food_Recipe_Infra.Repos
             return await query.ToListAsync();
         }
 
-        public async Task<UpdateAndDetailsUserSubscriptions> GetUserSubscriptionsDetails(int id)
+        public async Task<DetailsUserSubscriptions> GetUserSubscriptionsDetails(int id)
         {
             var result = await _RecipeDbContext.UserSubscriptions.FirstOrDefaultAsync(c => c.Id == id);
             if (result != null)
             {
-                UpdateAndDetailsUserSubscriptions response = new UpdateAndDetailsUserSubscriptions()
+                DetailsUserSubscriptions response = new DetailsUserSubscriptions()
                 {
                     ID=result.Id,
                     Amount=result.Amount,
@@ -61,9 +61,25 @@ namespace Food_Recipe_Infra.Repos
             throw new Exception("not found");
         }
 
-        public Task UpdateOrDeleteUserSubscriptions(UpdateAndDetailsUserSubscriptions updateUserSubscriptionsDto)
+        public async Task UpdateOrDeleteUserSubscriptions(UpdateUserSubscriptions updateUserSubscriptionsDto)
         {
-            throw new NotImplementedException();
+            var query = await _RecipeDbContext.UserSubscriptions.FindAsync(updateUserSubscriptionsDto.ID);
+
+            if (query != null)
+            {
+                query.Amount = updateUserSubscriptionsDto.Amount;
+                query.PaymentMethod = updateUserSubscriptionsDto.PaymentMethod;
+                query.IssueDate = updateUserSubscriptionsDto.IssueDate;
+                query.UserId = updateUserSubscriptionsDto.UserId;
+                query.SubscriptionId = updateUserSubscriptionsDto.SubscriptionId;
+                query.IsDeleted = updateUserSubscriptionsDto.IsDeleted;
+                _RecipeDbContext.Update(query);
+                await _RecipeDbContext.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception($"Content not found");
+            }
         }
     }
 }

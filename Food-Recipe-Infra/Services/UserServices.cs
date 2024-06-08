@@ -47,7 +47,7 @@ namespace Food_Recipe_Infra.Services
 
         public Task UpdateOrDeleteUser(UpdateUser updateUserDto)
         {
-            throw new NotImplementedException();
+            return _userRepos.UpdateOrDeleteUser(updateUserDto);
         }
     }
 }

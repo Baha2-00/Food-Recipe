@@ -44,7 +44,7 @@ namespace Food_Recipe_Infra.Services
 
         public Task UpdateOrDeleteDish(UpdateDishDTO updateDishDto)
         {
-            throw new NotImplementedException();
+            return _DishRepos.UpdateOrDeleteDish(updateDishDto);
         }
     }
 }

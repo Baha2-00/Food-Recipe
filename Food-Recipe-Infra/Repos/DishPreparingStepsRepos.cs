@@ -63,9 +63,25 @@ namespace Food_Recipe_Infra.Repos
             throw new Exception("not found");
         }
 
-        public Task UpdateOrDeleteDishPrepareSteps(UpdateDishPreparingSteps updateStepsDto)
+        public async Task UpdateOrDeleteDishPrepareSteps(UpdateDishPreparingSteps updateStepsDto)
         {
-            throw new NotImplementedException();
+            var query = await _RecipeDbContext.DishPreparingStep.FindAsync(updateStepsDto.Id);
+
+            if (query != null)
+            {
+                query.serial = updateStepsDto.serial;
+                query.Title = updateStepsDto.Title;
+                query.desc = updateStepsDto.desc;
+                query.attachment = updateStepsDto.attachment;
+                query.DishId = updateStepsDto.DishId;
+                query.IsDeleted = updateStepsDto.IsDeleted;
+                _RecipeDbContext.Update(query);
+                await _RecipeDbContext.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception($"Content not found");
+            }
         }
     }
 }

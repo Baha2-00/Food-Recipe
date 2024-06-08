@@ -10,12 +10,12 @@ namespace Food_Recipe_Core.IServices
 {
     public interface IUserSubscriptionServices
     {
-        Task<UpdateAndDetailsUserSubscriptions> GetUserSubscriptionsDetails(int id);
+        Task<DetailsUserSubscriptions> GetUserSubscriptionsDetails(int id);
 
         Task<List<GetAllUserSubscriptions>> GetAllUserSubscriptions();
 
         Task CreateUserSubscriptions(CreateUserSubscriptions createUserSubscriptionsDto);
 
-        Task UpdateOrDeleteUserSubscriptions(UpdateAndDetailsUserSubscriptions updateUserSubscriptionsDto);
+        Task UpdateOrDeleteUserSubscriptions(UpdateUserSubscriptions updateUserSubscriptionsDto);
     }
 }

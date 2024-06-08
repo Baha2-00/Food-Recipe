@@ -1,5 +1,6 @@
 ﻿using Food_Recipe_Core.Context;
 using Food_Recipe_Core.DTOs.Cuisine;
+using Food_Recipe_Core.DTOs.Dish;
 using Food_Recipe_Core.DTOs.Ingredient;
 using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.Models.Entity;
@@ -59,9 +60,24 @@ namespace Food_Recipe_Infra.Repos
             throw new Exception("not found");
         }
 
-        public Task UpdateOrDeleteIngredients(UpdateIngredients updateIngredients)
+        public async Task UpdateOrDeleteIngredients(UpdateIngredients updateIngredients)
         {
-            throw new NotImplementedException();
+            var query = await _RecipeDbContext.Ingredient.FindAsync(updateIngredients.Id);
+
+            if (query != null)
+            {
+                query.Name = updateIngredients.Name;
+                query.Description = updateIngredients.Description;
+                query.Image = updateIngredients.Image;
+                query.Title = updateIngredients.Title;
+                query.IsDeleted = updateIngredients.IsDeleted;
+                _RecipeDbContext.Update(query);
+                await _RecipeDbContext.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception($"Content not found");
+            }
         }
     }
 }

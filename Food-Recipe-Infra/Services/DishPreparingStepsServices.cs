@@ -44,7 +44,7 @@ namespace Food_Recipe_Infra.Services
 
         public Task UpdateOrDeleteDishPrepareSteps(UpdateDishPreparingSteps updateStepsDto)
         {
-            throw new NotImplementedException();
+            return _PreparingStepsRepos.UpdateOrDeleteDishPrepareSteps(updateStepsDto);
         }
     }
 }

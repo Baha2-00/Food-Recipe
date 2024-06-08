@@ -57,9 +57,23 @@ namespace Food_Recipe_Infra.Repos
             throw new Exception("not found");
         }
 
-        public Task UpdateOrDeleteCuisine(UpdateCuisineDTO dt)
+        public async Task UpdateOrDeleteCuisine(UpdateCuisineDTO dto)
         {
-            throw new NotImplementedException();
+            var query = await _RecipeDbContext.Cuisines.FindAsync(dto.Id);
+
+            if (query != null)
+            {
+                query.Title = dto.Title;
+                query.Description = dto.Description;
+                query.ImageUrl = dto.ImageUrl;
+                query.IsDeleted = dto.IsDeleted;
+                _RecipeDbContext.Update(query);
+                await _RecipeDbContext.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception($"Content not found");
+            }
         }
     }
 }

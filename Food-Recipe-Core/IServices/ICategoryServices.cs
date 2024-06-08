@@ -16,6 +16,6 @@ namespace Food_Recipe_Core.IServices
 
         Task CreateCategory(CreateCategoryDTO createCateDto);
 
-        Task UpdateOrDeleteCategory(UpdateCategoryDTO updateCategoryDto);
+        Task UpdateOrDeleteCategory(UpdateCategoryDTO dto);
     }
 }

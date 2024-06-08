@@ -36,14 +36,14 @@ namespace Food_Recipe_Infra.Services
             return await _userSubRepos.GetAllUserSubscriptions();
         }
 
-        public async Task<UpdateAndDetailsUserSubscriptions> GetUserSubscriptionsDetails(int id)
+        public async Task<DetailsUserSubscriptions> GetUserSubscriptionsDetails(int id)
         {
             return await _userSubRepos.GetUserSubscriptionsDetails(id);
         }
 
-        public Task UpdateOrDeleteUserSubscriptions(UpdateAndDetailsUserSubscriptions updateUserSubscriptionsDto)
+        public Task UpdateOrDeleteUserSubscriptions(UpdateUserSubscriptions updateUserSubscriptionsDto)
         {
-            throw new NotImplementedException();
+            return _userSubRepos.UpdateOrDeleteUserSubscriptions(updateUserSubscriptionsDto);
         }
     }
 }
