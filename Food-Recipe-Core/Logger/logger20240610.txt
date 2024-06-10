@@ -1,0 +1,20 @@
+2024-06-10 19:03:44.011 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-06-10 19:50:32.188 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-06-10 19:57:23.498 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-06-10 22:06:28.888 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-06-10 22:06:55.620 +03:00 [INF] GetDishRequestByid Was Called
+2024-06-10 22:06:55.620 +03:00 [INF] GetDishRequestByid Was Returned
+2024-06-10 22:36:21.108 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-06-10 22:36:57.377 +03:00 [INF] GetDishDetails Was Called
+2024-06-10 22:36:57.378 +03:00 [INF] GetDishDetails Was Returned
+2024-06-10 22:37:15.297 +03:00 [INF] GetDishDetails Was Called
+2024-06-10 22:37:15.297 +03:00 [INF] GetDishDetails Was Returned
+2024-06-10 22:52:26.371 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-06-10 22:52:40.831 +03:00 [INF] GetAllUserSubscriptions Was Called
+2024-06-10 22:52:40.832 +03:00 [INF] GetAllUserSubscriptions Was Returned
+2024-06-10 22:52:56.932 +03:00 [INF] GetUserSubscriptionsDetails Was Called
+2024-06-10 22:52:56.932 +03:00 [INF] GetUserSubscriptionsDetails Was Returned
+2024-06-10 22:53:23.924 +03:00 [INF] GetDishDetails Was Called
+2024-06-10 22:53:23.924 +03:00 [INF] GetDishDetails Was Returned
+2024-06-10 22:53:39.116 +03:00 [INF] GetDishIngredientDetails Was Called
+2024-06-10 22:53:39.116 +03:00 [INF] GetDishIngredientDetails Was Returned

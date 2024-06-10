@@ -8,6 +8,7 @@ using Food_Recipe_Core.IServices;
 using Food_Recipe_Core.Models.Entity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace Food_Recipe.Controllers
 {
@@ -45,10 +46,12 @@ namespace Food_Recipe.Controllers
         }
 
         #region Get
+
         /// <summary>
-        /// Retrieves all Users In My Db
+        /// Retrieves all The Users In My Db
         /// </summary>
         /// <response code="200">Returns the available users</response>
+        /// <response code="404">Returns If There is no any Matched Object</response>
         /// <response code="500">If there is an error</response>  
         [HttpGet]
         [Route("[action]")]
@@ -56,10 +59,13 @@ namespace Food_Recipe.Controllers
         {
             try
             {
+                Log.Information("GetAllUsers Was Called");
+                Log.Information("GetAllUsers Was Returned");
                 return StatusCode(200, await _user.GetAllUsers());
             }
             catch (Exception ex)
             {
+                Log.Error(ex.Message);
                 return StatusCode(500, $"An Error Was Occurred {ex.Message}");
             }
         }
@@ -67,27 +73,32 @@ namespace Food_Recipe.Controllers
         /// <summary>
         /// Retrieves one User by id In My Db
         /// </summary>
-        /// <response code="200">Returns the available users</response>
+        /// <response code="200">Returns the available users By ID</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
         /// <response code="500">If there is an error</response>  
         /// 
         [HttpGet]
-        [Route("[action]")]
+        [Route("[action]/{id}")]
         public async Task<IActionResult> GetUsersByid(int id)
         {
             try
             {
+                Log.Information("GetUsersByid Was Called");
+                Log.Information("GetUsersByid Was Returned");
                 return StatusCode(200, await _user.GetUserProfile(id));
             }
             catch (Exception ex)
             {
+                Log.Error(ex.Message);
                 return StatusCode(500, $"An Error Was Occurred {ex.Message}");
             }
         }
 
         /// <summary>
-        /// Retrieves all Users In My Db
+        /// Retrieves all UserSubscriptions In My Db
         /// </summary>
-        /// <response code="200">Returns the available users</response>
+        /// <response code="200">Returns the available userSubscription</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
         /// <response code="500">If there is an error</response>  
         [HttpGet]
         [Route("[action]")]
@@ -95,24 +106,36 @@ namespace Food_Recipe.Controllers
         {
             try
             {
+                Log.Information("GetAllUserSubscriptions Was Called");
+                Log.Information("GetAllUserSubscriptions Was Returned");
                 return StatusCode(200, await _userSubscription.GetAllUserSubscriptions());
             }
             catch (Exception ex)
             {
+                Log.Error(ex.Message);
                 return StatusCode(500, $"An Error Was Occurred {ex.Message}");
             }
         }
 
+        /// <summary>
+        /// Retrieves One UserSubscriptions By It's ID In My Db
+        /// </summary>
+        /// <response code="200">Returns the available userSubscription</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
         [HttpGet]
-        [Route("[action]")]
+        [Route("[action]/{id}")]
         public async Task<IActionResult> GetUserSubscriptionsDetails(int id)
         {
             try
             {
+                Log.Information("GetUserSubscriptionsDetails Was Called");
+                Log.Information("GetUserSubscriptionsDetails Was Returned");
                 return StatusCode(200, await _userSubscription.GetUserSubscriptionsDetails(id));
             }
             catch (Exception ex)
             {
+                Log.Error(ex.Message);
                 return StatusCode(500, $"An Error Was Occurred {ex.Message}");
             }
         }
@@ -121,6 +144,12 @@ namespace Food_Recipe.Controllers
 
         #region Create
 
+        /// <summary>
+        /// Creates A New Admin In My Db
+        /// </summary>
+        /// <response code="200">Returns Admin Is Created</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("CreateNewAdmin")]
         public async Task<IActionResult> CreateNewAdmin([FromBody] CreateUserDTO createUserDto)
@@ -133,16 +162,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("CreateNewAdmin Was Called");
+                    Log.Information("CreateNewAdmin Was Returned");
                     await _user.CreateUser(createUserDto);
                     return StatusCode(201, "New Admin Has Been Created");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
+        /// <summary>
+        /// Creates A New Category In My Db
+        /// </summary>
+        /// <response code="200">Returns Category Is Created</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("CreateNewCategory")]
         public async Task<IActionResult> CreateNewCategory([FromBody] CreateCategoryDTO createCateDto)
@@ -155,17 +193,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("CreateNewCategory Was Called");
+                    Log.Information("CreateNewCategory Was Returned");
                     await _category.CreateCategory(createCateDto);
                     return StatusCode(201, "New Category Has Been Created");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
-
+        /// <summary>
+        /// Creates A New Cuisine In My Db
+        /// </summary>
+        /// <response code="200">Returns Cuisine Is Created</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("CreateNewCuisine")]
         public async Task<IActionResult> CreateNewCuisine([FromBody] CreateCuisineDTO createCuisDto)
@@ -178,17 +224,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("CreateNewCuisine Was Called");
+                    Log.Information("CreateNewCuisine Was Returned");
                     await _cuisine.CreateCuisine(createCuisDto);
                     return StatusCode(201, "New Cuisine Has Been Created");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
-
+        /// <summary>
+        /// Creates A New Subscription In My Db
+        /// </summary>
+        /// <response code="200">Returns Subscription Is Created</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("CreateNewSubscription")]
         public async Task<IActionResult> CreateNewSubscription([FromBody] CreateSubscription createSubscriptionDto)
@@ -201,17 +255,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("CreateNewSubscription Was Called");
+                    Log.Information("CreateNewSubscription Was Returned");
                     await _subscription.CreateSubscription(createSubscriptionDto);
                     return StatusCode(201, "New Subscription Has Been Created");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
-
+        /// <summary>
+        /// Creates A New UserSubscription In My Db
+        /// </summary>
+        /// <response code="200">Returns UserSubscription Is Created</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("CreateNewUserSubscription")]
         public async Task<IActionResult> CreateNewUserSubscription([FromBody] CreateUserSubscriptions createUserSubsDto)
@@ -224,16 +286,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("CreateNewUserSubscription Was Called");
+                    Log.Information("CreateNewUserSubscription Was Returned");
                     await _userSubscription.CreateUserSubscriptions(createUserSubsDto);
                     return StatusCode(201, "New UserSubscription Has Been Created");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
+        /// <summary>
+        /// Creates A New Login In My Db
+        /// </summary>
+        /// <response code="200">Returns Login Is Created</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("CreateLogin")]
         public async Task<IActionResult> CreateLogin([FromBody] CreateLogin createLoginDto)
@@ -246,11 +317,14 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("CreateLogin Was Called");
+                    Log.Information("CreateLogin Was Returned");
                     await _login.CreateLogin(createLoginDto);
                     return StatusCode(201, "New Login Has Been Created");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
@@ -262,6 +336,13 @@ namespace Food_Recipe.Controllers
 
         #region Update And Delete
 
+
+        /// <summary>
+        /// Updates Admin In My Db
+        /// </summary>
+        /// <response code="200">Returns Admin Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
         [HttpPut]
         [Route("UpdateAdmin")]
         public async Task<IActionResult> UpdateAmin([FromBody] UpdateUser dto)
@@ -274,16 +355,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("UpdateAmin Was Called");
+                    Log.Information("UpdateAmin Was Returned");
                     await _user.UpdateOrDeleteUser(dto);
                     return StatusCode(201, "Admin Has Been Updated");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
+        /// <summary>
+        /// Updates Category In My Db
+        /// </summary>
+        /// <response code="200">Returns Category Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
         [HttpPut]
         [Route("UpdateCategory")]
         public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryDTO dto)
@@ -296,17 +386,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("UpdateCategory Was Called");
+                    Log.Information("UpdateCategory Was Returned");
                     await _category.UpdateOrDeleteCategory(dto);
                     return StatusCode(201, "Category Has Been Updated");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
-
+        /// <summary>
+        /// Updates Cuisine In My Db
+        /// </summary>
+        /// <response code="200">Returns Cuisine Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
         [HttpPut]
         [Route("UpdateCuisine")]
         public async Task<IActionResult> UpdateCuisine([FromBody] UpdateCuisineDTO dto)
@@ -319,16 +417,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("UpdateCuisine Was Called");
+                    Log.Information("UpdateCuisine Was Returned");
                     await _cuisine.UpdateOrDeleteCuisine(dto);
                     return StatusCode(201, "Cuisine Has Been Updated");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
+        /// <summary>
+        /// Updates Subscription In My Db
+        /// </summary>
+        /// <response code="200">Returns Subscription Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
         [HttpPut]
         [Route("UpdateSubscription")]
         public async Task<IActionResult> UpdateSubscription([FromBody] UpdateSubscription dto)
@@ -341,16 +448,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("UpdateSubscription Was Called");
+                    Log.Information("UpdateSubscription Was Returned");
                     await _subscription.UpdateOrDeleteSubscription(dto);
                     return StatusCode(201, "Subscription Has Been Updated");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
+        /// <summary>
+        /// Updates UserSubscription In My Db
+        /// </summary>
+        /// <response code="200">Returns UserSubscription Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
         [HttpPut]
         [Route("UpdateUserSubscription")]
         public async Task<IActionResult> UpdateUserSubscription([FromBody] UpdateUserSubscriptions dto)
@@ -363,11 +479,14 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("UpdateUserSubscription Was Called");
+                    Log.Information("UpdateUserSubscription Was Returned");
                     await _userSubscription.UpdateOrDeleteUserSubscriptions(dto);
                     return StatusCode(201, "User Subscription Has Been Updated");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }

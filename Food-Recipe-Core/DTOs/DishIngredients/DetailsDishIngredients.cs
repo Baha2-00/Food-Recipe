@@ -10,10 +10,10 @@ namespace Food_Recipe_Core.DTOs.DishIngredients
     public class DetailsDishIngredients
     {
         public int Id { get; set; }
-        public int? DishId { get; set; }
-        public int? IngredientId { get; set; }
+        public string? DishName { get; set; }
+        public string? IngredientName { get; set; }
         public int? Quantity { get; set; }
-        public string quantityUnit { get; set; }
+        public string? quantityUnit { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
         public bool IsDeleted { get; set; }
     }

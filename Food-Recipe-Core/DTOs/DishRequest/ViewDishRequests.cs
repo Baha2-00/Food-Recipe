@@ -16,6 +16,6 @@ namespace Food_Recipe_Core.DTOs.DishRequest
         public string? Priority { get; set; }
         public DateTime CreationDate { get; set; }
         public bool IsDeleted { get; set; }
-        public int? UserId { get; set; }
+        public string? UserName { get; set; }
     }
 }

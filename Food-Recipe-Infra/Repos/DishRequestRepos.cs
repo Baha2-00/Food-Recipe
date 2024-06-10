@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Food_Recipe_Infra.Repos
 {
@@ -30,6 +31,7 @@ namespace Food_Recipe_Infra.Repos
             var res = await _RecipeDbContext.DishRequests.FirstOrDefaultAsync(x => x.Id == id);
             if (res != null)
             {
+                var user = await _RecipeDbContext.Users.FirstOrDefaultAsync(x => x.Id == res.UserId);
                 ViewDishRequests response = new ViewDishRequests()
                 {
                     Id = res.Id,
@@ -39,7 +41,7 @@ namespace Food_Recipe_Infra.Repos
                     Priority=res.Priority.ToString(),
                     CreationDate=res.CreationDate,
                     IsDeleted=res.IsDeleted,
-                    UserId=res.UserId
+                    UserName = user == null ? "No category" : user.FirstName
                 };
                 return response;
             }

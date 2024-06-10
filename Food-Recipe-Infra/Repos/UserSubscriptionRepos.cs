@@ -45,14 +45,16 @@ namespace Food_Recipe_Infra.Repos
             var result = await _RecipeDbContext.UserSubscriptions.FirstOrDefaultAsync(c => c.Id == id);
             if (result != null)
             {
+                var user = await _RecipeDbContext.Users.FirstOrDefaultAsync(x => x.Id == result.UserId);
+                var sub = await _RecipeDbContext.Subscriptions.FirstOrDefaultAsync(x => x.Id == result.SubscriptionId);
                 DetailsUserSubscriptions response = new DetailsUserSubscriptions()
                 {
                     ID=result.Id,
                     Amount=result.Amount,
                     PaymentMethod=result.PaymentMethod.ToString(),
                     IssueDate=result.IssueDate,
-                    UserId=result.UserId,
-                    SubscriptionId=result.SubscriptionId,
+                    UserName=user == null ? "No user" : user.FirstName,
+                    SubscriptionName=sub == null ? "No Subscription" : sub.Title,
                     CreationDate = result.CreationDate,
                     IsDeleted = result.IsDeleted
                 };

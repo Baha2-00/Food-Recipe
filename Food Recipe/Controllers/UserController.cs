@@ -12,6 +12,7 @@ using Food_Recipe_Core.DTOs.UserSubscriptions;
 using Food_Recipe_Core.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace Food_Recipe.Controllers
 {
@@ -52,22 +53,26 @@ namespace Food_Recipe.Controllers
         }
 
         #region Get
+
         /// <summary>
-        /// Retrieves one DishRequest by id In My Db
+        /// Retrieves One Dish Request In My Db
         /// </summary>
-        /// <response code="200">Returns the available users</response>
+        /// <response code="200">Returns the available Dish Request</response>
+        /// <response code="404">Returns If There is no any Matched Object</response>
         /// <response code="500">If there is an error</response>  
-        /// 
         [HttpGet]
-        [Route("[action]")]
-        public async Task<IActionResult> GetDishRequestByid(int id)
+        [Route("[action]/{id}")]
+        public async Task<IActionResult> GetDishRequestByid([FromRoute] int id)
         {
             try
             {
+                Log.Information("GetDishRequestByid Was Called");
+                Log.Information("GetDishRequestByid Was Returned");
                 return StatusCode(200, await _DishRequest.ViewDishRequest(id));
             }
             catch (Exception ex)
             {
+                Log.Error(ex.Message);
                 return StatusCode(500, $"An Error Was Occurred {ex.Message}");
             }
         }
@@ -76,6 +81,12 @@ namespace Food_Recipe.Controllers
 
         #region Create 
 
+        /// <summary>
+        /// Creates A New Dish In My Db
+        /// </summary>
+        /// <response code="200">Returns A New Dish Is Created</response>
+        /// <response code="404">Returns If There is no any Matched Object</response>
+        /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("CreateNewDish")]
         public async Task<IActionResult> CreateDish([FromBody] CreateDishDTO createDishDto)
@@ -88,16 +99,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("CreateDish Was Called");
+                    Log.Information("CreateDish Was Returned");
                     await _dish.CreateDish(createDishDto);
                     return StatusCode(201, "New Dish Has Been Created");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
+        /// <summary>
+        /// Creates A New Ingredients In My Db
+        /// </summary>
+        /// <response code="200">Returns A New Ingredients Is Created</response>
+        /// <response code="404">Returns If There is no any Matched Object</response>
+        /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("CreateNewIngredients")]
         public async Task<IActionResult> CreateIngredient([FromBody] CreateIngredient createIngredienthDto)
@@ -110,16 +130,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("CreateIngredient Was Called");
+                    Log.Information("CreateIngredient Was Returned");
                     await _ingredient.CreateIngredients(createIngredienthDto);
                     return StatusCode(201, "New Ingredients have Been Created");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
+        /// <summary>
+        /// Creates A New DishIngredients In My Db
+        /// </summary>
+        /// <response code="200">Returns A New DishIngredients Is Created</response>
+        /// <response code="404">Returns If There is no any Matched Object</response>
+        /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("CreateNewDishIngredients")]
         public async Task<IActionResult> CreateDishIngredients([FromBody] CreateDishIngredients createDishIngredientsDto)
@@ -132,17 +161,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("CreateDishIngredients Was Called");
+                    Log.Information("CreateDishIngredients Was Returned");
                     await _DishIngredients.CreateDishIngredient(createDishIngredientsDto);
                     return StatusCode(201, "New Ingredients have Been Created");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
-
+        /// <summary>
+        /// Creates A New DishRequest In My Db
+        /// </summary>
+        /// <response code="200">Returns A New DishRequest Is Created</response>
+        /// <response code="404">Returns If There is no any Matched Object</response>
+        /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("CreateDishRequest")]
         public async Task<IActionResult> CreateDishRequest([FromBody] CreateDishRequest createDishRequestDto)
@@ -155,16 +192,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("CreateDishRequest Was Called");
+                    Log.Information("CreateDishRequest Was Returned");
                     await _DishRequest.CreateDishRequests(createDishRequestDto);
                     return StatusCode(201, "New DishRequest have Been Send");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
+        /// <summary>
+        /// Creates A New DishPreparingSteps In My Db
+        /// </summary>
+        /// <response code="200">Returns A New DishPreparingSteps Is Created</response>
+        /// <response code="404">Returns If There is no any Matched Object</response>
+        /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("CreateNewDishPreparingSteps")]
         public async Task<IActionResult> CreateDishPreparingSteps([FromBody] CreateDishPreparingSteps createDishPreparingStepsDto)
@@ -177,11 +223,14 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("CreateDishPreparingSteps Was Called");
+                    Log.Information("CreateDishPreparingSteps Was Returned");
                     await _preparingSteps.CreateDishPreparingSteps(createDishPreparingStepsDto);
                     return StatusCode(201, "New Dish Preparing Steps have Been Created");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
@@ -191,6 +240,12 @@ namespace Food_Recipe.Controllers
 
         #region Update And Delete
 
+        /// <summary>
+        /// Updates One Dish In My Db
+        /// </summary>
+        /// <response code="200">Returns Dish Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response>
+        /// <response code="500">If there is an error</response>  
         [HttpPut]
         [Route("UpdateDish")]
         public async Task<IActionResult> UpdateDish([FromBody] UpdateDishDTO dto)
@@ -203,16 +258,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("UpdateDish Was Called");
+                    Log.Information("UpdateDish Was Returned");
                     await _dish.UpdateOrDeleteDish(dto);
                     return StatusCode(201, "Dish Has Been Updated");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
+        /// <summary>
+        /// Updates One Ingredient In My Db
+        /// </summary>
+        /// <response code="200">Returns Ingredient Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response>
+        /// <response code="500">If there is an error</response>  
         [HttpPut]
         [Route("UpdateIngredient")]
         public async Task<IActionResult> UpdateIngredient([FromBody] UpdateIngredients dto)
@@ -225,17 +289,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("UpdateIngredient Was Called");
+                    Log.Information("UpdateIngredient Was Returned");
                     await _ingredient.UpdateOrDeleteIngredients(dto);
                     return StatusCode(201, "Ingredient Has Been Updated");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
-
+        /// <summary>
+        /// Updates One DishIngredient In My Db
+        /// </summary>
+        /// <response code="200">Returns DishIngredient Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response>
+        /// <response code="500">If there is an error</response>  
         [HttpPut]
         [Route("UpdateDishIngredients")]
         public async Task<IActionResult> UpdateDishIngredients([FromBody] UpdateDishIngredients dto)
@@ -248,16 +320,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("UpdateDishIngredients Was Called");
+                    Log.Information("UpdateDishIngredients Was Returned");
                     await _DishIngredients.UpdateOrDeleteDishIngredient(dto);
                     return StatusCode(201, "DishIngredients Has Been Updated");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
+        /// <summary>
+        /// Updates One DishPreparingSteps In My Db
+        /// </summary>
+        /// <response code="200">Returns DishPreparingSteps Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response>
+        /// <response code="500">If there is an error</response>  
         [HttpPut]
         [Route("UpdateDishPreparingSteps")]
         public async Task<IActionResult> UpdateDishPreparingSteps([FromBody] UpdateDishPreparingSteps dto)
@@ -270,16 +351,25 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("UpdateDishPreparingSteps Was Called");
+                    Log.Information("UpdateDishPreparingSteps Was Returned");
                     await _preparingSteps.UpdateOrDeleteDishPrepareSteps(dto);
                     return StatusCode(201, "Dish Preparing Steps Has Been Updated");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
         }
 
+        /// <summary>
+        /// Updates One User In My Db
+        /// </summary>
+        /// <response code="200">Returns User Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response>
+        /// <response code="500">If there is an error</response>  
         [HttpPut]
         [Route("UpdateUser")]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUser dto)
@@ -292,11 +382,14 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
+                    Log.Information("UpdateUser Was Called");
+                    Log.Information("UpdateUser Was Returned");
                     await _user.UpdateOrDeleteUser(dto);
                     return StatusCode(201, "User Has Been Updated");
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }

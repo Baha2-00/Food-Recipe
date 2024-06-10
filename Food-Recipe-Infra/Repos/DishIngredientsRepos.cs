@@ -42,18 +42,20 @@ namespace Food_Recipe_Infra.Repos
 
         public async Task<DetailsDishIngredients> GetDishIngredientsDetails(int id)
         {
-            var result= await _RecipeDbContext.DishIngredients.FirstOrDefaultAsync(x=>x.Id==id);
-            if (result != null)
+            var res= await _RecipeDbContext.DishIngredients.FirstOrDefaultAsync(x=>x.Id==id);
+            if (res != null)
             {
+                var dish = await _RecipeDbContext.Dishs.FirstOrDefaultAsync(x => x.Id == res.DishId);
+                var ingred = await _RecipeDbContext.Ingredient.FirstOrDefaultAsync(x => x.Id == res.IngredientId);
                 DetailsDishIngredients details = new DetailsDishIngredients()
                 {
-                    Id=result.Id,
-                    DishId = (int)result.DishId,
-                    IngredientId=result.IngredientId,
-                    Quantity=result.Quantity,
-                    quantityUnit=result.quantityUnit.ToString(),
-                    CreationDate=result.CreationDate,
-                    IsDeleted=result.IsDeleted
+                    Id= res.Id,
+                    DishName = dish == null ? "No Dish" : dish.Name,
+                    IngredientName= ingred == null ? "No Ingredients" : ingred.Name,
+                    Quantity= res.Quantity,
+                    quantityUnit= res.quantityUnit.ToString(),
+                    CreationDate= res.CreationDate,
+                    IsDeleted= res.IsDeleted
                 };
                 return details;
             }
