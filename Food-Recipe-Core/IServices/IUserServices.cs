@@ -1,4 +1,6 @@
-﻿using Food_Recipe_Core.DTOs.Users;
+﻿using Food_Recipe_Core.DTOs.Authentication;
+using Food_Recipe_Core.DTOs.Login;
+using Food_Recipe_Core.DTOs.Users;
 using Food_Recipe_Core.Models.Entity;
 using System;
 using System.Collections.Generic;
@@ -13,9 +15,12 @@ namespace Food_Recipe_Core.IServices
         Task<GetUserDetailsDTO> GetUserProfile(int id);
 
         Task<List<GetAllUser>> GetAllUsers();
+        Task CreateAdmin(CreateRegisterDTO createRegisterDto);
 
-        Task CreateUser(CreateUserDTO createUserDto);
+        Task CreateUser(CreateRegisterDTO createRegisterDto);
 
         Task UpdateOrDeleteUser(UpdateUser updateUserDto);
+        Task ResetPassword(ResetPassDTO dto);
+        Task LoginToWebsite(LoginEntryDTO dt);
     }
 }

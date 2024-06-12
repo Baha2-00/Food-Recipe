@@ -1,4 +1,5 @@
-﻿using Food_Recipe_Core.DTOs.Category;
+﻿using Food_Recipe_Core.DTOs.Authentication;
+using Food_Recipe_Core.DTOs.Category;
 using Food_Recipe_Core.DTOs.Cuisine;
 using Food_Recipe_Core.DTOs.Login;
 using Food_Recipe_Core.DTOs.Subscription;
@@ -152,9 +153,9 @@ namespace Food_Recipe.Controllers
         /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("CreateNewAdmin")]
-        public async Task<IActionResult> CreateNewAdmin([FromBody] CreateUserDTO createUserDto)
+        public async Task<IActionResult> CreateNewAdmin([FromBody] CreateRegisterDTO createAdminDto)
         {
-            if (createUserDto == null)
+            if (createAdminDto == null)
             {
                 return BadRequest("Please Fill All Data");
             }
@@ -164,7 +165,7 @@ namespace Food_Recipe.Controllers
                 {
                     Log.Information("CreateNewAdmin Was Called");
                     Log.Information("CreateNewAdmin Was Returned");
-                    await _user.CreateUser(createUserDto);
+                    await _user.CreateAdmin(createAdminDto);
                     return StatusCode(201, "New Admin Has Been Created");
                 }
                 catch (Exception ex)
@@ -300,16 +301,16 @@ namespace Food_Recipe.Controllers
         }
 
         /// <summary>
-        /// Creates A New Login In My Db
+        /// Logs You To website
         /// </summary>
-        /// <response code="200">Returns Login Is Created</response>
+        /// <response code="200">Returns login Is done</response>
         /// <response code="404">Returns If There is no any Matched Object</response> 
         /// <response code="500">If there is an error</response>  
         [HttpPost]
-        [Route("CreateLogin")]
-        public async Task<IActionResult> CreateLogin([FromBody] CreateLogin createLoginDto)
+        [Route("LoginToSite")]
+        public async Task<IActionResult> LoginToSite([FromBody] LoginEntryDTO dt)
         {
-            if (createLoginDto == null)
+            if (dt == null)
             {
                 return BadRequest("Please Fill All Data");
             }
@@ -317,10 +318,10 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
-                    Log.Information("CreateLogin Was Called");
-                    Log.Information("CreateLogin Was Returned");
-                    await _login.CreateLogin(createLoginDto);
-                    return StatusCode(201, "New Login Has Been Created");
+                    Log.Information("loginEntry Was Called");
+                    Log.Information("loginEntry Was Returned");
+                    await _user.LoginToWebsite(dt);
+                    return StatusCode(201, "Login is Done");
                 }
                 catch (Exception ex)
                 {
@@ -483,6 +484,37 @@ namespace Food_Recipe.Controllers
                     Log.Information("UpdateUserSubscription Was Returned");
                     await _userSubscription.UpdateOrDeleteUserSubscriptions(dto);
                     return StatusCode(201, "User Subscription Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex.Message);
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Resets Password
+        /// </summary>
+        /// <response code="200">ResetPassword Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
+        [HttpPut]
+        [Route("ResetPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPassDTO dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    Log.Information("ResetPassword Was Called");
+                    Log.Information("ResetPassword Was Returned");
+                    await _user.ResetPassword(dto);
+                    return StatusCode(201, "Admin Has Been Updated");
                 }
                 catch (Exception ex)
                 {

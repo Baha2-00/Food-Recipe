@@ -82,6 +82,37 @@ namespace Food_Recipe.Controllers
         #region Create 
 
         /// <summary>
+        /// Logs You To website
+        /// </summary>
+        /// <response code="200">Returns login Is done</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
+        [HttpPost]
+        [Route("LoginToSite")]
+        public async Task<IActionResult> LoginToSite([FromBody] LoginEntryDTO dt)
+        {
+            if (dt == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    Log.Information("loginEntry Was Called");
+                    Log.Information("loginEntry Was Returned");
+                    await _user.LoginToWebsite(dt);
+                    return StatusCode(201, "Login is Done");
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex.Message);
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        /// <summary>
         /// Creates A New Dish In My Db
         /// </summary>
         /// <response code="200">Returns A New Dish Is Created</response>
@@ -395,6 +426,37 @@ namespace Food_Recipe.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Resets Password
+        /// </summary>
+        /// <response code="200">Reset Password is Done</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
+        [HttpPut]
+        [Route("ResetPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPassDTO dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    Log.Information("ResetPassword Was Called");
+                    Log.Information("ResetPassword Was Returned");
+                    await _user.ResetPassword(dto);
+                    return StatusCode(201, "User Password Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex.Message);
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
         #endregion
 
     }

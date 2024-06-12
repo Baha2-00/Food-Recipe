@@ -12,21 +12,21 @@ namespace Food_Recipe_Infra.Services
 {
     public class LoginServices : ILoginServices
     {
-        private readonly ILoginRepos _login;
-        public LoginServices(ILoginRepos login)
-        {
-            _login = login;
-        }
-        public async Task CreateLogin(CreateLogin createLoginDto)
-        {
+        //private readonly ILoginRepos _login;
+        //public LoginServices(ILoginRepos login)
+        //{
+        //    _login = login;
+        //}
+        //public async Task CreateLogin(CreateLogin createLoginDto)
+        //{
 
-            Login login = new Login()
-            {
-                UserName = createLoginDto.UserName,
-                Password = createLoginDto.Password,
-                UserId=createLoginDto.Userid
-            };
-            await _login.CreateLogin(login);
-        }
+        //    Login login = new Login()
+        //    {
+        //        UserName = createLoginDto.UserName,
+        //        Password = createLoginDto.Password,
+        //        UserId = createLoginDto.Userid
+        //    };
+        //    await _login.CreateLogin(login);
+        //}
     }
 }

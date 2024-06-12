@@ -1,4 +1,5 @@
-﻿using Food_Recipe_Core.DTOs.Users;
+﻿using Food_Recipe_Core.DTOs.Authentication;
+using Food_Recipe_Core.DTOs.Users;
 using Food_Recipe_Core.DTOs.UserSubscriptions;
 using Food_Recipe_Core.IServices;
 using Food_Recipe_Core.Models.Entity;
@@ -352,9 +353,9 @@ namespace Food_Recipe.Controllers
         /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("Register a new User")]
-        public async Task<IActionResult> CreateNewUser([FromBody] CreateUserDTO createUserDto)
+        public async Task<IActionResult> CreateNewUser([FromBody] CreateRegisterDTO CreateRegisterDTO)
         {
-            if (createUserDto == null)
+            if (CreateRegisterDTO == null)
             {
                 return BadRequest("Please Fill All Data");
             }
@@ -364,7 +365,7 @@ namespace Food_Recipe.Controllers
                 {
                     Log.Information("CreateNewUser Was Called");
                     Log.Information("CreateNewUser Was Returned");
-                    await _user.CreateUser(createUserDto);
+                    await _user.CreateUser(CreateRegisterDTO);
                     return StatusCode(201, "New User Has Been Created");
                 }
                 catch (Exception ex)

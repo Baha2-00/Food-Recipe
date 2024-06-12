@@ -14,7 +14,6 @@ namespace Food_Recipe_Core.DTOs.Users
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public Role Role { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
     }

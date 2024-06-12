@@ -10,7 +10,7 @@ namespace Food_Recipe_Core.IServices
 {
     public interface ILoginServices
     {
-        Task CreateLogin(CreateLogin createLoginDto);
+        //Task CreateLogin(CreateLogin createLoginDto);
 
     }
 }

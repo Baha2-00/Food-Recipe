@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Food_Recipe_Core.DTOs.Login
 {
-    public class CreateLogin
+    public class LoginEntryDTO
     {
         public string UserName { get; set; }
         public string Password { get; set; }
-        public int Userid { get; set; }
     }
 }

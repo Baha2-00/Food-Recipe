@@ -1,4 +1,5 @@
-﻿using Food_Recipe_Core.DTOs.Users;
+﻿using Food_Recipe_Core.DTOs.Login;
+using Food_Recipe_Core.DTOs.Users;
 using Food_Recipe_Core.Models.Entity;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,11 @@ namespace Food_Recipe_Core.IRepos
     public interface IUserRepos
     {
         Task<GetUserDetailsDTO> GetUserDetails(int id);
-
         Task<List<GetAllUser>> GetAllUsers();
-
+        Task<int> CreateAdmin(User createAdminDto);
         Task<int> CreateUser(User createUserDto);
-
         Task UpdateOrDeleteUser(UpdateUser updateUserDto);
+        Task ResetPassword(ResetPassDTO dto);
+        Task LoginToWebsite(LoginEntryDTO dt);
     }
 }
