@@ -126,25 +126,10 @@ namespace Food_Recipe_Infra.Repos
             }
         }
 
-        public async Task UpdateOrDeleteUser(UpdateUser dto)
+        public async Task UpdateOrDeleteUser<T>(T inp)
         {
-            var query = await _RecipeDbContext.Users.FindAsync(dto.Id);
-
-            if (query != null)
-            {
-                query.FirstName = dto.FirstName;
-                query.LastName = dto.LastName;
-                query.Phone = dto.Phone;
-                query.ProfileImage = dto.ProfileImage;
-                query.IsDeleted= dto.IsDeleted;
-                query.SocicalMediaAccount = dto.SocicalMediaAccount;
-                _RecipeDbContext.Update(query);
+                _RecipeDbContext.Update(inp);
                 await _RecipeDbContext.SaveChangesAsync();
-            }
-            else
-            {
-                throw new Exception($"Content not found");
-            }
         }
     }
 }

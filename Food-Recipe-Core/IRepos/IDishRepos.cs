@@ -17,7 +17,7 @@ namespace Food_Recipe_Core.IRepos
 
         Task CreateDish(Dish createDishDto);
 
-        Task UpdateOrDeleteDish(UpdateDishDTO updateDishDto);
+        Task UpdateOrDeleteDish<T>(T inp);
     }
 }
 

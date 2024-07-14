@@ -387,8 +387,39 @@ namespace Food_Recipe.Controllers
                 {
                     Log.Information("UpdateAmin Was Called");
                     Log.Information("UpdateAmin Was Returned");
-                    await _user.UpdateOrDeleteUser(dto);
+                    await _user.UpdateUser(dto);
                     return StatusCode(201, "Admin Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex.Message);
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Updates Admin In My Db
+        /// </summary>
+        /// <response code="200">Returns Admin Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
+        [HttpPut]
+        [Route("UpdateAdminActivation")]
+        public async Task<IActionResult> UpdateAdminActivation([FromBody] int id , [FromBody] bool value)
+        {
+            if (id == 0)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    Log.Information("UpdateAdminActivation Was Called");
+                    Log.Information("UpdateAdminActivation Was Returned");
+                    await _user.UpdateUserActivation(id,value);
+                    return StatusCode(201, "Admin Activation Has Been Updated");
                 }
                 catch (Exception ex)
                 {
@@ -492,40 +523,9 @@ namespace Food_Recipe.Controllers
         }
 
         /// <summary>
-        /// Updates Cuisine In My Db
+        /// Updates Cuisine Activation In My Db
         /// </summary>
-        /// <response code="200">Returns Cuisine Is Updated</response>
-        /// <response code="404">Returns If There is no any Matched Object</response> 
-        /// <response code="500">If there is an error</response>  
-        [HttpPut]
-        [Route("UpdateCuisineActivate")]
-        public async Task<IActionResult> UpdateCuisineActivate([FromQuery] int Id, [FromQuery] bool value)
-        {
-            if (Id == 0)
-            {
-                return BadRequest("Please Fill All Data");
-            }
-            else
-            {
-                try
-                {
-                    Log.Information("UpdateCuisine Was Called");
-                    Log.Information("UpdateCuisine Was Returned");
-                    await _cuisine.UpdateCuisineActivation(Id,value);
-                    return StatusCode(201, "Cuisine Has Been Updated");
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex.Message);
-                    return StatusCode(503, $"Error Orrued {ex.Message}");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Updates Category Activation In My Db
-        /// </summary>
-        /// <response code="200">Returns Category Activation Is Updated</response>
+        /// <response code="200">Returns Cuisine Activation Is Updated</response>
         /// <response code="404">Returns If There is no any Matched Object</response> 
         /// <response code="500">If there is an error</response>  
         [HttpPut]
@@ -540,10 +540,10 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
-                    Log.Information("UpdateCategory Activate Was Called");
-                    Log.Information("UpdateCategory Activate Was Returned");
+                    Log.Information("Updates Cuisine Activate Was Called");
+                    Log.Information("Updates Cuisine Activate Was Returned");
                     await _cuisine.UpdateCuisineActivation(Id, value);
-                    return StatusCode(201, "Category Activation Has Been Updated");
+                    return StatusCode(201, "Cuisine Activation Has Been Updated");
                 }
                 catch (Exception ex)
                 {
@@ -573,8 +573,39 @@ namespace Food_Recipe.Controllers
                 {
                     Log.Information("UpdateSubscription Was Called");
                     Log.Information("UpdateSubscription Was Returned");
-                    await _subscription.UpdateOrDeleteSubscription(dto);
+                    await _subscription.UpdateSubscription(dto);
                     return StatusCode(201, "Subscription Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex.Message);
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Update Subscription Activation In My Db
+        /// </summary>
+        /// <response code="200">Returns Update Subscription Activation Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
+        [HttpPut]
+        [Route("UpdateSubscriptionActivation")]
+        public async Task<IActionResult> UpdateSubscriptionActivation([FromBody] int id, [FromBody] bool value)
+        {
+            if (id == 0)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    Log.Information("UpdateSubscriptionActivation Was Called");
+                    Log.Information("UpdateSubscriptionActivation Was Returned");
+                    await _subscription.UpdateSubscriptionActivation(id , value);
+                    return StatusCode(201, "SubscriptionActivation Has Been Updated");
                 }
                 catch (Exception ex)
                 {
@@ -604,8 +635,39 @@ namespace Food_Recipe.Controllers
                 {
                     Log.Information("UpdateUserSubscription Was Called");
                     Log.Information("UpdateUserSubscription Was Returned");
-                    await _userSubscription.UpdateOrDeleteUserSubscriptions(dto);
+                    await _userSubscription.UpdateUserSubscriptions(dto);
                     return StatusCode(201, "User Subscription Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex.Message);
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Updates User Subscription Activation In My Db
+        /// </summary>
+        /// <response code="200">Returns User Subscription Activation Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
+        [HttpPut]
+        [Route("UpdateUserSubscriptionActivation")]
+        public async Task<IActionResult> UpdateUserSubscriptionActivation([FromQuery] int Id, [FromQuery] bool value)
+        {
+            if (Id == 0)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    Log.Information("UpdateUserSubscription Activation Was Called");
+                    Log.Information("UpdateUserSubscription Activation Was Returned");
+                    await _userSubscription.ChangeUserSubActivation(Id,value);
+                    return StatusCode(201, "User Subscription Activation Has Been Updated");
                 }
                 catch (Exception ex)
                 {

@@ -17,6 +17,7 @@ namespace Food_Recipe_Core.IServices
 
         Task CreateDishPreparingSteps(CreateDishPreparingSteps DishPreparingStepsDto);
 
-        Task UpdateOrDeleteDishPrepareSteps(UpdateDishPreparingSteps updateStepsDto);
+        Task UpdateDishPrepareSteps(UpdateDishPreparingSteps updateStepsDto);
+        Task UpdateDishPrepareStepsActivation(int id,bool value);
     }
 }

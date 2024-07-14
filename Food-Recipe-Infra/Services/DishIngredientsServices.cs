@@ -19,6 +19,20 @@ namespace Food_Recipe_Infra.Services
             _DishIngredientsRepos = dishIngredientsRepos;
         }
 
+        public async Task ChangeDishIngredientActivation(int id, bool value)
+        {
+            var DishIng = await _DishIngredientsRepos.GetDishIngredientsByID(id);
+            if (DishIng != null)
+            {
+                DishIng.IsDeleted = value;
+                await _DishIngredientsRepos.UpdateOrDeleteDishIngredient(DishIng);
+            }
+            else
+            {
+                throw new Exception("Dish Ingredient Does not Exist");
+            }
+        }
+
         public async Task CreateDishIngredient(CreateDishIngredients dt)
         {
             DishIngredient dishIngredient=new DishIngredient()
@@ -42,7 +56,7 @@ namespace Food_Recipe_Infra.Services
             return await _DishIngredientsRepos.GetDishIngredientsDetails(id);
         }
 
-        public async Task UpdateOrDeleteDishIngredient(UpdateDishIngredients dt)
+        public async Task UpdateDishIngredient(UpdateDishIngredients dt)
         {
             var dishing = await _DishIngredientsRepos.GetDishIngredientsByID(dt.Id);
             if (dishing != null)

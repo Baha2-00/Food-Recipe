@@ -42,9 +42,37 @@ namespace Food_Recipe_Infra.Services
             return await _IngredientRepos.GetIngredientsDetails(id);
         }
 
-        public Task UpdateOrDeleteIngredients(UpdateIngredients updateIngredientsDto)
+        public async Task UpdateIngredientActivation(int id, bool value)
         {
-            return _IngredientRepos.UpdateOrDeleteIngredients(updateIngredientsDto);
+            var que= await _IngredientRepos.GetIngredientsByID(id);
+            if (que != null)
+            {
+                que.IsDeleted = value;
+                await _IngredientRepos.UpdateOrDeleteIngredients(que);
+            }
+            else
+            {
+                throw new Exception("Ingredient does not exist");
+            }
+        }
+
+        public async Task UpdateIngredients(UpdateIngredients updateIngredientsDto)
+        {
+            var query = await _IngredientRepos.GetIngredientsByID(updateIngredientsDto.Id);
+
+            if (query != null)
+            {
+                query.Name = updateIngredientsDto.Name;
+                query.Description = updateIngredientsDto.Description;
+                query.Image = updateIngredientsDto.Image;
+                query.Title = updateIngredientsDto.Title;
+
+                await _IngredientRepos.UpdateOrDeleteIngredients(query);
+            }
+            else
+            {
+                throw new Exception($"Content not found");
+            }
         }
     }
 }

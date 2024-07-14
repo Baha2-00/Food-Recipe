@@ -42,9 +42,38 @@ namespace Food_Recipe_Infra.Services
             return await _PreparingStepsRepos.GetDishPreparingStepsDetails(id);
         }
 
-        public Task UpdateOrDeleteDishPrepareSteps(UpdateDishPreparingSteps updateStepsDto)
+        public async Task UpdateDishPrepareSteps(UpdateDishPreparingSteps updateStepsDto)
         {
-            return _PreparingStepsRepos.UpdateOrDeleteDishPrepareSteps(updateStepsDto);
+            var query = await _PreparingStepsRepos.GetPreparingStepsByID(updateStepsDto.Id);
+
+            if (query != null)
+            {
+                query.serial = updateStepsDto.serial;
+                query.Title = updateStepsDto.Title;
+                query.desc = updateStepsDto.desc;
+                query.attachment = updateStepsDto.attachment;
+                query.DishId = updateStepsDto.DishId;
+
+                await _PreparingStepsRepos.UpdateOrDeleteDishPrepareSteps(query);
+            }
+            else
+            {
+                throw new Exception($"Content not found");
+            }
+        }
+
+        public async Task UpdateDishPrepareStepsActivation(int id, bool value)
+        {
+            var prepar = await _PreparingStepsRepos.GetPreparingStepsByID(id);
+            if (prepar != null)
+            {
+                prepar.IsDeleted = value;
+                await _PreparingStepsRepos.UpdateOrDeleteDishPrepareSteps(prepar);
+            }
+            else
+            {
+                throw new Exception("Dish Steps is not found");
+            }
         }
     }
 }

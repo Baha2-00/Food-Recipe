@@ -16,6 +16,7 @@ namespace Food_Recipe_Core.IServices
 
         Task CreateUserSubscriptions(CreateUserSubscriptions createUserSubscriptionsDto);
 
-        Task UpdateOrDeleteUserSubscriptions(UpdateUserSubscriptions updateUserSubscriptionsDto);
+        Task UpdateUserSubscriptions(UpdateUserSubscriptions updateUserSubscriptionsDto);
+        Task ChangeUserSubActivation(int id,bool value);
     }
 }

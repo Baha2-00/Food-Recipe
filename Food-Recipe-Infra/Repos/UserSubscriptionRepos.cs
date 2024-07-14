@@ -68,25 +68,10 @@ namespace Food_Recipe_Infra.Repos
             throw new Exception("not found");
         }
 
-        public async Task UpdateOrDeleteUserSubscriptions(UpdateUserSubscriptions updateUserSubscriptionsDto)
+        public async Task UpdateUserSubscriptions<T>(T inp)
         {
-            var query = await _RecipeDbContext.UserSubscriptions.FindAsync(updateUserSubscriptionsDto.ID);
-
-            if (query != null)
-            {
-                query.Amount = updateUserSubscriptionsDto.Amount;
-                query.PaymentMethod = updateUserSubscriptionsDto.PaymentMethod;
-                query.IssueDate = updateUserSubscriptionsDto.IssueDate;
-                query.UserId = updateUserSubscriptionsDto.UserId;
-                query.SubscriptionId = updateUserSubscriptionsDto.SubscriptionId;
-                query.IsDeleted = updateUserSubscriptionsDto.IsDeleted;
-                _RecipeDbContext.Update(query);
+                _RecipeDbContext.Update(inp);
                 await _RecipeDbContext.SaveChangesAsync();
-            }
-            else
-            {
-                throw new Exception($"Content not found");
-            }
         }
     }
 }

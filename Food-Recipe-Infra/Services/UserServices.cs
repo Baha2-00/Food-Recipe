@@ -91,9 +91,24 @@ namespace Food_Recipe_Infra.Services
         {
             await _userRepos.ResetPassword(dto);
         }
-        public Task UpdateOrDeleteUser(UpdateUser updateUserDto)
+        public async Task UpdateUser(UpdateUser updateUserDto)
         {
-            return _userRepos.UpdateOrDeleteUser(updateUserDto);
+            var query = await _userRepos.GetUserById(updateUserDto.Id);
+
+            if (query != null)
+            {
+                query.FirstName = updateUserDto.FirstName;
+                query.LastName = updateUserDto.LastName;
+                query.Phone = updateUserDto.Phone;
+                query.ProfileImage = updateUserDto.ProfileImage;
+                query.SocicalMediaAccount = updateUserDto.SocicalMediaAccount;
+
+                await _userRepos.UpdateOrDeleteUser(query);
+            }
+            else
+            {
+                throw new Exception($"Content not found");
+            }
         }
         public async Task<string> GenerateUserAccessToken(AuthenticationDTO input)
         {
@@ -115,6 +130,20 @@ namespace Food_Recipe_Infra.Services
             else
             {
                 throw new Exception("Wrong Email / Password");
+            }
+        }
+
+        public async Task UpdateUserActivation(int id, bool value)
+        {
+            var User = await _userRepos.GetUserById(id);
+            if (User != null)
+            {
+                User.IsDeleted = value;
+                await _userRepos.UpdateOrDeleteUser(User);
+            }
+            else
+            {
+                throw new Exception("User Does not Exist");
             }
         }
     }

@@ -44,9 +44,39 @@ namespace Food_Recipe_Infra.Services
             throw new NotImplementedException();
         }
 
-        public Task UpdateOrDeleteSubscription(UpdateSubscription updateSubscriptionDto)
+        public async Task UpdateSubscription(UpdateSubscription updateSubscriptionDto)
         {
-            return _subscriptionRepos.UpdateOrDeleteSubscription(updateSubscriptionDto);
+            var query = await _subscriptionRepos.GetSubscriptionByID(updateSubscriptionDto.Id);
+
+            if (query != null)
+            {
+                query.Title = updateSubscriptionDto.Title;
+                query.Description = updateSubscriptionDto.Description;
+                query.AllowdDishesRecipce = updateSubscriptionDto.AllowdDishesRecipce;
+                query.AllowedRequest = updateSubscriptionDto.AllowedRequest;
+                query.Price = updateSubscriptionDto.Price;
+                query.subscription = updateSubscriptionDto.subscription;
+
+                await _subscriptionRepos.UpdateOrDeleteSubscription(query);
+            }
+            else
+            {
+                throw new Exception($"Content not found");
+            }
+        }
+
+        public async Task UpdateSubscriptionActivation(int id, bool value)
+        {
+            var query = await _subscriptionRepos.GetSubscriptionByID(id);
+            if (query != null)
+            {
+                query.IsDeleted= value;
+                await _subscriptionRepos.UpdateOrDeleteSubscription(query);
+            }
+            else
+            {
+                throw new Exception("Subscription Does not Exisit");
+            }
         }
     }
 }

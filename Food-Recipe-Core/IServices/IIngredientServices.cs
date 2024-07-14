@@ -16,6 +16,7 @@ namespace Food_Recipe_Core.IServices
 
         Task CreateIngredients(CreateIngredient createIngredientsDto);
 
-        Task UpdateOrDeleteIngredients(UpdateIngredients updateIngredientsDto);
+        Task UpdateIngredients(UpdateIngredients updateIngredientsDto);
+        Task UpdateIngredientActivation(int id, bool value);
     }
 }

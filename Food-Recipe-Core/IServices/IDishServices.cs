@@ -17,6 +17,7 @@ namespace Food_Recipe_Core.IServices
 
         Task CreateDish(CreateDishDTO createDishDto);
 
-        Task UpdateOrDeleteDish(UpdateDishDTO updateDishDto);
+        Task UpdateDish(UpdateDishDTO updateDishDto);
+        Task UpdateDishActivation(int id , bool value);
     }
 }

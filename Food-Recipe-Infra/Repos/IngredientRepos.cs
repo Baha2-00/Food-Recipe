@@ -65,24 +65,10 @@ namespace Food_Recipe_Infra.Repos
             throw new Exception("not found");
         }
 
-        public async Task UpdateOrDeleteIngredients(UpdateIngredients updateIngredients)
+        public async Task UpdateOrDeleteIngredients<T>(T inp)
         {
-            var query = await _RecipeDbContext.Ingredient.FindAsync(updateIngredients.Id);
-
-            if (query != null)
-            {
-                query.Name = updateIngredients.Name;
-                query.Description = updateIngredients.Description;
-                query.Image = updateIngredients.Image;
-                query.Title = updateIngredients.Title;
-                query.IsDeleted = updateIngredients.IsDeleted;
-                _RecipeDbContext.Update(query);
+                _RecipeDbContext.Update(inp);
                 await _RecipeDbContext.SaveChangesAsync();
-            }
-            else
-            {
-                throw new Exception($"Content not found");
-            }
         }
     }
 }

@@ -42,9 +42,39 @@ namespace Food_Recipe_Infra.Services
             return await _DishRepos.GetDishDetails(id);
         }
 
-        public Task UpdateOrDeleteDish(UpdateDishDTO updateDishDto)
+        public async Task UpdateDish(UpdateDishDTO updateDishDto)
         {
-            return _DishRepos.UpdateOrDeleteDish(updateDishDto);
+            var query = await _DishRepos.GetDishByID(updateDishDto.Id);
+
+            if (query != null)
+            {
+                query.Name = updateDishDto.Name;
+                query.Description = updateDishDto.Description;
+                query.Image = updateDishDto.Image;
+                query.CategoryId = updateDishDto.CategoryId;
+                query.CuisineId = updateDishDto.CuisineId;
+                query.IsDeleted = updateDishDto.IsDeleted;
+
+                await _DishRepos.UpdateOrDeleteDish(query);
+            }
+            else
+            {
+                throw new Exception($"Content not found");
+            }
+        }
+
+        public async Task UpdateDishActivation(int id, bool value)
+        {
+            var dish=await _DishRepos.GetDishByID(id);
+            if (dish != null)
+            {
+                dish.IsDeleted = value;
+                await _DishRepos.UpdateOrDeleteDish(dish);
+            }
+            else
+            {
+                throw new Exception("Dish is not found");
+            }
         }
     }
 }

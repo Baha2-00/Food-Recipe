@@ -17,7 +17,7 @@ namespace Food_Recipe_Core.IRepos
         Task<List<GetAllUser>> GetAllUsers();
         Task<int> CreateAdmin(User createAdminDto);
         Task<int> CreateUser(User createUserDto);
-        Task UpdateOrDeleteUser(UpdateUser updateUserDto);
+        Task UpdateOrDeleteUser<T>(T inp);
         Task ResetPassword(ResetPassDTO dto);
         Task LoginToWebsite(LoginEntryDTO dt);
     }

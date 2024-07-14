@@ -21,7 +21,8 @@ namespace Food_Recipe_Core.IServices
 
         Task CreateUser(CreateRegisterDTO createRegisterDto);
 
-        Task UpdateOrDeleteUser(UpdateUser updateUserDto);
+        Task UpdateUser(UpdateUser updateUserDto);
+        Task UpdateUserActivation(int id , bool value);
         Task ResetPassword(ResetPassDTO dto);
         Task LoginToWebsite(LoginEntryDTO dt);
     }
