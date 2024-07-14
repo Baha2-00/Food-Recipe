@@ -10,6 +10,8 @@ namespace Food_Recipe_Core.IRepos
 {
     public interface IDishPreparingStepsRepos
     {
+        Task<DishPreparingSteps> GetPreparingStepsByID(int id);
+
         Task<DishPreparingStepsDetailsDTO> GetDishPreparingStepsDetails(int id);
 
         Task<List<GetAllDishPreparingSteps>> GetAllDishPreparingSteps();

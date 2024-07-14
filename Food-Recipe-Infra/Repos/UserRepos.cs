@@ -48,6 +48,11 @@ namespace Food_Recipe_Infra.Repos
             return await query.ToListAsync();
         }
 
+        public async Task<User> GetUserById(int id)
+        {
+            return await _RecipeDbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<GetUserDetailsDTO> GetUserDetails(int id)
         {
             var result = await _RecipeDbContext.Users.FirstOrDefaultAsync(c => c.Id == id);
@@ -71,6 +76,15 @@ namespace Food_Recipe_Infra.Repos
                 return response;
             }
             throw new Exception("not found");
+        }
+
+        public async Task<int> GetUserIdAfterLoginOperation(string email, string password)
+        {
+            var query = from Login in _RecipeDbContext.Logins
+                        where Login.UserName == email
+                        && Login.Password == password
+                        select Login.UserId;
+            return await query.SingleOrDefaultAsync();
         }
 
         public async Task LoginToWebsite(LoginEntryDTO dt)

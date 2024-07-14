@@ -40,6 +40,11 @@ namespace Food_Recipe_Infra.Repos
             return await query.ToListAsync();
         }
 
+        public async Task<Subscription> GetSubscriptionByID(int id)
+        {
+            return await _RecipeDbContext.Subscriptions.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public Task<GetSubscriptionDetailsDTO> GetSubscriptionDetails(int id)
         {
             throw new NotImplementedException();

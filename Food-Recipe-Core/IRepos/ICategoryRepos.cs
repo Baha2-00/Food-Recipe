@@ -10,12 +10,13 @@ namespace Food_Recipe_Core.IRepos
 {
     public interface ICategoryRepos
     {
+        Task<Category> GetCategoryById(int id);
         Task<GetDetailsCategoryDTO> GetCategoryDetails(int id);
 
         Task<List<GetAllCategoryDTO>> GetAllCategory();
 
         Task CreateCategory(Category createCateDto);
 
-        Task UpdateOrDeleteCategory(UpdateCategoryDTO dto);
+        Task UpdateOrDeleteCategory<T>(T input);
     }
 }

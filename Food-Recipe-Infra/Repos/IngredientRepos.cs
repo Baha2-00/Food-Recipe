@@ -40,6 +40,11 @@ namespace Food_Recipe_Infra.Repos
             return await query.ToListAsync();
         }
 
+        public async Task<Ingredients> GetIngredientsByID(int id)
+        {
+            return await _RecipeDbContext.Ingredient.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<GetIngredientDetails> GetIngredientsDetails(int id)
         {
             var result = await _RecipeDbContext.Ingredient.FirstOrDefaultAsync(c => c.Id == id);

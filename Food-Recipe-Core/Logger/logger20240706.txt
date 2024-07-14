@@ -1,0 +1,8 @@
+2024-07-06 15:17:30.916 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-07-06 15:20:18.209 +03:00 [INF] CreateDish Was Called
+2024-07-06 15:20:18.209 +03:00 [INF] CreateDish Was Returned
+2024-07-06 15:24:06.830 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-07-06 15:28:43.357 +03:00 [INF] Register A New User Was Called
+2024-07-06 15:28:43.358 +03:00 [INF] Register A New User Was Returned
+2024-07-06 15:29:31.449 +03:00 [INF] Register A New User Was Called
+2024-07-06 15:29:31.449 +03:00 [INF] Register A New User Was Returned

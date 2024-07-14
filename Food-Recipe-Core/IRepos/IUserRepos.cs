@@ -11,6 +11,8 @@ namespace Food_Recipe_Core.IRepos
 {
     public interface IUserRepos
     {
+        Task<User> GetUserById(int id);
+        Task<int> GetUserIdAfterLoginOperation(string email, string password);
         Task<GetUserDetailsDTO> GetUserDetails(int id);
         Task<List<GetAllUser>> GetAllUsers();
         Task<int> CreateAdmin(User createAdminDto);

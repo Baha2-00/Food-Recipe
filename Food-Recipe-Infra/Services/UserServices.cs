@@ -1,6 +1,7 @@
 ﻿using Food_Recipe_Core.DTOs.Authentication;
 using Food_Recipe_Core.DTOs.Login;
 using Food_Recipe_Core.DTOs.Users;
+using Food_Recipe_Core.Helper.Security_Token;
 using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.IServices;
 using Food_Recipe_Core.Models.Entity;
@@ -90,10 +91,31 @@ namespace Food_Recipe_Infra.Services
         {
             await _userRepos.ResetPassword(dto);
         }
-
         public Task UpdateOrDeleteUser(UpdateUser updateUserDto)
         {
             return _userRepos.UpdateOrDeleteUser(updateUserDto);
+        }
+        public async Task<string> GenerateUserAccessToken(AuthenticationDTO input)
+        {
+            var user = await TryAuthanticate(input);
+            if (user != null)
+            {
+                return TokenHelper.GenerateJwtToken(user);
+            }
+            throw new Exception("Failed To Generate Token");
+
+        }
+        public async Task<User> TryAuthanticate(AuthenticationDTO input)
+        {
+            var userId = await _userRepos.GetUserIdAfterLoginOperation(input.UserName, input.Password);
+            if (userId != 0)
+            {
+                return await _userRepos.GetUserById(userId);
+            }
+            else
+            {
+                throw new Exception("Wrong Email / Password");
+            }
         }
     }
 }

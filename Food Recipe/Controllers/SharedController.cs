@@ -346,14 +346,14 @@ namespace Food_Recipe.Controllers
         #region Authorization
 
         /// <summary>
-        /// Creates A new User In My Db
+        /// Registers A new User In My Db
         /// </summary>
         /// <response code="200">Returns User is Created</response>
         /// <response code="404">Returns If There is no any Matched Object</response>
         /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("Register a new User")]
-        public async Task<IActionResult> CreateNewUser([FromBody] CreateRegisterDTO CreateRegisterDTO)
+        public async Task<IActionResult> RegisterANewUser([FromBody] CreateRegisterDTO CreateRegisterDTO)
         {
             if (CreateRegisterDTO == null)
             {
@@ -363,10 +363,10 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
-                    Log.Information("CreateNewUser Was Called");
-                    Log.Information("CreateNewUser Was Returned");
+                    Log.Information("Register A New User Was Called");
+                    Log.Information("Register A New User Was Returned");
                     await _user.CreateUser(CreateRegisterDTO);
-                    return StatusCode(201, "New User Has Been Created");
+                    return StatusCode(201, "New User Has Been Registered");
                 }
                 catch (Exception ex)
                 {

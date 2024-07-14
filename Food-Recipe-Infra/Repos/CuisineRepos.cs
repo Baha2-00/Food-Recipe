@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Food_Recipe_Infra.Repos
 {
@@ -38,6 +39,11 @@ namespace Food_Recipe_Infra.Repos
             return await query.ToListAsync();
         }
 
+        public async Task<Cuisine> GetCuisineById(int id)
+        {
+            return await _RecipeDbContext.Cuisines.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<GetDeatilsCuisineDTO> GetDeatilsCuisine(int id)
         {
             var result = await _RecipeDbContext.Cuisines.FirstOrDefaultAsync(c => c.Id == id);
@@ -57,23 +63,11 @@ namespace Food_Recipe_Infra.Repos
             throw new Exception("not found");
         }
 
-        public async Task UpdateOrDeleteCuisine(UpdateCuisineDTO dto)
+        public async Task UpdateCuisine<U>(U input)
         {
-            var query = await _RecipeDbContext.Cuisines.FindAsync(dto.Id);
-
-            if (query != null)
-            {
-                query.Title = dto.Title;
-                query.Description = dto.Description;
-                query.ImageUrl = dto.ImageUrl;
-                query.IsDeleted = dto.IsDeleted;
-                _RecipeDbContext.Update(query);
+                _RecipeDbContext.Update(input);
                 await _RecipeDbContext.SaveChangesAsync();
-            }
-            else
-            {
-                throw new Exception($"Content not found");
-            }
+
         }
     }
 }

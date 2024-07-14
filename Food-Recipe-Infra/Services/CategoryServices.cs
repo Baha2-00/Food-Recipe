@@ -41,9 +41,44 @@ namespace Food_Recipe_Infra.Services
             return await _Catrepos.GetCategoryDetails(id);
         }
 
-        public Task UpdateOrDeleteCategory(UpdateCategoryDTO dto)
+        public async Task UpdateCategoryActivation(int Id, bool value)
         {
-            return _Catrepos.UpdateOrDeleteCategory(dto);
+            var cate = await _Catrepos.GetCategoryById(Id);
+            if (cate != null)
+            {
+                cate.IsDeleted = value;
+                await _Catrepos.UpdateOrDeleteCategory(cate);
+            }
+            else
+            {
+                throw new Exception("Category Does not Exist");
+            }
+        }
+
+        public async Task UpdateOrDeleteCategory(UpdateCategoryDTO dto)
+        {
+            //check if exisit 
+            var cate = await _Catrepos.GetCategoryById(dto.Id);
+            if (cate != null)
+            {
+                if (dto.Title != null && !dto.Title.Equals(""))
+                {
+                    cate.Title = dto.Title;
+                }
+                if (!string.IsNullOrEmpty(dto.Description))
+                {
+                    cate.Description = dto.Description;
+                }
+                if (!string.IsNullOrEmpty(dto.ImageUrl))
+                {
+                    cate.ImageUrl = dto.ImageUrl;
+                }
+                await _Catrepos.UpdateOrDeleteCategory(cate);
+            }
+            else
+            {
+                throw new Exception("Category Does not Exist");
+            }
         }
     }
 }

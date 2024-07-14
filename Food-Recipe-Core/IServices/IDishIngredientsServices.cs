@@ -1,5 +1,6 @@
 ﻿using Food_Recipe_Core.DTOs.Dish;
 using Food_Recipe_Core.DTOs.DishIngredients;
+using Food_Recipe_Core.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

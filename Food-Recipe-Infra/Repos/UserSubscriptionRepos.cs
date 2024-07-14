@@ -40,6 +40,11 @@ namespace Food_Recipe_Infra.Repos
             return await query.ToListAsync();
         }
 
+        public async Task<UserSubscription> GetUserSubscriptionByID(int id)
+        {
+            return await _RecipeDbContext.UserSubscriptions.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<DetailsUserSubscriptions> GetUserSubscriptionsDetails(int id)
         {
             var result = await _RecipeDbContext.UserSubscriptions.FirstOrDefaultAsync(c => c.Id == id);

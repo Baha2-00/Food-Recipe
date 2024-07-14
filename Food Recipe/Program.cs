@@ -4,6 +4,7 @@ using Food_Recipe_Core.IServices;
 using Food_Recipe_Infra.Repos;
 using Food_Recipe_Infra.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Reflection;
@@ -73,6 +74,14 @@ try
     app.UseSwagger();
     app.UseSwaggerUI();
     app.UseHttpsRedirection();
+    app.UseStaticFiles(); // To serve files 
+                          // Add custom static files middleware
+    var imagesDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Images");
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(imagesDirectory),
+        RequestPath = "/Images"
+    });
 
     app.UseAuthorization();
 

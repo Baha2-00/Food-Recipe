@@ -17,5 +17,6 @@ namespace Food_Recipe_Core.IServices
         Task CreateCuisine(CreateCuisineDTO createCuisineDto);
 
         Task UpdateOrDeleteCuisine(UpdateCuisineDTO dto);
+        Task UpdateCuisineActivation(int Id, bool value);
     }
 }

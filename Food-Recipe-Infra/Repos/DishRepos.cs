@@ -41,6 +41,11 @@ namespace Food_Recipe_Infra.Repos
             return await query.ToListAsync();
         }
 
+        public async Task<Dish> GetDishByID(int id)
+        {
+            return await _RecipeDbContext.Dishs.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<GetDishDetailsDTO> GetDishDetails(int id)
         {
             var res=await _RecipeDbContext.Dishs.FirstOrDefaultAsync(x=>x.Id==id);

@@ -63,6 +63,11 @@ namespace Food_Recipe_Infra.Repos
             throw new Exception("not found");
         }
 
+        public async Task<DishPreparingSteps> GetPreparingStepsByID(int id)
+        {
+            return await _RecipeDbContext.DishPreparingStep.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task UpdateOrDeleteDishPrepareSteps(UpdateDishPreparingSteps updateStepsDto)
         {
             var query = await _RecipeDbContext.DishPreparingStep.FindAsync(updateStepsDto.Id);

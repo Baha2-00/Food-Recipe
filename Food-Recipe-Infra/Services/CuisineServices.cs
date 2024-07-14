@@ -40,9 +40,43 @@ namespace Food_Recipe_Infra.Services
             return await _cuisineRepos.GetDeatilsCuisine(id);
         }
 
-        public Task UpdateOrDeleteCuisine(UpdateCuisineDTO dto)
+        public async Task UpdateCuisineActivation(int Id, bool value)
         {
-            return _cuisineRepos.UpdateOrDeleteCuisine(dto);
+            var cuisine = await _cuisineRepos.GetCuisineById(Id);
+            if (cuisine != null)
+            {
+                cuisine.IsDeleted = value;
+                await _cuisineRepos.UpdateCuisine(cuisine);
+            }
+            else
+            {
+                throw new Exception("cuisine Does not Exist");
+            }
+        }
+
+        public async Task UpdateOrDeleteCuisine(UpdateCuisineDTO dto)
+        {
+            var cuisine = await _cuisineRepos.GetCuisineById(dto.Id);
+            if (cuisine != null)
+            {
+                if (dto.Title != null && !dto.Title.Equals(""))
+                {
+                    cuisine.Title = dto.Title;
+                }
+                if (!string.IsNullOrEmpty(dto.Description))
+                {
+                    cuisine.Description = dto.Description;
+                }
+                if (!string.IsNullOrEmpty(dto.ImageUrl))
+                {
+                    cuisine.ImageUrl = dto.ImageUrl;
+                }
+                await _cuisineRepos.UpdateCuisine(cuisine);
+            }
+            else
+            {
+                throw new Exception("cuisine Does not Exist");
+            }
         }
     }
 }

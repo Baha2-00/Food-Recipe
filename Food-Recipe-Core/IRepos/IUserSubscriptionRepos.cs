@@ -10,6 +10,7 @@ namespace Food_Recipe_Core.IRepos
 {
     public interface IUserSubscriptionRepos
     {
+        Task<UserSubscription> GetUserSubscriptionByID(int id);
         Task<DetailsUserSubscriptions> GetUserSubscriptionsDetails(int id);
 
         Task<List<GetAllUserSubscriptions>> GetAllUserSubscriptions();

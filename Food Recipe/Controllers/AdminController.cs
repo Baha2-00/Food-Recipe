@@ -1,6 +1,7 @@
 ﻿using Food_Recipe_Core.DTOs.Authentication;
 using Food_Recipe_Core.DTOs.Category;
 using Food_Recipe_Core.DTOs.Cuisine;
+using Food_Recipe_Core.DTOs.Dish;
 using Food_Recipe_Core.DTOs.Login;
 using Food_Recipe_Core.DTOs.Subscription;
 using Food_Recipe_Core.DTOs.Users;
@@ -80,7 +81,7 @@ namespace Food_Recipe.Controllers
         /// 
         [HttpGet]
         [Route("[action]/{id}")]
-        public async Task<IActionResult> GetUsersByid(int id)
+        public async Task<IActionResult> GetUsersByid([FromRoute] int id)
         {
             try
             {
@@ -126,7 +127,7 @@ namespace Food_Recipe.Controllers
         /// <response code="500">If there is an error</response>  
         [HttpGet]
         [Route("[action]/{id}")]
-        public async Task<IActionResult> GetUserSubscriptionsDetails(int id)
+        public async Task<IActionResult> GetUserSubscriptionsDetails([FromRoute] int id)
         {
             try
             {
@@ -239,6 +240,37 @@ namespace Food_Recipe.Controllers
         }
 
         /// <summary>
+        /// Creates A New Dish In My Db
+        /// </summary>
+        /// <response code="200">Returns A New Dish Is Created</response>
+        /// <response code="404">Returns If There is no any Matched Object</response>
+        /// <response code="500">If there is an error</response>  
+        [HttpPost]
+        [Route("CreateNewDish")]
+        public async Task<IActionResult> CreateDish([FromBody] CreateDishDTO createDishDto)
+        {
+            if (createDishDto == null)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    Log.Information("CreateDish Was Called");
+                    Log.Information("CreateDish Was Returned");
+                    await _dish.CreateDish(createDishDto);
+                    return StatusCode(201, "New Dish Has Been Created");
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex.Message);
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        /// <summary>
         /// Creates A New Subscription In My Db
         /// </summary>
         /// <response code="200">Returns Subscription Is Created</response>
@@ -308,9 +340,9 @@ namespace Food_Recipe.Controllers
         /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("LoginToSite")]
-        public async Task<IActionResult> LoginToSite([FromBody] LoginEntryDTO dt)
+        public async Task<IActionResult> LoginToSite([FromBody] AuthenticationDTO input)
         {
-            if (dt == null)
+            if (input == null)
             {
                 return BadRequest("Please Fill All Data");
             }
@@ -318,14 +350,11 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
-                    Log.Information("loginEntry Was Called");
-                    Log.Information("loginEntry Was Returned");
-                    await _user.LoginToWebsite(dt);
-                    return StatusCode(201, "Login is Done");
+                    var token = await _user.GenerateUserAccessToken(input);
+                    return StatusCode(200, token);
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }
@@ -346,7 +375,7 @@ namespace Food_Recipe.Controllers
         /// <response code="500">If there is an error</response>  
         [HttpPut]
         [Route("UpdateAdmin")]
-        public async Task<IActionResult> UpdateAmin([FromBody] UpdateUser dto)
+        public async Task<IActionResult> UpdateAdmin([FromBody] UpdateUser dto)
         {
             if (dto == null)
             {
@@ -401,6 +430,37 @@ namespace Food_Recipe.Controllers
         }
 
         /// <summary>
+        /// Updates Category Activation In My Db
+        /// </summary>
+        /// <response code="200">Returns Category Activation Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
+        [HttpPut]
+        [Route("[action]")]
+        public async Task<IActionResult> UpdateCategoryActivation([FromQuery]int Id,[FromQuery]bool value)
+        {
+            if (Id == 0)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    Log.Information("UpdateCategory Activate Was Called");
+                    Log.Information("UpdateCategory Activate Was Returned");
+                    await _category.UpdateCategoryActivation(Id, value);
+                    return StatusCode(201, "Category Activation Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex.Message);
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        /// <summary>
         /// Updates Cuisine In My Db
         /// </summary>
         /// <response code="200">Returns Cuisine Is Updated</response>
@@ -422,6 +482,68 @@ namespace Food_Recipe.Controllers
                     Log.Information("UpdateCuisine Was Returned");
                     await _cuisine.UpdateOrDeleteCuisine(dto);
                     return StatusCode(201, "Cuisine Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex.Message);
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Updates Cuisine In My Db
+        /// </summary>
+        /// <response code="200">Returns Cuisine Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
+        [HttpPut]
+        [Route("UpdateCuisineActivate")]
+        public async Task<IActionResult> UpdateCuisineActivate([FromQuery] int Id, [FromQuery] bool value)
+        {
+            if (Id == 0)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    Log.Information("UpdateCuisine Was Called");
+                    Log.Information("UpdateCuisine Was Returned");
+                    await _cuisine.UpdateCuisineActivation(Id,value);
+                    return StatusCode(201, "Cuisine Has Been Updated");
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex.Message);
+                    return StatusCode(503, $"Error Orrued {ex.Message}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Updates Category Activation In My Db
+        /// </summary>
+        /// <response code="200">Returns Category Activation Is Updated</response>
+        /// <response code="404">Returns If There is no any Matched Object</response> 
+        /// <response code="500">If there is an error</response>  
+        [HttpPut]
+        [Route("[action]")]
+        public async Task<IActionResult> UpdateCuisineActivation([FromQuery] int Id, [FromQuery] bool value)
+        {
+            if (Id == 0)
+            {
+                return BadRequest("Please Fill All Data");
+            }
+            else
+            {
+                try
+                {
+                    Log.Information("UpdateCategory Activate Was Called");
+                    Log.Information("UpdateCategory Activate Was Returned");
+                    await _cuisine.UpdateCuisineActivation(Id, value);
+                    return StatusCode(201, "Category Activation Has Been Updated");
                 }
                 catch (Exception ex)
                 {

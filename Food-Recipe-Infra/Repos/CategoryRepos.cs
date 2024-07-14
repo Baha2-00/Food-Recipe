@@ -38,6 +38,11 @@ namespace Food_Recipe_Infra.Repos
             return await query.ToListAsync();
         }
 
+        public async Task<Category> GetCategoryById(int id)
+        {
+           return await _RecipeDbContext.Categories.FirstOrDefaultAsync(c => c.Id == id);
+        }
+
         public async Task<GetDetailsCategoryDTO> GetCategoryDetails(int id)
         {
             var result= await _RecipeDbContext.Categories.FirstOrDefaultAsync(c => c.Id == id);
@@ -57,23 +62,10 @@ namespace Food_Recipe_Infra.Repos
             throw new Exception("not found");
         }
 
-        public async Task UpdateOrDeleteCategory(UpdateCategoryDTO dto)
+        public async Task UpdateOrDeleteCategory<T>(T input)
         {
-            var query = await _RecipeDbContext.Categories.FindAsync(dto.Id);
-
-            if (query != null)
-            {
-                query.Title = dto.Title;
-                query.Description = dto.Description;
-                query.ImageUrl = dto.ImageUrl;
-                query.IsDeleted = dto.IsDeleted;
-                _RecipeDbContext.Update(query);
-                await _RecipeDbContext.SaveChangesAsync();
-            }
-            else
-            {
-                throw new Exception($"Content not found");
-            }
+            _RecipeDbContext.Update(input);
+            await _RecipeDbContext.SaveChangesAsync();
         }
     }
 }

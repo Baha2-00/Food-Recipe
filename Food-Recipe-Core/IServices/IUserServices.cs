@@ -12,6 +12,8 @@ namespace Food_Recipe_Core.IServices
 {
     public interface IUserServices
     {
+        Task<string> GenerateUserAccessToken(AuthenticationDTO input);
+        Task<User> TryAuthanticate(AuthenticationDTO input);
         Task<GetUserDetailsDTO> GetUserProfile(int id);
 
         Task<List<GetAllUser>> GetAllUsers();

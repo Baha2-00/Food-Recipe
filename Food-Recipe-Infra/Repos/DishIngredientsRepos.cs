@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Food_Recipe_Infra.Repos
 {
@@ -40,6 +41,11 @@ namespace Food_Recipe_Infra.Repos
             return await query.ToListAsync();
         }
 
+        public async Task<DishIngredient> GetDishIngredientsByID(int id)
+        {
+            return await _RecipeDbContext.DishIngredients.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<DetailsDishIngredients> GetDishIngredientsDetails(int id)
         {
             var res= await _RecipeDbContext.DishIngredients.FirstOrDefaultAsync(x=>x.Id==id);
@@ -62,24 +68,10 @@ namespace Food_Recipe_Infra.Repos
             throw new Exception("not found");
         }
 
-        public async Task UpdateOrDeleteDishIngredient(UpdateDishIngredients dt)
+        public async Task UpdateOrDeleteDishIngredient<T>(T dt)
         {
-            var query = await _RecipeDbContext.DishIngredients.FindAsync(dt.Id);
-
-            if (query != null)
-            {
-                query.DishId = dt.DishId;
-                query.IngredientId = dt.IngredientId;
-                query.Quantity = dt.Quantity;
-                query.quantityUnit = dt.quantityUnit;
-                query.IsDeleted = dt.IsDeleted;
-                _RecipeDbContext.Update(query);
-                await _RecipeDbContext.SaveChangesAsync();
-            }
-            else
-            {
-                throw new Exception($"Content not found");
-            }
+            _RecipeDbContext.Update(dt);
+            await _RecipeDbContext.SaveChangesAsync();
         }
     }
 }
