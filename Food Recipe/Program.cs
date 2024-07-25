@@ -65,6 +65,16 @@ Serilog.Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configurat
                 WriteTo.File(loggerPath, rollingInterval: RollingInterval.Day).
                 CreateLogger();
 
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy(name: "Default", builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 
 var app = builder.Build();
 
@@ -84,7 +94,7 @@ try
     });
 
     app.UseAuthorization();
-
+    app.UseCors("Default");
     app.MapControllers();
 
     app.Run();

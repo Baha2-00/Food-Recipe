@@ -405,8 +405,8 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response> 
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateAdminActivation")]
-        public async Task<IActionResult> UpdateAdminActivation([FromBody] int id , [FromBody] bool value)
+        [Route("[action]")]
+        public async Task<IActionResult> UpdateAdminActivation([FromQuery] int id , [FromQuery] bool value)
         {
             if (id == 0)
             {
@@ -436,7 +436,7 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response> 
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateCategory")]
+        [Route("[action]")]
         public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryDTO dto)
         {
             if (dto == null)
@@ -498,7 +498,7 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response> 
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateCuisine")]
+        [Route("[action]")]
         public async Task<IActionResult> UpdateCuisine([FromBody] UpdateCuisineDTO dto)
         {
             if (dto == null)
@@ -560,7 +560,7 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response> 
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateSubscription")]
+        [Route("[action]")]
         public async Task<IActionResult> UpdateSubscription([FromBody] UpdateSubscription dto)
         {
             if (dto == null)
@@ -591,8 +591,8 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response> 
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateSubscriptionActivation")]
-        public async Task<IActionResult> UpdateSubscriptionActivation([FromBody] int id, [FromBody] bool value)
+        [Route("[action]")]
+        public async Task<IActionResult> UpdateSubscriptionActivation([FromQuery] int id, [FromQuery] bool value)
         {
             if (id == 0)
             {
@@ -604,7 +604,7 @@ namespace Food_Recipe.Controllers
                 {
                     Log.Information("UpdateSubscriptionActivation Was Called");
                     Log.Information("UpdateSubscriptionActivation Was Returned");
-                    await _subscription.UpdateSubscriptionActivation(id , value);
+                    await _subscription.UpdateSubscriptionActivation(id, value);
                     return StatusCode(201, "SubscriptionActivation Has Been Updated");
                 }
                 catch (Exception ex)
@@ -622,7 +622,7 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response> 
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateUserSubscription")]
+        [Route("[action]")]
         public async Task<IActionResult> UpdateUserSubscription([FromBody] UpdateUserSubscriptions dto)
         {
             if (dto == null)
@@ -653,7 +653,7 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response> 
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateUserSubscriptionActivation")]
+        [Route("[action]")]
         public async Task<IActionResult> UpdateUserSubscriptionActivation([FromQuery] int Id, [FromQuery] bool value)
         {
             if (Id == 0)
@@ -666,7 +666,7 @@ namespace Food_Recipe.Controllers
                 {
                     Log.Information("UpdateUserSubscription Activation Was Called");
                     Log.Information("UpdateUserSubscription Activation Was Returned");
-                    await _userSubscription.ChangeUserSubActivation(Id,value);
+                    await _userSubscription.ChangeUserSubActivation(Id, value);
                     return StatusCode(201, "User Subscription Activation Has Been Updated");
                 }
                 catch (Exception ex)
@@ -684,7 +684,7 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response> 
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("ResetPassword")]
+        [Route("[action]")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPassDTO dto)
         {
             if (dto == null)

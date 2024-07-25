@@ -279,7 +279,7 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response>
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateDish")]
+        [Route("[action]")]
         public async Task<IActionResult> UpdateDish([FromBody] UpdateDishDTO dto)
         {
             if (dto == null)
@@ -310,8 +310,8 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response>
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateDishActivation")]
-        public async Task<IActionResult> UpdateDishActivation([FromBody] int id, [FromBody] bool value)
+        [Route("[action]")]
+        public async Task<IActionResult> UpdateDishActivation([FromQuery] int id, [FromQuery] bool value)
         {
             if (id == 0)
             {
@@ -341,7 +341,7 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response>
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateIngredient")]
+        [Route("[action]")]
         public async Task<IActionResult> UpdateIngredient([FromBody] UpdateIngredients dto)
         {
             if (dto == null)
@@ -372,8 +372,8 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response>
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateIngredientActivation")]
-        public async Task<IActionResult> UpdateIngredientActivation([FromBody] int id , bool value)
+        [Route("[action]")]
+        public async Task<IActionResult> UpdateIngredientActivation([FromQuery] int id , [FromQuery] bool value)
         {
             if (id == 0)
             {
@@ -403,7 +403,7 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response>
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateDishIngredients")]
+        [Route("[action]")]
         public async Task<IActionResult> UpdateDishIngredients([FromBody] UpdateDishIngredients dto)
         {
             if (dto == null)
@@ -434,8 +434,8 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response>
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateDishIngredientsActivation")]
-        public async Task<IActionResult> UpdateDishIngredientsActivation([FromBody] int id, [FromBody] bool value)
+        [Route("[action]")]
+        public async Task<IActionResult> UpdateDishIngredientsActivation([FromQuery] int id, [FromQuery] bool value)
         {
             if (id == 0)
             {
@@ -465,7 +465,7 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response>
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateDishPreparingSteps")]
+        [Route("[action]")]
         public async Task<IActionResult> UpdateDishPreparingSteps([FromBody] UpdateDishPreparingSteps dto)
         {
             if (dto == null)
@@ -496,8 +496,8 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response>
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateDishPreparingStepsActivation")]
-        public async Task<IActionResult> UpdateDishPreparingStepsActivation([FromBody] int id, [FromBody] bool value)
+        [Route("[action]")]
+        public async Task<IActionResult> UpdateDishPreparingStepsActivation([FromQuery] int id, [FromQuery] bool value)
         {
             if (id == 0)
             {
@@ -527,7 +527,7 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response>
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateUser")]
+        [Route("[action]")]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUser dto)
         {
             if (dto == null)
@@ -558,8 +558,8 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response>
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("UpdateUserActivation")]
-        public async Task<IActionResult> UpdateUserActivation([FromBody] int id, [FromBody] bool value)
+        [Route("[action]")]
+        public async Task<IActionResult> UpdateUserActivation([FromQuery] int id, [FromQuery] bool value)
         {
             if (id == 0)
             {
@@ -590,7 +590,7 @@ namespace Food_Recipe.Controllers
         /// <response code="404">Returns If There is no any Matched Object</response> 
         /// <response code="500">If there is an error</response>  
         [HttpPut]
-        [Route("ResetPassword")]
+        [Route("[action]")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPassDTO dto)
         {
             if (dto == null)
