@@ -141,6 +141,30 @@ namespace Food_Recipe.Controllers
                 return StatusCode(500, $"An Error Was Occurred {ex.Message}");
             }
         }
+
+        /// <summary>
+        /// Returns all Dishes that need approve In My Db
+        /// </summary>
+        /// <response code="200">Returns All the available Dishes that need approve</response>
+        /// <response code="404">Returns If There is no any Matched Object</response>
+        /// <response code="500">If there is an error</response>  
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> GetAllDishesWithApprove()
+        {
+            try
+            {
+                Log.Information("GetAllDishes With approve Was Called");
+                Log.Information("GetAllDishes With approve Was Returned");
+                return StatusCode(200, await _dish.GetDishesWithApprove());
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+                return StatusCode(500, $"An Error Was Occurred {ex.Message}");
+            }
+        }
+
         #endregion
 
 

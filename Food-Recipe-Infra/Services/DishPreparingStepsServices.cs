@@ -26,7 +26,7 @@ namespace Food_Recipe_Infra.Services
                 Title=DishPreparingStepsDto.Title,
                 desc= DishPreparingStepsDto.desc,
                 attachment= DishPreparingStepsDto.attachment,
-                CreationDate= DishPreparingStepsDto.CreationDate,
+                CreationDate= DateTime.Now,
                 DishId= DishPreparingStepsDto.DishId
             };
             await _PreparingStepsRepos.CreateDishPreparingSteps(dishPreparingSteps);

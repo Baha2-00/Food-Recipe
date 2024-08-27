@@ -24,6 +24,7 @@ namespace Food_Recipe_Core.Models.EntityConfiguration
             builder.Property(x => x.IsDeleted).HasDefaultValue(false);
 
             //RelationShips
+            builder.HasMany<Dish>().WithOne().HasForeignKey(x => x.UserId);
             builder.HasMany<DishRequest>().WithOne().HasForeignKey(x => x.UserId);
             builder.HasMany<UserSubscription>().WithOne().HasForeignKey(x => x.UserId);
             builder.HasOne<Login>().WithOne().HasForeignKey<Login>(x => x.UserId);

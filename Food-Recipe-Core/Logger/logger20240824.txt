@@ -1,0 +1,4 @@
+2024-08-24 11:51:14.323 +03:00 [INF] GetAllUsers Was Called
+2024-08-24 11:51:14.421 +03:00 [INF] GetAllUsers Was Returned
+2024-08-24 11:52:12.953 +03:00 [INF] GetAllCategories Was Called
+2024-08-24 11:52:12.954 +03:00 [INF] GetAllCategories Was Returned

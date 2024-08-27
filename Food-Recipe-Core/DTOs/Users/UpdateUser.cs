@@ -9,12 +9,11 @@ namespace Food_Recipe_Core.DTOs.Users
 {
     public class UpdateUser
     {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Phone { get; set; }
+        public int     Id { get; set; }
+        public string  FirstName { get; set; }
+        public string  LastName { get; set; }
+        public string  Phone { get; set; }
         public string? ProfileImage { get; set; }
-        public bool IsDeleted { get; set; }
-        public SocicalMedia? SocicalMediaAccount { get; set; }
+        public string? SocicalMediaAccount { get; set; }
     }
 }

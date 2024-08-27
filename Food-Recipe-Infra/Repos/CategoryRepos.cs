@@ -3,6 +3,7 @@ using Food_Recipe_Core.DTOs.Category;
 using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.Models.Entity;
 using Microsoft.EntityFrameworkCore;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,14 +29,16 @@ namespace Food_Recipe_Infra.Repos
         public async Task<List<GetAllCategoryDTO>> GetAllCategory()
         {
             var query = from cate in _RecipeDbContext.Categories
+                        where cate.IsDeleted==false
                         select new GetAllCategoryDTO
                         {
                             Id = cate.Id,
                             Title = cate.Title,
-                            ImageUrl=cate.ImageUrl,
-                            CreationDate = cate.CreationDate
+                            Description = cate.Description,
+                            ImageUrl = $"https://localhost:44332/Images/{cate.ImageUrl}",
+                            IsDeleted=cate.IsDeleted
                         };
-            return await query.ToListAsync();
+            return await query.AsNoTracking().ToListAsync();
         }
 
         public async Task<Category> GetCategoryById(int id)
@@ -53,9 +56,9 @@ namespace Food_Recipe_Infra.Repos
                     Id= result.Id,
                     Title= result.Title,
                     Description= result.Description,
-                    ImageUrl=result.ImageUrl,
+                    ImageUrl= $"https://localhost:44332/Images/{result.ImageUrl}",
                     CreationDate= result.CreationDate,
-                    IsDeleted= result.IsDeleted,
+                    IsDeleted= result.IsDeleted
                 };
                 return response;
             }

@@ -25,7 +25,7 @@ namespace Food_Recipe_Infra.Services
                 Title = createCuisineDto.Title,
                 Description = createCuisineDto.Description,
                 ImageUrl = createCuisineDto.ImageUrl,
-                CreationDate = createCuisineDto.CreationDate,
+                CreationDate = DateTime.Now
             };
             await _cuisineRepos.CreateCuisine(cuisine);
         }

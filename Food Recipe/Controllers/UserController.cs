@@ -1,4 +1,5 @@
-﻿using Food_Recipe_Core.DTOs.Category;
+﻿using Food_Recipe_Core.DTOs.Authentication;
+using Food_Recipe_Core.DTOs.Category;
 using Food_Recipe_Core.DTOs.Cuisine;
 using Food_Recipe_Core.DTOs.Dish;
 using Food_Recipe_Core.DTOs.DishIngredients;
@@ -77,6 +78,22 @@ namespace Food_Recipe.Controllers
                 return StatusCode(500, $"An Error Was Occurred {ex.Message}");
             }
         }
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> GetUserDishByUserId(int Id)
+        {
+            try
+            {
+                var result = await _dish.GetUserDishByUserId(Id);
+                return StatusCode(201, result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(503, $"Error Orrued {ex.Message}");
+            }
+        }
+
         #endregion
 
 
@@ -90,9 +107,9 @@ namespace Food_Recipe.Controllers
         /// <response code="500">If there is an error</response>  
         [HttpPost]
         [Route("LoginToSite")]
-        public async Task<IActionResult> LoginToSite([FromBody] LoginEntryDTO dt)
+        public async Task<IActionResult> LoginToSite([FromBody] AuthenticationDTO input)
         {
-            if (dt == null)
+            if (input == null)
             {
                 return BadRequest("Please Fill All Data");
             }
@@ -100,14 +117,11 @@ namespace Food_Recipe.Controllers
             {
                 try
                 {
-                    Log.Information("loginEntry Was Called");
-                    Log.Information("loginEntry Was Returned");
-                    await _user.LoginToWebsite(dt);
-                    return StatusCode(201, "Login is Done");
+                    var token = await _user.GenerateUserAccessToken(input);
+                    return StatusCode(200, token);
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex.Message);
                     return StatusCode(503, $"Error Orrued {ex.Message}");
                 }
             }

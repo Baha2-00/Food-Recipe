@@ -19,7 +19,6 @@ namespace Food_Recipe_Core.Models.EntityConfiguration
             builder.Property(x => x.Name).IsRequired();
             builder.Property(x => x.Description).IsRequired();
             builder.Property(x => x.Title).IsRequired();
-            builder.Property(x => x.Image).IsRequired(false);
             builder.Property(x => x.IsDeleted).HasDefaultValue(false);
 
             //Relationships 

@@ -1,0 +1,145 @@
+2024-08-21 01:05:30.409 +03:00 [INF] GetDishDetails Was Called
+2024-08-21 01:05:30.476 +03:00 [INF] GetDishDetails Was Returned
+2024-08-21 01:26:17.889 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-08-21 01:26:31.677 +03:00 [INF] GetDishRequestByid Was Called
+2024-08-21 01:26:31.677 +03:00 [INF] GetDishRequestByid Was Returned
+2024-08-21 01:26:34.428 +03:00 [ERR] not found
+2024-08-21 01:26:41.964 +03:00 [INF] GetDishRequestByid Was Called
+2024-08-21 01:26:41.964 +03:00 [INF] GetDishRequestByid Was Returned
+2024-08-21 01:26:42.102 +03:00 [ERR] not found
+2024-08-21 01:30:45.903 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-08-21 01:31:02.183 +03:00 [INF] GetUsersByid Was Called
+2024-08-21 01:31:02.183 +03:00 [INF] GetUsersByid Was Returned
+2024-08-21 01:31:19.470 +03:00 [INF] GetDishRequestByid Was Called
+2024-08-21 01:31:19.470 +03:00 [INF] GetDishRequestByid Was Returned
+2024-08-21 01:31:19.632 +03:00 [ERR] not found
+2024-08-21 01:31:24.066 +03:00 [INF] GetDishRequestByid Was Called
+2024-08-21 01:31:24.066 +03:00 [INF] GetDishRequestByid Was Returned
+2024-08-21 01:31:24.328 +03:00 [ERR] not found
+2024-08-21 01:31:33.451 +03:00 [INF] GetDishRequestByid Was Called
+2024-08-21 01:31:33.451 +03:00 [INF] GetDishRequestByid Was Returned
+2024-08-21 01:31:33.606 +03:00 [ERR] not found
+2024-08-21 01:32:22.262 +03:00 [INF] GetDishRequestByid Was Called
+2024-08-21 01:32:22.262 +03:00 [INF] GetDishRequestByid Was Returned
+2024-08-21 01:32:22.483 +03:00 [ERR] not found
+2024-08-21 01:32:26.164 +03:00 [INF] GetDishRequestByid Was Called
+2024-08-21 01:32:26.164 +03:00 [INF] GetDishRequestByid Was Returned
+2024-08-21 01:32:26.294 +03:00 [ERR] not found
+2024-08-21 01:32:29.671 +03:00 [INF] GetDishRequestByid Was Called
+2024-08-21 01:32:29.671 +03:00 [INF] GetDishRequestByid Was Returned
+2024-08-21 01:32:29.794 +03:00 [ERR] not found
+2024-08-21 01:32:32.985 +03:00 [INF] GetDishRequestByid Was Called
+2024-08-21 01:32:32.985 +03:00 [INF] GetDishRequestByid Was Returned
+2024-08-21 01:32:33.113 +03:00 [ERR] not found
+2024-08-21 01:34:28.171 +03:00 [INF] GetDishDetails Was Called
+2024-08-21 01:34:28.172 +03:00 [INF] GetDishDetails Was Returned
+2024-08-21 10:03:27.219 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-08-21 10:05:59.714 +03:00 [INF] CreateIngredient Was Called
+2024-08-21 10:05:59.714 +03:00 [INF] CreateIngredient Was Returned
+2024-08-21 10:06:47.825 +03:00 [INF] CreateIngredient Was Called
+2024-08-21 10:06:47.825 +03:00 [INF] CreateIngredient Was Returned
+2024-08-21 10:07:02.345 +03:00 [INF] CreateIngredient Was Called
+2024-08-21 10:07:02.346 +03:00 [INF] CreateIngredient Was Returned
+2024-08-21 10:07:24.117 +03:00 [INF] CreateIngredient Was Called
+2024-08-21 10:07:24.117 +03:00 [INF] CreateIngredient Was Returned
+2024-08-21 10:07:40.638 +03:00 [INF] CreateIngredient Was Called
+2024-08-21 10:07:40.638 +03:00 [INF] CreateIngredient Was Returned
+2024-08-21 10:08:03.521 +03:00 [INF] CreateIngredient Was Called
+2024-08-21 10:08:03.521 +03:00 [INF] CreateIngredient Was Returned
+2024-08-21 10:09:04.082 +03:00 [INF] CreateIngredient Was Called
+2024-08-21 10:09:04.082 +03:00 [INF] CreateIngredient Was Returned
+2024-08-21 12:32:06.333 +03:00 [INF] CreateDishIngredients Was Called
+2024-08-21 12:32:06.333 +03:00 [INF] CreateDishIngredients Was Returned
+2024-08-21 12:33:35.320 +03:00 [INF] CreateDishIngredients Was Called
+2024-08-21 12:33:35.320 +03:00 [INF] CreateDishIngredients Was Returned
+2024-08-21 12:34:14.633 +03:00 [INF] CreateDishIngredients Was Called
+2024-08-21 12:34:14.633 +03:00 [INF] CreateDishIngredients Was Returned
+2024-08-21 12:35:26.480 +03:00 [INF] CreateDishIngredients Was Called
+2024-08-21 12:35:26.480 +03:00 [INF] CreateDishIngredients Was Returned
+2024-08-21 12:35:50.028 +03:00 [INF] CreateDishIngredients Was Called
+2024-08-21 12:35:50.028 +03:00 [INF] CreateDishIngredients Was Returned
+2024-08-21 12:36:15.018 +03:00 [INF] CreateDishIngredients Was Called
+2024-08-21 12:36:15.018 +03:00 [INF] CreateDishIngredients Was Returned
+2024-08-21 12:36:58.240 +03:00 [INF] CreateDishIngredients Was Called
+2024-08-21 12:36:58.240 +03:00 [INF] CreateDishIngredients Was Returned
+2024-08-21 12:38:04.974 +03:00 [INF] CreateDishPreparingSteps Was Called
+2024-08-21 12:38:04.974 +03:00 [INF] CreateDishPreparingSteps Was Returned
+2024-08-21 12:39:00.824 +03:00 [INF] CreateDishPreparingSteps Was Called
+2024-08-21 12:39:00.824 +03:00 [INF] CreateDishPreparingSteps Was Returned
+2024-08-21 12:39:53.588 +03:00 [INF] CreateDishPreparingSteps Was Called
+2024-08-21 12:39:53.588 +03:00 [INF] CreateDishPreparingSteps Was Returned
+2024-08-21 12:40:57.884 +03:00 [INF] CreateDishPreparingSteps Was Called
+2024-08-21 12:40:57.884 +03:00 [INF] CreateDishPreparingSteps Was Returned
+2024-08-21 12:41:48.491 +03:00 [INF] CreateDishRequest Was Called
+2024-08-21 12:41:48.491 +03:00 [INF] CreateDishRequest Was Returned
+2024-08-21 12:42:39.170 +03:00 [INF] loginEntry Was Called
+2024-08-21 12:42:39.170 +03:00 [INF] loginEntry Was Returned
+2024-08-21 13:33:22.640 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-08-21 14:36:38.477 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-08-21 16:02:23.322 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-08-21 17:23:45.341 +03:00 [INF] GetDishRequestByid Was Called
+2024-08-21 17:23:45.342 +03:00 [INF] GetDishRequestByid Was Returned
+2024-08-21 17:57:14.085 +03:00 [INF] GetUsersByid Was Called
+2024-08-21 17:57:14.085 +03:00 [INF] GetUsersByid Was Returned
+2024-08-21 17:57:14.430 +03:00 [ERR] not found
+2024-08-21 17:57:18.016 +03:00 [INF] GetUsersByid Was Called
+2024-08-21 17:57:18.016 +03:00 [INF] GetUsersByid Was Returned
+2024-08-21 17:57:18.177 +03:00 [ERR] not found
+2024-08-21 17:58:48.285 +03:00 [INF] GetUsersByid Was Called
+2024-08-21 17:58:48.285 +03:00 [INF] GetUsersByid Was Returned
+2024-08-21 17:58:48.756 +03:00 [ERR] not found
+2024-08-21 18:02:46.679 +03:00 [INF] GetUsersByid Was Called
+2024-08-21 18:02:46.680 +03:00 [INF] GetUsersByid Was Returned
+2024-08-21 18:02:47.036 +03:00 [ERR] not found
+2024-08-21 18:02:49.286 +03:00 [INF] GetUsersByid Was Called
+2024-08-21 18:02:49.286 +03:00 [INF] GetUsersByid Was Returned
+2024-08-21 18:02:49.543 +03:00 [ERR] not found
+2024-08-21 18:03:02.550 +03:00 [INF] GetUsersByid Was Called
+2024-08-21 18:03:02.550 +03:00 [INF] GetUsersByid Was Returned
+2024-08-21 18:03:02.768 +03:00 [ERR] not found
+2024-08-21 18:03:12.042 +03:00 [INF] GetUsersByid Was Called
+2024-08-21 18:03:12.042 +03:00 [INF] GetUsersByid Was Returned
+2024-08-21 18:03:12.284 +03:00 [ERR] not found
+2024-08-21 18:03:27.214 +03:00 [INF] GetUsersByid Was Called
+2024-08-21 18:03:27.214 +03:00 [INF] GetUsersByid Was Returned
+2024-08-21 18:03:27.474 +03:00 [ERR] not found
+2024-08-21 18:05:02.679 +03:00 [INF] GetAllDishes Was Called
+2024-08-21 18:05:02.679 +03:00 [INF] GetAllDishes Was Returned
+2024-08-21 18:05:07.582 +03:00 [INF] GetDishDetails Was Called
+2024-08-21 18:05:07.582 +03:00 [INF] GetDishDetails Was Returned
+2024-08-21 18:05:14.265 +03:00 [INF] GetAllCuisines Was Called
+2024-08-21 18:05:14.266 +03:00 [INF] GetAllCuisines Was Returned
+2024-08-21 18:05:15.899 +03:00 [INF] GetAllCategories Was Called
+2024-08-21 18:05:15.899 +03:00 [INF] GetAllCategories Was Returned
+2024-08-21 18:06:28.644 +03:00 [INF] GetUsersByid Was Called
+2024-08-21 18:06:28.644 +03:00 [INF] GetUsersByid Was Returned
+2024-08-21 18:06:28.825 +03:00 [ERR] not found
+2024-08-21 18:06:32.814 +03:00 [INF] GetUsersByid Was Called
+2024-08-21 18:06:32.814 +03:00 [INF] GetUsersByid Was Returned
+2024-08-21 18:06:32.968 +03:00 [ERR] not found
+2024-08-21 18:14:26.529 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-08-21 18:14:41.060 +03:00 [INF] GetUsersByid Was Called
+2024-08-21 18:14:41.060 +03:00 [INF] GetUsersByid Was Returned
+2024-08-21 18:14:43.917 +03:00 [ERR] not found
+2024-08-21 18:19:37.509 +03:00 [INF] GetUsersByid Was Called
+2024-08-21 18:19:37.509 +03:00 [INF] GetUsersByid Was Returned
+2024-08-21 18:19:38.109 +03:00 [ERR] not found
+2024-08-21 19:32:24.864 +03:00 [INF] GetUsersByid Was Called
+2024-08-21 19:32:24.865 +03:00 [INF] GetUsersByid Was Returned
+2024-08-21 19:32:25.214 +03:00 [ERR] not found
+2024-08-21 19:55:11.677 +03:00 [INF] CreateDish Was Called
+2024-08-21 19:55:11.677 +03:00 [INF] CreateDish Was Returned
+2024-08-21 19:56:11.800 +03:00 [INF] GetAllDishes Was Called
+2024-08-21 19:56:11.800 +03:00 [INF] GetAllDishes Was Returned
+2024-08-21 19:56:15.715 +03:00 [INF] GetDishDetails Was Called
+2024-08-21 19:56:15.715 +03:00 [INF] GetDishDetails Was Returned
+2024-08-21 23:36:21.570 +03:00 [INF] GetDishDetails Was Called
+2024-08-21 23:36:21.570 +03:00 [INF] GetDishDetails Was Returned
+2024-08-21 23:37:38.945 +03:00 [INF] GetAllDishes Was Called
+2024-08-21 23:37:38.947 +03:00 [INF] GetAllDishes Was Returned
+2024-08-21 23:37:45.947 +03:00 [INF] GetAllCuisines Was Called
+2024-08-21 23:37:45.947 +03:00 [INF] GetAllCuisines Was Returned
+2024-08-21 23:37:53.659 +03:00 [INF] UpdateDish Was Called
+2024-08-21 23:37:53.660 +03:00 [INF] UpdateDish Was Returned
+2024-08-21 23:38:01.118 +03:00 [INF] GetDishDetails Was Called
+2024-08-21 23:38:01.118 +03:00 [INF] GetDishDetails Was Returned

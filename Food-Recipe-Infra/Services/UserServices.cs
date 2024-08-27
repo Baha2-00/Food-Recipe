@@ -97,17 +97,32 @@ namespace Food_Recipe_Infra.Services
 
             if (query != null)
             {
-                query.FirstName = updateUserDto.FirstName;
-                query.LastName = updateUserDto.LastName;
-                query.Phone = updateUserDto.Phone;
-                query.ProfileImage = updateUserDto.ProfileImage;
-                query.SocicalMediaAccount = updateUserDto.SocicalMediaAccount;
+                if (updateUserDto.FirstName != null && !updateUserDto.FirstName.Equals(""))
+                {
+                    query.FirstName = updateUserDto.FirstName;
+                }
+                if (!string.IsNullOrEmpty(updateUserDto.LastName))
+                {
+                    query.LastName = updateUserDto.LastName;
+                }
+                if (!string.IsNullOrEmpty(updateUserDto.Phone))
+                {
+                    query.Phone = updateUserDto.Phone;
+                }
+                if (!string.IsNullOrEmpty(updateUserDto.ProfileImage))
+                {
+                    query.ProfileImage = updateUserDto.ProfileImage;
+                }
+                if (!string.IsNullOrEmpty(updateUserDto.LastName))
+                {
+                    query.SocicalMediaAccount = updateUserDto.SocicalMediaAccount;
+                }
 
                 await _userRepos.UpdateOrDeleteUser(query);
             }
             else
             {
-                throw new Exception($"Content not found");
+                throw new Exception("User Does not Exist");
             }
         }
         public async Task<string> GenerateUserAccessToken(AuthenticationDTO input)

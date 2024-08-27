@@ -26,7 +26,8 @@ namespace Food_Recipe_Infra.Services
                 Title = createCateDto.Title,
                 Description = createCateDto.Description,
                 ImageUrl= createCateDto.ImageUrl,
-                CreationDate= createCateDto.CreationDate
+                CreationDate= DateTime.Now,
+                IsDeleted= false
             };
              await _Catrepos.CreateCategory(cate);
         }

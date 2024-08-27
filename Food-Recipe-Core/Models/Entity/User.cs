@@ -17,6 +17,6 @@ namespace Food_Recipe_Core.Models.Entity
         public DateTime BirthDate { get; set; }
         public Role Role { get; set; }
         public string? ProfileImage { get; set; }
-        public SocicalMedia? SocicalMediaAccount { get; set; }
+        public string? SocicalMediaAccount { get; set; }
     }
 }

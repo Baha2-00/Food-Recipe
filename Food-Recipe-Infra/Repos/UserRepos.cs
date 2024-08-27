@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Food_Recipe_Infra.Repos
 {
@@ -42,10 +43,13 @@ namespace Food_Recipe_Infra.Repos
                          Id = user.Id,
                          FirstName = user.FirstName,
                          LastName = user.LastName,
+                         Email=user.Email,
+                         Phone= user.Phone,
                          Role=user.Role.ToString(),
-                         ProfileImage = user.ProfileImage
+                         CreationDate = user.CreationDate.ToString(),
+                         IsDeleted = user.IsDeleted
                         };
-            return await query.ToListAsync();
+            return await query.AsNoTracking().ToListAsync();
         }
 
         public async Task<User> GetUserById(int id)
@@ -67,8 +71,8 @@ namespace Food_Recipe_Infra.Repos
                     Phone= result.Phone,
                     BirthDate= result.BirthDate,
                     Role= result.Role.ToString(),
-                    ProfileImage = result.ProfileImage,
-                    SocicalMediaAccount=result.SocicalMediaAccount.ToString(),
+                    ProfileImage = $"https://localhost:44332/Images/{result.ProfileImage}",
+                    SocicalMediaAccount=result.SocicalMediaAccount,
                     CreationDate= result.CreationDate,
                     IsDeleted= result.IsDeleted
 
@@ -126,9 +130,9 @@ namespace Food_Recipe_Infra.Repos
             }
         }
 
-        public async Task UpdateOrDeleteUser<T>(T inp)
+        public async Task UpdateOrDeleteUser<T>(T input)
         {
-                _RecipeDbContext.Update(inp);
+                _RecipeDbContext.Update(input);
                 await _RecipeDbContext.SaveChangesAsync();
         }
     }

@@ -8,9 +8,8 @@ namespace Food_Recipe_Core.DTOs.Cuisine
 {
     public class CreateCuisineDTO
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string? ImageUrl { get; set; }
-        public DateTime CreationDate { get; set; } = DateTime.Now;
+        public string   Title { get; set; }
+        public string   Description { get; set; }
+        public string?  ImageUrl { get; set; }
     }
 }

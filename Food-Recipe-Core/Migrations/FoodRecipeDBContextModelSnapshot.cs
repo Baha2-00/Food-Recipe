@@ -111,6 +111,12 @@ namespace Food_Recipe_Core.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("IngredientName")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool?>("IsApproved")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("tinyint(1)")
@@ -120,11 +126,22 @@ namespace Food_Recipe_Core.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Quantity")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("preparingStepsDescription")
+                        .HasColumnType("longtext");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("CuisineId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Dishs");
                 });
@@ -265,9 +282,6 @@ namespace Food_Recipe_Core.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("longtext");
-
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("tinyint(1)")
@@ -364,7 +378,7 @@ namespace Food_Recipe_Core.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("subscription")
+                    b.Property<int>("subscriptionPeriod")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -414,8 +428,8 @@ namespace Food_Recipe_Core.Migrations
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SocicalMediaAccount")
-                        .HasColumnType("int");
+                    b.Property<string>("SocicalMediaAccount")
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -472,6 +486,10 @@ namespace Food_Recipe_Core.Migrations
                     b.HasOne("Food_Recipe_Core.Models.Entity.Cuisine", null)
                         .WithMany()
                         .HasForeignKey("CuisineId");
+
+                    b.HasOne("Food_Recipe_Core.Models.Entity.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Food_Recipe_Core.Models.Entity.DishIngredient", b =>

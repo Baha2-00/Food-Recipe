@@ -4,12 +4,14 @@ using Food_Recipe_Core.DTOs.Cuisine;
 using Food_Recipe_Core.IRepos;
 using Food_Recipe_Core.Models.Entity;
 using Microsoft.EntityFrameworkCore;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Food_Recipe_Infra.Repos
 {
@@ -29,14 +31,16 @@ namespace Food_Recipe_Infra.Repos
         public async Task<List<GetAllCuisineDTO>> GetAllCuisine()
         {
             var query = from cuisine in _RecipeDbContext.Cuisines
+                        where cuisine.IsDeleted == false
                         select new GetAllCuisineDTO
                         {
-                            id = cuisine.Id,
+                            Id = cuisine.Id,
                             Title = cuisine.Title,
                             Description = cuisine.Description,
-                            ImageUrl=cuisine.ImageUrl
+                            ImageUrl = $"https://localhost:44332/Images/{cuisine.ImageUrl}",
+                            IsDeleted = cuisine.IsDeleted
                         };
-            return await query.ToListAsync();
+            return await query.AsNoTracking().ToListAsync();
         }
 
         public async Task<Cuisine> GetCuisineById(int id)
@@ -54,7 +58,7 @@ namespace Food_Recipe_Infra.Repos
                     Id = result.Id,
                     Title = result.Title,
                     Description = result.Description,
-                    ImageUrl=result.ImageUrl,
+                    ImageUrl= $"https://localhost:44332/Images/{result.ImageUrl}",
                     CreationDate = result.CreationDate,
                     IsDeleted = result.IsDeleted
                 };

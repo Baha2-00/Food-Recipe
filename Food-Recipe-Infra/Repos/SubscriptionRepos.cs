@@ -35,9 +35,9 @@ namespace Food_Recipe_Infra.Repos
                             AllowdDishesRecipce= sub.AllowdDishesRecipce,
                             AllowedRequest= sub.AllowedRequest,
                             Price= sub.Price,
-                            subscription=sub.subscription.ToString(),
+                            subscription=sub.subscriptionPeriod.ToString(),
                         };
-            return await query.ToListAsync();
+            return await query.AsNoTracking().ToListAsync();
         }
 
         public async Task<Subscription> GetSubscriptionByID(int id)

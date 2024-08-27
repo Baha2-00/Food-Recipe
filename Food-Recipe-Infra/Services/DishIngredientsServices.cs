@@ -41,7 +41,7 @@ namespace Food_Recipe_Infra.Services
                 IngredientId=dt.IngredientId,
                 Quantity=dt.Quantity,
                 quantityUnit=dt.quantityUnit,
-                CreationDate=dt.CreationDate
+                CreationDate=DateTime.Now
             };
             await _DishIngredientsRepos.CreateDishIngredient(dishIngredient);
         }

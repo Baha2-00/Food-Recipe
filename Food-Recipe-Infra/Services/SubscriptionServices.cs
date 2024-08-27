@@ -28,7 +28,7 @@ namespace Food_Recipe_Infra.Services
                 AllowdDishesRecipce=createSubscriptionDto.AllowdDishesRecipce,
                 AllowedRequest=createSubscriptionDto.AllowedRequest,
                 Price=createSubscriptionDto.Price,
-                subscription=createSubscriptionDto.subscription,
+                subscriptionPeriod = createSubscriptionDto.subscription,
                 CreationDate=createSubscriptionDto.CreationDate
             };
             await _subscriptionRepos.CreateSubscription(subscription);
@@ -55,7 +55,7 @@ namespace Food_Recipe_Infra.Services
                 query.AllowdDishesRecipce = updateSubscriptionDto.AllowdDishesRecipce;
                 query.AllowedRequest = updateSubscriptionDto.AllowedRequest;
                 query.Price = updateSubscriptionDto.Price;
-                query.subscription = updateSubscriptionDto.subscription;
+                query.subscriptionPeriod = updateSubscriptionDto.subscription;
 
                 await _subscriptionRepos.UpdateOrDeleteSubscription(query);
             }

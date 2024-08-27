@@ -15,6 +15,14 @@ namespace Food_Recipe_Core.DTOs.Dish
         public DateTime CreationDate { get; set; }
         public string? CategoryName { get; set; }
         public string? CuisineName { get; set; }
-        public bool IsDeleted { get; set; }
+        public string? UserName { get; set; }
+        public bool? IsApproved { get; set; }
+
+        // Ingredient properties
+        public string? IngredientName { get; set; }
+        public string? Quantity { get; set; }
+
+        // Dish preparing steps  
+        public string? preparingStepsDescription { get; set; }
     }
 }

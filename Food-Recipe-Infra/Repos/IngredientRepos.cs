@@ -34,8 +34,7 @@ namespace Food_Recipe_Infra.Repos
                             Id = ing.Id,
                             Name = ing.Name,
                             Description = ing.Description,
-                            Title = ing.Title,
-                            Image=ing.Image
+                            Title = ing.Title
                         };
             return await query.ToListAsync();
         }
@@ -56,7 +55,6 @@ namespace Food_Recipe_Infra.Repos
                     Name = result.Name,
                     Description = result.Description,
                     Title= result.Title,
-                    Image=result.Image,
                     CreationDate = result.CreationDate,
                     IsDeleted = result.IsDeleted
                 };

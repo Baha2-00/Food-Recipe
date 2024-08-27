@@ -21,7 +21,8 @@ namespace Food_Recipe_Core.Helper.Security_Token
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                         new Claim("Email",input.Email),
-                        new Claim("UserId",input.Id.ToString())
+                        new Claim("UserId",input.Id.ToString()),
+                        new Claim("Role",input.Role.ToString())
                 }),
                 Expires = DateTime.Now.AddHours(9),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey)

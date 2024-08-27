@@ -1,0 +1,8 @@
+2024-08-15 16:34:12.632 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-08-15 16:35:47.773 +03:00 [INF] GetAllCategories Was Called
+2024-08-15 16:35:47.774 +03:00 [INF] GetAllCategories Was Returned
+2024-08-15 16:36:26.599 +03:00 [INF] GetAllCuisines Was Called
+2024-08-15 16:36:26.599 +03:00 [INF] GetAllCuisines Was Returned
+2024-08-15 16:40:00.282 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-08-15 16:40:28.327 +03:00 [INF] GetAllCategories Was Called
+2024-08-15 16:40:28.328 +03:00 [INF] GetAllCategories Was Returned

@@ -14,10 +14,12 @@ namespace Food_Recipe_Core.IServices
         Task<GetDishDetailsDTO> GetDishDetails(int id);
 
         Task<List<GetAllDishDTO>> GetAllDish();
+        Task<List<GetAllDishDTO>> GetDishesWithApprove();
 
         Task CreateDish(CreateDishDTO createDishDto);
 
         Task UpdateDish(UpdateDishDTO updateDishDto);
         Task UpdateDishActivation(int id , bool value);
+        Task<List<DishUserDTO>> GetUserDishByUserId(int Id);
     }
 }

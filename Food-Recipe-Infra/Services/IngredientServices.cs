@@ -26,8 +26,7 @@ namespace Food_Recipe_Infra.Services
                 Name = createIngredientsDto.Name,
                 Description = createIngredientsDto.Description,
                 Title = createIngredientsDto.Title,
-                Image=createIngredientsDto.Image,
-                CreationDate=createIngredientsDto.CreationDate
+                CreationDate=DateTime.Now
             };
             await _IngredientRepos.CreateIngredients(ingredients);
         }
@@ -64,7 +63,6 @@ namespace Food_Recipe_Infra.Services
             {
                 query.Name = updateIngredientsDto.Name;
                 query.Description = updateIngredientsDto.Description;
-                query.Image = updateIngredientsDto.Image;
                 query.Title = updateIngredientsDto.Title;
 
                 await _IngredientRepos.UpdateOrDeleteIngredients(query);

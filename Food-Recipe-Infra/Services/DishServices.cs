@@ -13,9 +13,11 @@ namespace Food_Recipe_Infra.Services
     public class DishServices : IDishServices
     {
         private readonly IDishRepos _DishRepos;
-        public DishServices(IDishRepos dishRepos)
+        private readonly IUserRepos _UserRepos;
+        public DishServices(IDishRepos dishRepos , IUserRepos userRepos)
         {
             _DishRepos = dishRepos;
+            _UserRepos = userRepos;
         }
 
         public async Task CreateDish(CreateDishDTO createDishDto)
@@ -25,9 +27,14 @@ namespace Food_Recipe_Infra.Services
                 Name = createDishDto.Name,
                 Description = createDishDto.Description,
                 Image=createDishDto.Image,
-                CreationDate = createDishDto.CreationDate,
+                CreationDate = DateTime.Now,
                 CategoryId = createDishDto.CategoryId,
                 CuisineId=createDishDto.CuisineId,
+                UserId=createDishDto.UserId,
+                IngredientName=createDishDto.IngredientName,
+                Quantity=createDishDto.Quantity,
+                preparingStepsDescription=createDishDto.preparingStepsDescription,
+                IsDeleted=true
             };
             await _DishRepos.CreateDish(dish);
         }
@@ -42,6 +49,24 @@ namespace Food_Recipe_Infra.Services
             return await _DishRepos.GetDishDetails(id);
         }
 
+        public async Task<List<GetAllDishDTO>> GetDishesWithApprove()
+        {
+            return await _DishRepos.GetDishesWithApprove();
+        }
+
+        public async Task<List<DishUserDTO>> GetUserDishByUserId(int Id)
+        {
+            var user = await _UserRepos.GetUserById(Id);
+            if (user != null || Id == -1)
+            {
+                return await _DishRepos.GetUserDishByUserId(Id);
+            }
+            else
+            {
+                throw new Exception("Blog Dose not Exisit");
+            }
+        }
+
         public async Task UpdateDish(UpdateDishDTO updateDishDto)
         {
             var query = await _DishRepos.GetDishByID(updateDishDto.Id);
@@ -51,9 +76,6 @@ namespace Food_Recipe_Infra.Services
                 query.Name = updateDishDto.Name;
                 query.Description = updateDishDto.Description;
                 query.Image = updateDishDto.Image;
-                query.CategoryId = updateDishDto.CategoryId;
-                query.CuisineId = updateDishDto.CuisineId;
-                query.IsDeleted = updateDishDto.IsDeleted;
 
                 await _DishRepos.UpdateOrDeleteDish(query);
             }
