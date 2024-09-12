@@ -38,7 +38,7 @@ namespace Food_Recipe_Infra.Repos
                             ImageUrl = $"https://localhost:44332/Images/{cate.ImageUrl}",
                             IsDeleted=cate.IsDeleted
                         };
-            return await query.AsNoTracking().ToListAsync();
+            return await query.ToListAsync();
         }
 
         public async Task<Category> GetCategoryById(int id)

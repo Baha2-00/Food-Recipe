@@ -100,22 +100,7 @@ namespace Food_Recipe_Infra.Repos
 
         public async Task<List<DishUserDTO>> GetUserDishByUserId(int Id)
         {
-            if (Id == -1)
-            {
-                var query2 = from dish in _RecipeDbContext.Dishs
-                             where
-                              dish.IsDeleted == false
-                             select new DishUserDTO
-                             {
-                                 ID = dish.Id,
-                                 Name = dish.Name,
-                                 Description = dish.Description,
-                                 CreationDate = dish.CreationDate.ToString(),
-                                 Status = dish.IsApproved == true ? "Accepted" :
-                                 dish.IsApproved == false ? "Rejected" : "Pending"
-                             };
-                return await query2.ToListAsync();
-            }
+
             var query = from dish in _RecipeDbContext.Dishs
                         where dish.UserId == Id
                         && dish.IsDeleted == false
@@ -125,8 +110,8 @@ namespace Food_Recipe_Infra.Repos
                             Name = dish.Name,
                             Description = dish.Description,
                             CreationDate = dish.CreationDate.ToString(),
-                            Status = dish.IsApproved == true ? "Accepted" :
-                            dish.IsApproved == false ? "Rejected" : "Pending"
+                            Status = dish.IsDeleted == false ? "Accepted" :
+                            dish.IsDeleted == true ? "Rejected" : "Pending"
                         };
             return await query.ToListAsync();
         }
