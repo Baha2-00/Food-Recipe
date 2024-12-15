@@ -1,5 +1,0 @@
-2024-07-14 14:57:39.715 +03:00 [INF] Food Recipe API Has been Launched Successfully
-2024-07-14 15:09:08.185 +03:00 [INF] Food Recipe API Has been Launched Successfully
-2024-07-14 17:55:25.244 +03:00 [INF] Food Recipe API Has been Launched Successfully
-2024-07-14 17:57:51.344 +03:00 [INF] UpdateUserSubscription Activation Was Called
-2024-07-14 17:57:51.344 +03:00 [INF] UpdateUserSubscription Activation Was Returned

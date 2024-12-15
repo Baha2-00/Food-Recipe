@@ -17,7 +17,6 @@ namespace Food_Recipe.Controllers
             {
                 throw new Exception("Please Enter Valid File");
             }
-            string newFileURL = DateTime.Now.ToString() + "" + file.FileName;
             string newFileURL2 = Guid.NewGuid().ToString() + "" + file.FileName;
             using (var inputFile = new FileStream(Path.Combine(uploadFolder, newFileURL2), FileMode.Create))
             {

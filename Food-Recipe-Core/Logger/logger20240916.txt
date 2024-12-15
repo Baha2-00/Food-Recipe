@@ -1,0 +1,23 @@
+2024-09-16 14:27:33.034 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-09-16 14:28:12.007 +03:00 [INF] GetAllDishes Was Called
+2024-09-16 14:28:12.007 +03:00 [INF] GetAllDishes Was Returned
+2024-09-16 14:30:27.243 +03:00 [INF] GetAllCategories Was Called
+2024-09-16 14:30:27.244 +03:00 [INF] GetAllCategories Was Returned
+2024-09-16 14:30:27.335 +03:00 [INF] GetAllCuisines Was Called
+2024-09-16 14:30:27.335 +03:00 [INF] GetAllCuisines Was Returned
+2024-09-16 14:30:47.722 +03:00 [INF] GetUsersByid Was Called
+2024-09-16 14:30:47.722 +03:00 [INF] GetUsersByid Was Returned
+2024-09-16 14:30:50.766 +03:00 [INF] GetAllCategories Was Called
+2024-09-16 14:30:50.766 +03:00 [INF] GetAllCategories Was Returned
+2024-09-16 14:31:16.826 +03:00 [INF] GetAllCuisines Was Called
+2024-09-16 14:31:16.828 +03:00 [INF] GetAllCuisines Was Returned
+2024-09-16 14:31:23.466 +03:00 [INF] GetAllDishes Was Called
+2024-09-16 14:31:23.467 +03:00 [INF] GetAllDishes Was Returned
+2024-09-16 14:31:32.893 +03:00 [INF] GetAllDishes Was Called
+2024-09-16 14:31:32.893 +03:00 [INF] GetAllDishes Was Returned
+2024-09-16 14:35:14.822 +03:00 [INF] GetUsersByid Was Called
+2024-09-16 14:35:14.822 +03:00 [INF] GetUsersByid Was Returned
+2024-09-16 14:35:26.962 +03:00 [INF] GetAllCuisines Was Called
+2024-09-16 14:35:26.962 +03:00 [INF] GetAllCuisines Was Returned
+2024-09-16 14:35:29.996 +03:00 [INF] GetAllCategories Was Called
+2024-09-16 14:35:29.996 +03:00 [INF] GetAllCategories Was Returned

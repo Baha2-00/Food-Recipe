@@ -1,0 +1,9 @@
+2024-12-14 14:36:29.043 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-12-14 14:36:35.348 +03:00 [INF] GetAllUsers Was Called
+2024-12-14 14:36:35.348 +03:00 [INF] GetAllUsers Was Returned
+2024-12-14 14:36:36.718 +03:00 [ERR] Authentication to host '127.0.0.1' for user 'root' using method 'caching_sha2_password' failed with message: Access denied for user 'root'@'localhost' (using password: YES)
+2024-12-14 14:38:09.251 +03:00 [INF] Food Recipe API Has been Launched Successfully
+2024-12-14 14:38:13.818 +03:00 [INF] GetAllUsers Was Called
+2024-12-14 14:38:13.818 +03:00 [INF] GetAllUsers Was Returned
+2024-12-14 14:38:26.882 +03:00 [INF] GetUsersByid Was Called
+2024-12-14 14:38:26.883 +03:00 [INF] GetUsersByid Was Returned

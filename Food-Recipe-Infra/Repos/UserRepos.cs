@@ -96,7 +96,7 @@ namespace Food_Recipe_Infra.Repos
             if (string.IsNullOrEmpty(dt.UserName) || string.IsNullOrEmpty(dt.Password))
                 throw new Exception("Email Or Phone and Password are required");
             var login = await _RecipeDbContext.Logins
-                 .Where(x => (x.UserName.Equals(dt.UserName) || x.Password.Equals(dt.Password)))
+                 .Where(x => (x.UserName.Equals(dt.UserName) && x.Password.Equals(dt.Password)))
                  .SingleOrDefaultAsync();
             if (login == null)
             {
